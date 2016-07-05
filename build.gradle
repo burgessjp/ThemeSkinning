@@ -18,7 +18,7 @@ allprojects {
     repositories {
         jcenter()
         maven { url "https://jitpack.io" }
-        maven { url "http://dl.bintray.com/solid/maven" }
+        maven { url "http://dl.bintray.com/solid/maven" }//目前jcenter审核还未通过，这句加上才能使用
     }
     tasks.withType(Javadoc) {
         options{

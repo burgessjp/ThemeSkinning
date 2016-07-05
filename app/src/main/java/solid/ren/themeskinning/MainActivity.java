@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -21,6 +23,7 @@ import solid.ren.skinlibrary.load.SkinManager;
 public class MainActivity extends SkinBaseActivity {
 
     private RecyclerView recyclerview;
+    private LinearLayout ll_dynamic_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,9 @@ public class MainActivity extends SkinBaseActivity {
     }
 
     private void setUpView() {
+        ll_dynamic_view = (LinearLayout) findViewById(R.id.ll_dynamic_view);
+
+        createDynamicView();
         recyclerview = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
         recyclerview.setAdapter(new BaseQuickAdapter<DataBean>(R.layout.item_layout, getData()) {
@@ -78,6 +84,16 @@ public class MainActivity extends SkinBaseActivity {
                 SkinManager.getInstance().restoreDefaultTheme();
             }
         });
+    }
+
+    private void createDynamicView() {
+
+        TextView textView1 = new TextView(this);
+        textView1.setText("我是动态创建的TextView1");
+        textView1.setTextColor(getResources().getColor(R.color.item_tv_title_color));
+        dynamicAddSkinEnableView(textView1, "textColor", R.color.item_tv_title_color);
+        ll_dynamic_view.addView(textView1);
+
     }
 
 

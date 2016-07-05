@@ -27,6 +27,14 @@
             android:text="default" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_dynamic_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
