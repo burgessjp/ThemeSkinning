@@ -9,7 +9,7 @@
 
 ![Demo](app/capture/GIF.gif)
 
-使用方法：
+###1. 使用方法：
 
 1. 添加依赖<code> compile 'com.solid.skin:skinlibrary:1.0.0'</code>
 
@@ -50,7 +50,7 @@
 
 详细的使用，请到示例项目中查看
 
-其他一些重要的api
+###2. 其他一些重要的api
 
 1. SkinConfig.isDefaultSkin(context):判断当前皮肤是否是默认皮肤
 
@@ -60,7 +60,7 @@
 
 
 ---
-使用注意事项：
+###3. 使用注意事项：
 
 1. 默认不支持状态栏颜色的更改，如果需要换肤的同时也要更改状态栏颜色，请到您的Application文件中加入<code>SkinConfig.setCanChangeStatusColor(true);</code>，布局文件中的根布局一定要加上 **android:fitsSystemWindows="true"**
    状态栏的颜色值来源于<code>colorPrimaryDark</code>
@@ -75,6 +75,8 @@
 
 
 ##致谢：
+
+本项目是基于Android-Skin-Loader这个开源库改进而来，再次对原作者表示感谢
 [Android-Skin-Loader](https://github.com/fengjundev/Android-Skin-Loader)
 
 
