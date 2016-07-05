@@ -3,7 +3,8 @@
 
 本开源库是基于我之前的一个博客 [Android主题换肤 无缝切换](http://www.jianshu.com/p/af7c0585dd5b) 不知道原理的可以去这篇博客看看。
 为了方便使用我将其抽取出来，作为一个模块。提供简介的api，方便使用。
-目前暂时没有发现兼容性问题，欢迎提供反馈。
+
+目前暂时没有发现兼容性问题，欢迎提供使用反馈。
 
 效果图如下：
 
@@ -11,7 +12,7 @@
 
 ###1. 使用方法：
 
-1. 添加依赖<code> compile 'com.solid.skin:skinlibrary:1.0.0'</code>
+1. 添加依赖<code>  compile 'com.solid.skin:skinlibrary:1.0.0'</code>
 
 1. 让你的Application继承于SkinBaseApplication
 
