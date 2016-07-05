@@ -3,6 +3,7 @@
 
 本开源库是基于我之前的一个博客 [Android主题换肤 无缝切换](http://www.jianshu.com/p/af7c0585dd5b) 不知道原理的可以去这篇博客看看。
 为了方便使用我将其抽取出来，作为一个模块。
+目前暂时没有发现兼容性问题，欢迎提供反馈。
 
 效果图如下：
 
@@ -47,13 +48,26 @@
 ```
 
 
+其他一些重要的api
+
+1. SkinConfig.isDefaultSkin(context):判断当前皮肤是否是默认皮肤
+
+2. SkinManager.getInstance().restoreDefaultTheme(): 重置默认皮肤
+
+3. dynamicAddView：当动态创建的View也需要换肤的时候,就可以调用dynamicAddView
+
+
+---
 使用注意事项：
 
 1. 默认不支持状态栏颜色的更改，如果需要换肤的同时也要更改状态栏颜色，请到您的Application文件中加入<code>SkinConfig.setCanChangeStatusColor(true);</code>，布局文件中的根布局一定要加上 **android:fitsSystemWindows="true"**
+   状态栏的颜色值来源于<code>colorPrimaryDark</code>
 
 2. 本开源库使用的Activity是AppCompatActivity，使用的Fragment是android.support.v4.app.Fragment
 
 3. 有换肤需求View所使用的资源一定要是引用值，例如：@color/red，而不是#ff0000
+
+4. 当感觉自带的换肤属性不够用时，可以把源码下载下来自己去添加attr
 
 
 
