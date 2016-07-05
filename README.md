@@ -45,7 +45,7 @@
 
 使用注意事项：
 
-1. 如果需要换肤的同时也要更改状态栏颜色，布局文件中的根布局一定要加上 **android:fitsSystemWindows="true"**
+1. 默认不支持状态栏颜色的更改，如果需要换肤的同时也要更改状态栏颜色，请到您的Application文件中加入<code>SkinConfig.setCanChangeStatusColor(true);</code>，布局文件中的根布局一定要加上 **android:fitsSystemWindows="true"**
 
 2. 本开源库使用的Activity是AppCompatActivity，使用的Fragment是android.support.v4.app.Fragment
 
