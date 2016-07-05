@@ -9,9 +9,6 @@ public class DynamicAttr {
     /**
      * attr name , defined from {@link AttrFactory} :<br>
      * should be
-     * <li> AttrFactory.BACKGROUND
-     * <li> AttrFactory.TEXT_COLOR <br>
-     * ...and so on
      */
     public String attrName;
 

@@ -25,7 +25,7 @@ import solid.ren.skinlibrary.utils.ListUtils;
  * Created by _SOLID
  * Date:2016/4/13
  * Time:21:19
- * <p/>
+ * <p></p>
  * 自定义的InflaterFactory，用来代替默认的InflaterFactory
  * 参考链接：http://willowtreeapps.com/blog/app-development-how-to-get-the-right-layoutinflater/
  */

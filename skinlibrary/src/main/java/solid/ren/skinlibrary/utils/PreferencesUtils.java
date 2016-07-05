@@ -3,31 +3,7 @@ package solid.ren.skinlibrary.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * PreferencesUtils, easy to get or put data
- * <ul>
- * <strong>Preference Name</strong>
- * <li>you can change preference name by {@link #PREFERENCE_NAME}</li>
- * </ul>
- * <ul>
- * <strong>Put Value</strong>
- * <li>put string {@link #putString(Context, String, String)}</li>
- * <li>put int {@link #putInt(Context, String, int)}</li>
- * <li>put long {@link #putLong(Context, String, long)}</li>
- * <li>put float {@link #putFloat(Context, String, float)}</li>
- * <li>put boolean {@link #putBoolean(Context, String, boolean)}</li>
- * </ul>
- * <ul>
- * <strong>Get Value</strong>
- * <li>get string {@link #getString(Context, String)}, {@link #getString(Context, String, String)}</li>
- * <li>get int {@link #getInt(Context, String)}, {@link #getInt(Context, String, int)}</li>
- * <li>get long {@link #getLong(Context, String)}, {@link #getLong(Context, String, long)}</li>
- * <li>get float {@link #getFloat(Context, String)}, {@link #getFloat(Context, String, float)}</li>
- * <li>get boolean {@link #getBoolean(Context, String)}, {@link #getBoolean(Context, String, boolean)}</li>
- * </ul>
- * 
- * @author fengjun
- */
+
 public class PreferencesUtils {
 
     public static String PREFERENCE_NAME = "cn_feng_skin_pref";
@@ -36,14 +12,7 @@ public class PreferencesUtils {
         throw new AssertionError();
     }
 
-    /**
-     * put string preferences
-     * 
-     * @param context
-     * @param key The name of the preference to modify
-     * @param value The new value for the preference
-     * @return True if the new values were successfully written to persistent storage.
-     */
+
     public static boolean putString(Context context, String key, String value) {
         SharedPreferences settings = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
@@ -51,15 +20,7 @@ public class PreferencesUtils {
         return editor.commit();
     }
 
-    /**
-     * get string preferences
-     * 
-     * @param context
-     * @param key The name of the preference to retrieve
-     * @return The preference value if it exists, or null. Throws ClassCastException if there is a preference with this
-     *         name that is not a string
-     * @see #getString(Context, String, String)
-     */
+
     public static String getString(Context context, String key) {
         return getString(context, key, null);
     }

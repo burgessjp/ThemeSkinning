@@ -23,7 +23,6 @@ import solid.ren.skinlibrary.utils.L;
  * Created by _SOLID
  * Date:2016/4/14
  * Time:10:24
- * <p/>
  * 需要实现换肤功能的Activity就需要继承于这个Activity
  */
 public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, IDynamicNewView {

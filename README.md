@@ -21,7 +21,7 @@
 6. 调用换肤
 
 ```html
-  SkinManager.getInstance().loadSkin("theme.skin",
+  SkinManager.getInstance().loadSkin("Your skin file name in assets",
                                 new ILoaderListener() {
                                     @Override
                                     public void onStart() {

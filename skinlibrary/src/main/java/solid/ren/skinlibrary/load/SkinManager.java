@@ -252,7 +252,7 @@ public class SkinManager implements ISkinLoader {
     }
 
     /**
-     * 加载指定资源颜色drawable,转化为ColorStateList，保证selector类型的Color也能被转换。</br>
+     * 加载指定资源颜色drawable,转化为ColorStateList，保证selector类型的Color也能被转换。
      * 无皮肤包资源返回默认主题颜色
      *
      * @param resId

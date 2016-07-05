@@ -113,23 +113,17 @@ public class ArrayUtils {
         return sourceArray[currentPosition + 1];
     }
 
-    /**
-     * @see {@link ArrayUtils#getLast(Object[], Object, Object, boolean)} defaultValue is null
-     */
+
     public static <V> V getLast(V[] sourceArray, V value, boolean isCircle) {
         return getLast(sourceArray, value, null, isCircle);
     }
 
-    /**
-     * @see {@link ArrayUtils#getNext(Object[], Object, Object, boolean)} defaultValue is null
-     */
+
     public static <V> V getNext(V[] sourceArray, V value, boolean isCircle) {
         return getNext(sourceArray, value, null, isCircle);
     }
 
-    /**
-     * @see {@link ArrayUtils#getLast(Object[], Object, Object, boolean)} Object is Long
-     */
+
     public static long getLast(long[] sourceArray, long value, long defaultValue, boolean isCircle) {
         if (sourceArray.length == 0) {
             throw new IllegalArgumentException("The length of source array must be greater than 0.");
@@ -140,9 +134,7 @@ public class ArrayUtils {
 
     }
 
-    /**
-     * @see {@link ArrayUtils#getNext(Object[], Object, Object, boolean)} Object is Long
-     */
+
     public static long getNext(long[] sourceArray, long value, long defaultValue, boolean isCircle) {
         if (sourceArray.length == 0) {
             throw new IllegalArgumentException("The length of source array must be greater than 0.");
@@ -152,9 +144,7 @@ public class ArrayUtils {
         return getNext(array, value, defaultValue, isCircle);
     }
 
-    /**
-     * @see {@link ArrayUtils#getLast(Object[], Object, Object, boolean)} Object is Integer
-     */
+
     public static int getLast(int[] sourceArray, int value, int defaultValue, boolean isCircle) {
         if (sourceArray.length == 0) {
             throw new IllegalArgumentException("The length of source array must be greater than 0.");
@@ -165,9 +155,6 @@ public class ArrayUtils {
 
     }
 
-    /**
-     * @see {@link ArrayUtils#getNext(Object[], Object, Object, boolean)} Object is Integer
-     */
     public static int getNext(int[] sourceArray, int value, int defaultValue, boolean isCircle) {
         if (sourceArray.length == 0) {
             throw new IllegalArgumentException("The length of source array must be greater than 0.");
