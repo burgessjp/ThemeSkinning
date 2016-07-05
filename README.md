@@ -7,12 +7,12 @@
 
 
 使用方法：
-1.让你的Application继承于SkinBaseApplication
-2.让你的Activity继承于SkinBaseActivity，如果使用了Fragment则继承于SkinBaseFragment
-3.在需要换肤的根布局上添加 xmlns:skin="http://schemas.android.com/android/skin"，然后在需要换肤的View上加上 skin:enable="true"
-4.新建一个项目模块（只包含有资源文件），其中包含的资源文件的name一定要和原项目中有换肤需求的View所使用的资源name一致。
-5.打包皮肤文件，放入assets中的skin目录下
-6.调用换肤
+1. 让你的Application继承于SkinBaseApplication
+2. 让你的Activity继承于SkinBaseActivity，如果使用了Fragment则继承于SkinBaseFragment
+3. 在需要换肤的根布局上添加 xmlns:skin="http://schemas.android.com/android/skin"，然后在需要换肤的View上加上 skin:enable="true"
+4. 新建一个项目模块（只包含有资源文件），其中包含的资源文件的name一定要和原项目中有换肤需求的View所使用的资源name一致。
+5. 打包皮肤文件，放入assets中的skin目录下
+6. 调用换肤
 ```html
   SkinManager.getInstance().loadSkin("theme.skin",
                                 new ILoaderListener() {
@@ -37,8 +37,8 @@
 
 
 使用注意事项：
-1.如果需要换肤的同时也要更改状态栏颜色，布局文件中的根布局一定要加上 **android:fitsSystemWindows="true"**
-2.本开源库使用的Activity是AppCompatActivity，使用的Fragment是android.support.v4.app.Fragment
-3.有换肤需求View所使用的资源一定要是引用值，例如：@color/red，而不是#ff0000
+1. 如果需要换肤的同时也要更改状态栏颜色，布局文件中的根布局一定要加上 **android:fitsSystemWindows="true"**
+2. 本开源库使用的Activity是AppCompatActivity，使用的Fragment是android.support.v4.app.Fragment
+3. 有换肤需求View所使用的资源一定要是引用值，例如：@color/red，而不是#ff0000
 
 效果图如下：
