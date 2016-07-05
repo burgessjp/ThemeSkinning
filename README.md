@@ -4,9 +4,13 @@
 本开源库是基于我之前的一个博客 [Android主题换肤 无缝切换](www.jianshu.com/p/af7c0585dd5b) 不知道原理的可以去这篇博客看看。
 为了方便使用我将其抽取出来，作为一个模块。
 
+效果图如下：
 
+![](app/capture/GIF.gif)
 
 使用方法：
+
+1. 添加依赖<code> compile 'com.solid.skin:skinlibrary:1.0.0'</code>
 
 1. 让你的Application继承于SkinBaseApplication
 
@@ -51,4 +55,27 @@
 
 3. 有换肤需求View所使用的资源一定要是引用值，例如：@color/red，而不是#ff0000
 
-效果图如下：
+
+
+
+
+
+
+LICENSE
+
+```html
+Copyright [2015] [FENGJUN]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+```
