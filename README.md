@@ -7,7 +7,7 @@
 
 效果图如下：
 
-![Demo](app/capture/GIF.gif)
+![Demo](app/capture/demo.gif)
 
 ###1. 使用方法：
 
