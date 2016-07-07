@@ -2,13 +2,13 @@
 ##Android 主题换肤的开源库（插件化换肤）
 
 本开源库是基于我之前的一个博客 [Android主题换肤 无缝切换](http://www.jianshu.com/p/af7c0585dd5b) 不知道原理的可以去这篇博客看看。
-为了方便使用我将其抽取出来，作为一个模块。提供简介的api，方便使用。
+出于易于集成的目的，我将其抽取出来，作为一个模块。提供简介的api，方便使用。
 
 目前暂时没有发现兼容性问题，欢迎提供使用反馈。
 
 效果图如下：
 
-![Demo](app/capture/demo.gif)
+![Demo](http://upload-images.jianshu.io/upload_images/623504-0c8a0c72d3a173ed.gif?imageMogr2/auto-orient/strip)
 
 ###1. 使用方法：
 
@@ -22,12 +22,12 @@
 
 4. 新建一个项目模块（只包含有资源文件），其中包含的资源文件的name一定要和原项目中有换肤需求的View所使用的资源name一致。
 
-5. 打包皮肤文件，放入assets中的skin目录下
+5. 打包皮肤文件，放入assets中的skin目录下（skin目录是自己新建的）
 
 6. 调用换肤
 
 ```html
-  SkinManager.getInstance().loadSkin("Your skin file name in assets",
+  SkinManager.getInstance().loadSkin("Your skin file name in assets(eg:theme.skin)",
                                 new ILoaderListener() {
                                     @Override
                                     public void onStart() {
