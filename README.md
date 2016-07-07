@@ -8,7 +8,7 @@
 
 >###更新日志：
 >
->1.v1.0.1:可以直接加载网络上的皮肤文件
+>1.v1.1.0:可以直接加载网络上的皮肤文件
 
 效果图如下：
 
@@ -53,7 +53,7 @@
                         );
 ```
 
-- 从网络
+ - 从网络
 
 ```html
 SkinManager.getInstance().loadSkinFromUrl(skinUrl, new ILoaderListener() {
