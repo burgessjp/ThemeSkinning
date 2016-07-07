@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import solid.ren.skinlibrary.attr.SkinAttr;
-import solid.ren.skinlibrary.utils.ListUtils;
+import solid.ren.skinlibrary.utils.SkinListUtils;
 
 
 /**
@@ -27,7 +27,7 @@ public class SkinItem {
     }
 
     public void apply() {
-        if (ListUtils.isEmpty(attrs)) {
+        if (SkinListUtils.isEmpty(attrs)) {
             return;
         }
         for (SkinAttr at : attrs) {
@@ -36,7 +36,7 @@ public class SkinItem {
     }
 
     public void clean() {
-        if (ListUtils.isEmpty(attrs)) {
+        if (SkinListUtils.isEmpty(attrs)) {
             return;
         }
         for (SkinAttr at : attrs) {

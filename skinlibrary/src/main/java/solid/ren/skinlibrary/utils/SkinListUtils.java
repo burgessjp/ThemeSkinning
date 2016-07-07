@@ -10,12 +10,12 @@ import java.util.List;
  * 
  * @author fengjun
  */
-public class ListUtils {
+public class SkinListUtils {
 
     /** default join separator **/
     public static final String DEFAULT_JOIN_SEPARATOR = ",";
 
-    private ListUtils() {
+    private SkinListUtils() {
         throw new AssertionError();
     }
 

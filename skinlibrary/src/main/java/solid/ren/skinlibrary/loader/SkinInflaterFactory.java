@@ -19,7 +19,7 @@ import solid.ren.skinlibrary.attr.SkinAttr;
 import solid.ren.skinlibrary.config.SkinConfig;
 import solid.ren.skinlibrary.entity.SkinItem;
 import solid.ren.skinlibrary.utils.SkinL;
-import solid.ren.skinlibrary.utils.ListUtils;
+import solid.ren.skinlibrary.utils.SkinListUtils;
 
 /**
  * Created by _SOLID
@@ -132,7 +132,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
                 }
             }
         }
-        if (!ListUtils.isEmpty(viewAttrs)) {
+        if (!SkinListUtils.isEmpty(viewAttrs)) {
             SkinItem skinItem = new SkinItem();
             skinItem.view = view;
             skinItem.attrs = viewAttrs;
@@ -147,7 +147,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
      * 应用皮肤
      */
     public void applySkin() {
-        if (ListUtils.isEmpty(mSkinItems)) {
+        if (SkinListUtils.isEmpty(mSkinItems)) {
             return;
         }
 
@@ -163,7 +163,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
      * 清除有皮肤更改需求的View及其对应的属性的集合
      */
     public void clean() {
-        if (ListUtils.isEmpty(mSkinItems)) {
+        if (SkinListUtils.isEmpty(mSkinItems)) {
             return;
         }
         for (SkinItem si : mSkinItems) {
