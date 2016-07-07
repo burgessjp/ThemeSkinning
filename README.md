@@ -14,7 +14,7 @@
 
 效果图如下：
 
-![Demo](http://upload-images.jianshu.io/upload_images/623504-0c8a0c72d3a173ed.gif?imageMogr2/auto-orient/strip)
+![Demo](app/capture/demo.gif)
 
 ###1. 使用方法：
 
