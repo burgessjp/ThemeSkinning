@@ -13,10 +13,10 @@ import solid.ren.skinlibrary.attr.DynamicAttr;
 import solid.ren.skinlibrary.config.SkinConfig;
 import solid.ren.skinlibrary.listener.IDynamicNewView;
 import solid.ren.skinlibrary.listener.ISkinUpdate;
-import solid.ren.skinlibrary.load.SkinInflaterFactory;
-import solid.ren.skinlibrary.load.SkinManager;
+import solid.ren.skinlibrary.loader.SkinInflaterFactory;
+import solid.ren.skinlibrary.loader.SkinManager;
 import solid.ren.skinlibrary.statusbar.StatusBarUtil;
-import solid.ren.skinlibrary.utils.L;
+import solid.ren.skinlibrary.utils.SkinL;
 
 
 /**
@@ -69,7 +69,7 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
         }
         //如果当前的Android系统版本大于4.4则更改状态栏颜色
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            L.i("SkinBaseActivity", "changeStatus");
+            SkinL.i("SkinBaseActivity", "changeStatus");
             int color = SkinManager.getInstance().getColorPrimaryDark();
             StatusBarUtil statusBarBackground = new StatusBarUtil(
                     this, color);

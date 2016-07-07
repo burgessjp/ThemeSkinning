@@ -8,4 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="NightTheme" parent="AppTheme">
+        <item name="item_bg">#c1c1c1</item>
+        <item name="item_tv_title_color">#7CCD7C</item>
+        <item name="item_tv_content_color">#7FFFD4</item>
+        <item name="item_tv_date_color">#8B3A3A</item>
+    </style>
+
 </resources>

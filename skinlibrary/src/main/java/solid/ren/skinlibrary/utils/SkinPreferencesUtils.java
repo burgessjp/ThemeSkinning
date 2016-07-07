@@ -4,11 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 
-public class PreferencesUtils {
+public class SkinPreferencesUtils {
 
     public static String PREFERENCE_NAME = "cn_feng_skin_pref";
 
-    private PreferencesUtils() {
+    private SkinPreferencesUtils() {
         throw new AssertionError();
     }
 

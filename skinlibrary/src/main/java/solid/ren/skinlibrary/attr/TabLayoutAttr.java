@@ -4,7 +4,7 @@ import android.support.design.widget.TabLayout;
 import android.util.Log;
 import android.view.View;
 
-import solid.ren.skinlibrary.load.SkinManager;
+import solid.ren.skinlibrary.loader.SkinManager;
 
 /**
  * Created by _SOLID

@@ -5,9 +5,9 @@ package solid.ren.skinlibrary.utils;
  * 
  * @author fengjun
  */
-public class ObjectUtils {
+public class SkinObjectUtils {
 
-    private ObjectUtils() {
+    private SkinObjectUtils() {
         throw new AssertionError();
     }
 

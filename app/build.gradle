@@ -23,6 +23,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v1.8.5'
-    compile 'com.solid.skin:skinlibrary:1.0.0'
-    //compile project(':skinlibrary')
+    compile 'com.afollestad.material-dialogs:core:0.8.6.1'
+    //compile 'com.solid.skin:skinlibrary:1.0.0'
+    compile project(':skinlibrary')
 }

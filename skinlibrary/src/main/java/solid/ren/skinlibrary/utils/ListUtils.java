@@ -70,7 +70,7 @@ public class ListUtils {
         }
 
         for (int i = 0; i < actual.size(); i++) {
-            if (!ObjectUtils.isEquals(actual.get(i), expected.get(i))) {
+            if (!SkinObjectUtils.isEquals(actual.get(i), expected.get(i))) {
                 return false;
             }
         }
@@ -188,13 +188,13 @@ public class ListUtils {
 
     @SuppressWarnings("unchecked")
     public static <V> V getLast(List<V> sourceList, V value) {
-        return (sourceList == null) ? null : (V)ArrayUtils.getLast(sourceList.toArray(), value, true);
+        return (sourceList == null) ? null : (V) SkinArrayUtils.getLast(sourceList.toArray(), value, true);
     }
 
 
     @SuppressWarnings("unchecked")
     public static <V> V getNext(List<V> sourceList, V value) {
-        return (sourceList == null) ? null : (V)ArrayUtils.getNext(sourceList.toArray(), value, true);
+        return (sourceList == null) ? null : (V) SkinArrayUtils.getNext(sourceList.toArray(), value, true);
     }
 
     /**

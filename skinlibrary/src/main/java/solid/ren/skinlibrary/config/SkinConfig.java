@@ -2,7 +2,7 @@ package solid.ren.skinlibrary.config;
 
 import android.content.Context;
 
-import solid.ren.skinlibrary.utils.PreferencesUtils;
+import solid.ren.skinlibrary.utils.SkinPreferencesUtils;
 
 
 /**
@@ -27,7 +27,7 @@ public class SkinConfig {
      * @return path of skin package
      */
     public static String getCustomSkinPath(Context context) {
-        return PreferencesUtils.getString(context, PREF_CUSTOM_SKIN_PATH, DEFAULT_SKIN);
+        return SkinPreferencesUtils.getString(context, PREF_CUSTOM_SKIN_PATH, DEFAULT_SKIN);
     }
 
     /**
@@ -37,7 +37,7 @@ public class SkinConfig {
      * @param path
      */
     public static void saveSkinPath(Context context, String path) {
-        PreferencesUtils.putString(context, PREF_CUSTOM_SKIN_PATH, path);
+        SkinPreferencesUtils.putString(context, PREF_CUSTOM_SKIN_PATH, path);
     }
 
     public static boolean isDefaultSkin(Context context) {

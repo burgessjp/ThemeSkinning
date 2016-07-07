@@ -1,10 +1,14 @@
 
 ##Android 主题换肤的开源库（插件化换肤）
->本开源库是基于我之前的一个博客 [Android主题换肤 无缝切换](http://www.jianshu.com/p/af7c0585dd5b) 不知道原理的可以去这篇博客看看。
 
->出于易于集成的目的，我将其抽取出来，作为一个模块。提供简洁的api，方便使用。
+本开源库是基于我之前的一个博客 [Android主题换肤 无缝切换](http://www.jianshu.com/p/af7c0585dd5b) 不知道原理的可以去这篇博客看看。
+出于易于集成的目的，我将其抽取出来，作为一个模块。提供简介的api，方便使用。
 
->目前暂时没有发现兼容性问题，欢迎提供使用反馈。
+目前暂时没有发现兼容性问题，欢迎提供使用反馈。
+
+>###更新日志：
+>
+>1.v1.0.1:可以直接加载网络上的皮肤文件
 
 效果图如下：
 
@@ -25,7 +29,8 @@
 5. 打包皮肤文件，放入assets中的skin目录下（skin目录是自己新建的）
 
 6. 调用换肤
-
+ - 从assets/skin文件夹
+ 
 ```html
   SkinManager.getInstance().loadSkin("Your skin file name in assets(eg:theme.skin)",
                                 new ILoaderListener() {
@@ -48,7 +53,36 @@
                         );
 ```
 
+- 从网络
 
+```html
+SkinManager.getInstance().loadSkinFromUrl(skinUrl, new ILoaderListener() {
+                    @Override
+                    public void onStart() {
+                        Log.i("ILoaderListener", "正在切换中");
+                        dialog.setContent("正在从网络下载皮肤文件");
+                        dialog.show();
+                    }
+
+                    @Override
+                    public void onSuccess() {
+                        Log.i("ILoaderListener", "切换成功");
+                        dialog.dismiss();
+                    }
+
+                    @Override
+                    public void onFailed(String errMsg) {
+                        Log.i("ILoaderListener", "切换失败:" + errMsg);
+                        dialog.setContent("换肤失败:" + errMsg);
+                    }
+
+                    @Override
+                    public void onProgress(int progress) {
+                        Log.i("ILoaderListener", "皮肤文件下载中:" + progress);
+                        dialog.setProgress(progress);
+                    }
+                });
+```
 详细的使用，请到示例项目中查看
 
 ###2. 其他一些重要的api

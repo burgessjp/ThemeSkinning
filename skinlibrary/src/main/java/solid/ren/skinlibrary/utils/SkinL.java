@@ -7,13 +7,13 @@ import android.util.Log;
  *
  * @author fengjun
  */
-public class L {
+public class SkinL {
 
     private static final boolean DEBUG = true;
     private static final String TAG = "SkinLoader";
     private static final String LINE = "——————————————————————————————————————————————————————";
 
-    private L() {
+    private SkinL() {
         throw new AssertionError();
     }
 

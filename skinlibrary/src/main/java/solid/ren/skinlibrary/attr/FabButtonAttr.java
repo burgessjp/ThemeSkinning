@@ -4,7 +4,7 @@ import android.content.res.ColorStateList;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
-import solid.ren.skinlibrary.load.SkinManager;
+import solid.ren.skinlibrary.loader.SkinManager;
 
 
 /**

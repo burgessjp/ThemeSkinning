@@ -18,9 +18,9 @@ package solid.ren.skinlibrary.utils;
  * 
  * @author <a href="http://www.trinea.cn" target="_blank">Trinea</a> 2011-10-24
  */
-public class ArrayUtils {
+public class SkinArrayUtils {
 
-    private ArrayUtils() {
+    private SkinArrayUtils() {
         throw new AssertionError();
     }
 
@@ -59,7 +59,7 @@ public class ArrayUtils {
 
         int currentPosition = -1;
         for (int i = 0; i < sourceArray.length; i++) {
-            if (ObjectUtils.isEquals(value, sourceArray[i])) {
+            if (SkinObjectUtils.isEquals(value, sourceArray[i])) {
                 currentPosition = i;
                 break;
             }
@@ -98,7 +98,7 @@ public class ArrayUtils {
 
         int currentPosition = -1;
         for (int i = 0; i < sourceArray.length; i++) {
-            if (ObjectUtils.isEquals(value, sourceArray[i])) {
+            if (SkinObjectUtils.isEquals(value, sourceArray[i])) {
                 currentPosition = i;
                 break;
             }
@@ -129,7 +129,7 @@ public class ArrayUtils {
             throw new IllegalArgumentException("The length of source array must be greater than 0.");
         }
 
-        Long[] array = ObjectUtils.transformLongArray(sourceArray);
+        Long[] array = SkinObjectUtils.transformLongArray(sourceArray);
         return getLast(array, value, defaultValue, isCircle);
 
     }
@@ -140,7 +140,7 @@ public class ArrayUtils {
             throw new IllegalArgumentException("The length of source array must be greater than 0.");
         }
 
-        Long[] array = ObjectUtils.transformLongArray(sourceArray);
+        Long[] array = SkinObjectUtils.transformLongArray(sourceArray);
         return getNext(array, value, defaultValue, isCircle);
     }
 
@@ -150,7 +150,7 @@ public class ArrayUtils {
             throw new IllegalArgumentException("The length of source array must be greater than 0.");
         }
 
-        Integer[] array = ObjectUtils.transformIntArray(sourceArray);
+        Integer[] array = SkinObjectUtils.transformIntArray(sourceArray);
         return getLast(array, value, defaultValue, isCircle);
 
     }
@@ -160,7 +160,7 @@ public class ArrayUtils {
             throw new IllegalArgumentException("The length of source array must be greater than 0.");
         }
 
-        Integer[] array = ObjectUtils.transformIntArray(sourceArray);
+        Integer[] array = SkinObjectUtils.transformIntArray(sourceArray);
         return getNext(array, value, defaultValue, isCircle);
     }
 }

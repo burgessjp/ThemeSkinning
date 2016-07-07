@@ -1,4 +1,4 @@
-package solid.ren.skinlibrary.load;
+package solid.ren.skinlibrary.loader;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -18,7 +18,7 @@ import solid.ren.skinlibrary.attr.DynamicAttr;
 import solid.ren.skinlibrary.attr.SkinAttr;
 import solid.ren.skinlibrary.config.SkinConfig;
 import solid.ren.skinlibrary.entity.SkinItem;
-import solid.ren.skinlibrary.utils.L;
+import solid.ren.skinlibrary.utils.SkinL;
 import solid.ren.skinlibrary.utils.ListUtils;
 
 /**
@@ -85,10 +85,10 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
                 view = LayoutInflater.from(context).createView(name, null, attrs);
             }
 
-            L.i(TAG, "about to create " + name);
+            SkinL.i(TAG, "about to create " + name);
 
         } catch (Exception e) {
-            L.e(TAG, "error while create 【" + name + "】 : " + e.getMessage());
+            SkinL.e(TAG, "error while create 【" + name + "】 : " + e.getMessage());
             view = null;
         }
         return view;
@@ -115,7 +115,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
                     String entryName = context.getResources().getResourceEntryName(id);//入口名，例如text_color_selector
                     String typeName = context.getResources().getResourceTypeName(id);//类型名，例如color、background
                     SkinAttr mSkinAttr = AttrFactory.get(attrName, id, entryName, typeName);
-                    L.i("parseSkinAttr",
+                    SkinL.i("parseSkinAttr",
                             "view:" + view.getClass().getSimpleName() + "\n" +
                                     "id:" + id + "\n" +
                                     "attrName:" + attrName + " | attrValue:" + attrValue + "\n" +

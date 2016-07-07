@@ -3,8 +3,8 @@ package solid.ren.skinlibrary.attr;
 import android.view.View;
 import android.widget.TextView;
 
-import solid.ren.skinlibrary.load.SkinManager;
-import solid.ren.skinlibrary.utils.L;
+import solid.ren.skinlibrary.loader.SkinManager;
+import solid.ren.skinlibrary.utils.SkinL;
 
 
 /**
@@ -18,7 +18,7 @@ public class TextColorAttr extends SkinAttr {
         if (view instanceof TextView) {
             TextView tv = (TextView) view;
             if (RES_TYPE_NAME_COLOR.equals(attrValueTypeName)) {
-                L.i("applyAttr", "TextColorAttr");
+                SkinL.i("applyAttr", "TextColorAttr");
                 tv.setTextColor(SkinManager.getInstance().convertToColorStateList(attrValueRefId));
             }
         }

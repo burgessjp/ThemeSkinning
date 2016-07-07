@@ -1,14 +1,14 @@
 package solid.ren.skinlibrary.base;
 
 import android.app.Application;
+import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
 
 import solid.ren.skinlibrary.config.SkinConfig;
-import solid.ren.skinlibrary.load.SkinManager;
+import solid.ren.skinlibrary.loader.SkinManager;
 import solid.ren.skinlibrary.utils.SkinFileUtils;
-import solid.ren.skinlibrary.utils.L;
 
 
 /**
@@ -37,8 +37,9 @@ public class SkinBaseApplication extends Application {
         try {
             String[] skinFiles = getAssets().list(SkinConfig.SKIN_DIR_NAME);
             for (String fileName : skinFiles) {
-                L.i("fileName", fileName);
-                SkinFileUtils.copySkinAssertToDir(this, SkinConfig.SKIN_DIR_NAME + File.separator + fileName, SkinFileUtils.getCacheDir(this));
+                File file = new File(SkinFileUtils.getSkinDir(this), fileName);
+                if (!file.exists())
+                    SkinFileUtils.copySkinAssetsToDir(this, fileName, SkinFileUtils.getSkinDir(this));
             }
         } catch (IOException e) {
             e.printStackTrace();

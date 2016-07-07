@@ -1,4 +1,4 @@
-package solid.ren.skinlibrary.load;
+package solid.ren.skinlibrary.loader;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -7,7 +7,13 @@ import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
+
+import com.thin.downloadmanager.DefaultRetryPolicy;
+import com.thin.downloadmanager.DownloadRequest;
+import com.thin.downloadmanager.DownloadStatusListenerV1;
+import com.thin.downloadmanager.ThinDownloadManager;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -18,8 +24,8 @@ import solid.ren.skinlibrary.config.SkinConfig;
 import solid.ren.skinlibrary.listener.ILoaderListener;
 import solid.ren.skinlibrary.listener.ISkinLoader;
 import solid.ren.skinlibrary.listener.ISkinUpdate;
+import solid.ren.skinlibrary.utils.SkinL;
 import solid.ren.skinlibrary.utils.SkinFileUtils;
-import solid.ren.skinlibrary.utils.L;
 
 
 /**
@@ -146,7 +152,16 @@ public class SkinManager implements ISkinLoader {
         loadSkin(skin, callback);
     }
 
-    public void loadSkin(String skinPackagePath, final ILoaderListener callback) {
+    /**
+     * load skin form local
+     * <p>
+     * eg:theme.skin
+     * </p>
+     *
+     * @param skinName the name of skin(in assets/skin)
+     * @param callback load Callback
+     */
+    public void loadSkin(String skinName, final ILoaderListener callback) {
 
         new AsyncTask<String, Void, Resources>() {
 
@@ -161,7 +176,7 @@ public class SkinManager implements ISkinLoader {
                 try {
                     if (params.length == 1) {
                         String skinPkgPath = SkinFileUtils.getSkinDir(context) + File.separator + params[0];
-                        L.i("skinPkgPath", skinPkgPath);
+                        SkinL.i("skinPkgPath", skinPkgPath);
                         File file = new File(skinPkgPath);
                         if (file == null || !file.exists()) {
                             return null;
@@ -198,11 +213,62 @@ public class SkinManager implements ISkinLoader {
                     notifySkinUpdate();
                 } else {
                     isDefaultSkin = true;
-                    if (callback != null) callback.onFailed();
+                    if (callback != null) callback.onFailed("没有获取到资源");
                 }
             }
 
-        }.execute(skinPackagePath);
+        }.execute(skinName);
+    }
+
+
+    /**
+     * load skin form internet
+     * <p>
+     * eg:https://raw.githubusercontent.com/burgessjp/ThemeSkinning/master/app/src/main/assets/skin/theme.skin
+     * </p>
+     *
+     * @param skinUrl  the url of skin
+     * @param callback load Callback
+     */
+    public void loadSkinFromUrl(String skinUrl, final ILoaderListener callback) {
+        String skinPath = SkinFileUtils.getSkinDir(context);
+        final String skinName = skinUrl.substring(skinUrl.lastIndexOf("/") + 1);
+        String skinFullName = skinPath + File.separator + skinName;
+        File skinFile = new File(skinFullName);
+        if (skinFile.exists()) {
+            loadSkin(skinName, callback);
+            return;
+        }
+
+        Uri downloadUri = Uri.parse(skinUrl);
+        Uri destinationUri = Uri.parse(skinFullName);
+
+        DownloadRequest downloadRequest = new DownloadRequest(downloadUri)
+                .setRetryPolicy(new DefaultRetryPolicy())
+                .setDestinationURI(destinationUri)
+                .setPriority(DownloadRequest.Priority.HIGH);
+        callback.onStart();
+        downloadRequest.setStatusListener(new DownloadStatusListenerV1() {
+            @Override
+            public void onDownloadComplete(DownloadRequest downloadRequest) {
+                loadSkin(skinName, callback);
+            }
+
+            @Override
+            public void onDownloadFailed(DownloadRequest downloadRequest, int errorCode, String errorMessage) {
+                callback.onFailed(errorMessage);
+            }
+
+            @Override
+            public void onProgress(DownloadRequest downloadRequest, long totalBytes, long downloadedBytes, int progress) {
+                callback.onProgress(progress);
+            }
+        });
+
+        ThinDownloadManager manager = new ThinDownloadManager();
+        manager.add(downloadRequest);
+
+
     }
 
     public int getColor(int resId) {
@@ -237,7 +303,7 @@ public class SkinManager implements ISkinLoader {
 
         Drawable trueDrawable = null;
         try {
-            L.i("SkinManager getDrawable", "SDK_INT = " + android.os.Build.VERSION.SDK_INT);
+            SkinL.i("SkinManager getDrawable", "SDK_INT = " + android.os.Build.VERSION.SDK_INT);
             if (android.os.Build.VERSION.SDK_INT < 22) {
                 trueDrawable = mResources.getDrawable(trueResId);
             } else {
@@ -275,7 +341,7 @@ public class SkinManager implements ISkinLoader {
                     return originColorList;
                 } catch (Resources.NotFoundException e) {
                     e.printStackTrace();
-                    L.e("resName = " + resName + " NotFoundException : " + e.getMessage());
+                    SkinL.e("resName = " + resName + " NotFoundException : " + e.getMessage());
                 }
             } else {
                 try {
@@ -283,7 +349,7 @@ public class SkinManager implements ISkinLoader {
                     return trueColorList;
                 } catch (Resources.NotFoundException e) {
                     e.printStackTrace();
-                    L.e("resName = " + resName + " NotFoundException :" + e.getMessage());
+                    SkinL.e("resName = " + resName + " NotFoundException :" + e.getMessage());
                 }
             }
         } else {
@@ -292,7 +358,7 @@ public class SkinManager implements ISkinLoader {
                 return originColorList;
             } catch (Resources.NotFoundException e) {
                 e.printStackTrace();
-                L.e("resName = " + resName + " NotFoundException :" + e.getMessage());
+                SkinL.e("resName = " + resName + " NotFoundException :" + e.getMessage());
             }
 
         }

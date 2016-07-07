@@ -18,11 +18,19 @@ import solid.ren.skinlibrary.config.SkinConfig;
  */
 public class SkinFileUtils {
 
-    public static String copySkinAssertToDir(Context context, String name, String toDir) {
+    /**
+     * 复制assets/skin目录下的皮肤文件到指定目录
+     *
+     * @param context the context
+     * @param name    皮肤名
+     * @param toDir   指定目录
+     * @return
+     */
+    public static String copySkinAssetsToDir(Context context, String name, String toDir) {
         String toFile = toDir + File.separator + name;
         try {
-            InputStream is = context.getAssets().open(name);
-            File fileDir = new File(toDir + File.separator + SkinConfig.SKIN_DIR_NAME);
+            InputStream is = context.getAssets().open(SkinConfig.SKIN_DIR_NAME + File.separator + name);
+            File fileDir = new File(toDir);
             if (!fileDir.exists()) {
                 fileDir.mkdirs();
             }
@@ -42,8 +50,14 @@ public class SkinFileUtils {
         return toFile;
     }
 
+    /**
+     * 得到存放皮肤的目录
+     *
+     * @param context the context
+     * @return 存放皮肤的目录
+     */
     public static String getSkinDir(Context context) {
-        File skinDir = new File(getCacheDir(context), "skin");
+        File skinDir = new File(getCacheDir(context), SkinConfig.SKIN_DIR_NAME);
         if (skinDir.exists()) {
             skinDir.mkdirs();
         }

@@ -4,8 +4,8 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.view.View;
 
-import solid.ren.skinlibrary.load.SkinManager;
-import solid.ren.skinlibrary.utils.L;
+import solid.ren.skinlibrary.loader.SkinManager;
+import solid.ren.skinlibrary.utils.SkinL;
 
 /**
  * Created by _SOLID
@@ -27,12 +27,12 @@ public class BackgroundAttr extends SkinAttr {
             } else {
                 view.setBackgroundColor(color);
             }
-            L.i("applyAttr", "apply as color");
+            SkinL.i("applyAttr", "apply as color");
         } else if (RES_TYPE_NAME_DRAWABLE.equals(attrValueTypeName)) {
             Drawable bg = SkinManager.getInstance().getDrawable(attrValueRefId);
             // view.setBackground(bg);
             view.setBackgroundDrawable(bg);
-            L.i("applyAttr", "apply as drawable");
+            SkinL.i("applyAttr", "apply as drawable");
         }
     }
 }

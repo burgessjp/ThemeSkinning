@@ -10,6 +10,9 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+        String skinUrl = "https://raw.githubusercontent.com/burgessjp/ThemeSkinning/master/app/src/main/assets/skin/theme.skin";
+
+        String name = skinUrl.substring(skinUrl.lastIndexOf("/")+1);
+        assertEquals("theme.skin", name);
     }
 }

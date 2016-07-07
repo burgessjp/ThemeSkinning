@@ -17,14 +17,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="theme.skin" />
+            android:text="加载 theme.skin" />
 
         <Button
             android:id="@+id/btn_switch_default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="default" />
+            android:text="恢复默认" />
+
+        <Button
+            android:id="@+id/btn_from_net"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="加载网络皮肤" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,4 +47,6 @@
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+
 </LinearLayout>
