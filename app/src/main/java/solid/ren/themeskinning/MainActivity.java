@@ -103,7 +103,7 @@ public class MainActivity extends SkinBaseActivity {
         });
 
 
-        final String skinUrl = "https://raw.githubusercontent.com/burgessjp/ThemeSkinning/master/app/src/main/assets/skin/skin_net.skin";
+        final String skinUrl = "https://raw.githubusercontent.com/burgessjp/ThemeSkinning/master/skinpackage/skin_net.skin";
         findViewById(R.id.btn_from_net).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -18,7 +18,7 @@
 
 ###1. 使用方法：
 
-1. 添加依赖<code>  compile 'com.solid.skin:skinlibrary:1.0.0'</code>
+1. 添加依赖<code>  compile 'com.solid.skin:skinlibrary:1.1.0'</code>
 
 1. 让你的Application继承于SkinBaseApplication
 

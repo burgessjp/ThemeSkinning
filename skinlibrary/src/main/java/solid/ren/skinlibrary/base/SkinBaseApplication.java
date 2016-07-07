@@ -19,8 +19,8 @@ import solid.ren.skinlibrary.utils.SkinFileUtils;
 public class SkinBaseApplication extends Application {
 
     public void onCreate() {
-        super.onCreate();
 
+        super.onCreate();
         initSkinLoader();
     }
 
