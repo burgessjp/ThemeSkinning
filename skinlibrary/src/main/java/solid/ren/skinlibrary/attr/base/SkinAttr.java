@@ -1,4 +1,4 @@
-package solid.ren.skinlibrary.attr;
+package solid.ren.skinlibrary.attr.base;
 
 import android.view.View;
 
@@ -7,7 +7,7 @@ import android.view.View;
  * Date:2016/4/13
  * Time:21:38
  */
-public abstract class SkinAttr {
+public abstract class SkinAttr implements Cloneable {
     protected static final String RES_TYPE_NAME_COLOR = "color";
     protected static final String RES_TYPE_NAME_DRAWABLE = "drawable";
     /**
@@ -44,5 +44,16 @@ public abstract class SkinAttr {
                 + "attrValueRefName=" + attrValueRefName + ", \n"
                 + "attrValueTypeName=" + attrValueTypeName
                 + "\n]";
+    }
+
+    @Override
+    public SkinAttr clone() {
+        SkinAttr o = null;
+        try {
+            o = (SkinAttr) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return o;
     }
 }

@@ -2,6 +2,8 @@ package solid.ren.skinlibrary.config;
 
 import android.content.Context;
 
+import solid.ren.skinlibrary.attr.base.AttrFactory;
+import solid.ren.skinlibrary.attr.base.SkinAttr;
 import solid.ren.skinlibrary.utils.SkinPreferencesUtils;
 
 
@@ -50,5 +52,15 @@ public class SkinConfig {
 
     public static boolean isCanChangeStatusColor() {
         return isCanChangeStatusColor;
+    }
+
+    /**
+     * 增加对换肤属性的支持
+     *
+     * @param attrName 属性名
+     * @param skinAttr 自定义的属性
+     */
+    public static void addSupportAttr(String attrName, SkinAttr skinAttr) {
+        AttrFactory.addSupportAttr(attrName, skinAttr);
     }
 }

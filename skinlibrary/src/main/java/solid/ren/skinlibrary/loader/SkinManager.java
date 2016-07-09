@@ -192,7 +192,7 @@ public class SkinManager implements ISkinLoader {
                         Resources superRes = context.getResources();
                         Resources skinResource = new Resources(assetManager, superRes.getDisplayMetrics(), superRes.getConfiguration());
 
-                        SkinConfig.saveSkinPath(context, skinPkgPath);
+                        SkinConfig.saveSkinPath(context,  params[0]);
 
                         skinPath = skinPkgPath;
                         isDefaultSkin = false;
@@ -325,7 +325,7 @@ public class SkinManager implements ISkinLoader {
      * @return
      * @author pinotao
      */
-    public ColorStateList convertToColorStateList(int resId) {
+    public ColorStateList getColorStateList(int resId) {
         boolean isExtendSkin = true;
         if (mResources == null || isDefaultSkin) {
             isExtendSkin = false;

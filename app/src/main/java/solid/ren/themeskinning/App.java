@@ -1,6 +1,8 @@
 package solid.ren.themeskinning;
 
 import solid.ren.skinlibrary.base.SkinBaseApplication;
+import solid.ren.skinlibrary.config.SkinConfig;
+import solid.ren.themeskinning.custom_attr.TabLayoutIndicatorAttr;
 
 /**
  * Created by _SOLID
@@ -11,6 +13,7 @@ public class App extends SkinBaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        // SkinConfig.setCanChangeStatusColor(false);
+        SkinConfig.setCanChangeStatusColor(true);
+        SkinConfig.addSupportAttr("tabLayoutIndicator", new TabLayoutIndicatorAttr());
     }
 }

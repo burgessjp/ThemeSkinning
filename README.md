@@ -9,8 +9,10 @@
 
 
 >###更新日志：
+
+>- v1.2.0:增加对属性支持的扩展
 >
->1.v1.1.0:可以直接加载网络上的皮肤文件
+>- v1.1.0:可以直接加载网络上的皮肤文件
 
 效果图如下：
 
@@ -18,7 +20,7 @@
 
 ###1. 使用方法：
 
-1. 添加依赖<code>  compile 'com.solid.skin:skinlibrary:1.1.0'</code>
+1. 添加依赖<code>  compile 'com.solid.skin:skinlibrary:1.2.0'</code>
 
 1. 让你的Application继承于SkinBaseApplication
 
@@ -87,7 +89,40 @@ SkinManager.getInstance().loadSkinFromUrl(skinUrl, new ILoaderListener() {
 ```
 详细的使用，请到示例项目中查看
 
-###2. 其他一些重要的api
+
+###2.换肤属性的扩展
+
+本开源库默认支持textColor和background的换肤。如果你还需要对其他属性进行换肤，那么就需要去自定义了。
+
+那么如何自定义呢？看下面这个例子：
+
+TabLayout大家应该都用过吧。它下面会有一个指示器，当我们换肤的时候也希望这个指示器的颜色也跟着更改。
+
+- 新建一个TabLayoutIndicatorAttr 继承于 SkinAttr，然后重写apply方法。apply方法在换肤的时候就会被调用
+
+- 代码的详细实现 
+```html
+public class TabLayoutIndicatorAttr extends SkinAttr {
+    @Override
+    public void apply(View view) {
+        if (view instanceof TabLayout) {
+            TabLayout tl = (TabLayout) view;
+            if (RES_TYPE_NAME_COLOR.equals(attrValueTypeName)) {
+                int color = SkinResourcesUtils.getColor(attrValueRefId);
+                tl.setSelectedTabIndicatorColor(color);
+            }
+        }
+    }
+}
+```
+
+注：attrValueRefId：就是资源id。SkinResourcesUtils是用来获取皮肤包里的资源，这里设置color或者drawable一定要使用本工具类。
+
+- 当上面的工作完成之后，就到我们自己的Application的onCreate方法中加入<code> SkinConfig.addSupportAttr("tabLayoutIndicator", new TabLayoutIndicatorAttr());</code>
+
+- 最后我们就可以正常使用了，<code>dynamicAddSkinEnableView(tablayout, "tabLayoutIndicator", R.color.colorPrimaryDark);</code>
+
+###3. 其他一些重要的api
 
 1. SkinConfig.isDefaultSkin(context):判断当前皮肤是否是默认皮肤
 
@@ -97,16 +132,14 @@ SkinManager.getInstance().loadSkinFromUrl(skinUrl, new ILoaderListener() {
 
 
 ---
-###3. 使用注意事项：
+###4. 使用注意事项：
+1. 换肤默认只支持android的常用控件，对于支持库的控件和自定义控件的换肤需要动态添加（例如： <code>dynamicAddSkinEnableView(toolbar, "background", R.color.colorPrimaryDark);</code>），在布局文件中使用<code>skin:enable="true"</code>是无效的。
 
-1. 默认不支持状态栏颜色的更改，如果需要换肤的同时也要更改状态栏颜色，请到您的Application文件中加入<code>SkinConfig.setCanChangeStatusColor(true);</code>，布局文件中的根布局一定要加上 **android:fitsSystemWindows="true"**
-   状态栏的颜色值来源于<code>colorPrimaryDark</code>
+2. 默认不支持状态栏颜色的更改，如果需要换肤的同时也要更改状态栏颜色，请到您的Application文件中加入<code>SkinConfig.setCanChangeStatusColor(true);</code>，状态栏的颜色值来源于<code>colorPrimaryDark</code>
 
-2. 本开源库使用的Activity是AppCompatActivity，使用的Fragment是android.support.v4.app.Fragment
+3. 本开源库使用的Activity是AppCompatActivity，使用的Fragment是android.support.v4.app.Fragment
 
-3. 有换肤需求View所使用的资源一定要是引用值，例如：@color/red，而不是#ff0000
-
-4. 当感觉自带的换肤属性不够用时，可以把源码下载下来自己去添加attr
+4. 有换肤需求View所使用的资源一定要是引用值，例如：@color/red，而不是#ff0000
 
 
 

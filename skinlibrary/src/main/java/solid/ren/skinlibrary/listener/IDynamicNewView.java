@@ -4,7 +4,7 @@ import android.view.View;
 
 import java.util.List;
 
-import solid.ren.skinlibrary.attr.DynamicAttr;
+import solid.ren.skinlibrary.attr.base.DynamicAttr;
 
 /**
  * Created by _SOLID

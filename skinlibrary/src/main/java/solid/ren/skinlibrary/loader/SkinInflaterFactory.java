@@ -13,9 +13,9 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-import solid.ren.skinlibrary.attr.AttrFactory;
-import solid.ren.skinlibrary.attr.DynamicAttr;
-import solid.ren.skinlibrary.attr.SkinAttr;
+import solid.ren.skinlibrary.attr.base.AttrFactory;
+import solid.ren.skinlibrary.attr.base.DynamicAttr;
+import solid.ren.skinlibrary.attr.base.SkinAttr;
 import solid.ren.skinlibrary.config.SkinConfig;
 import solid.ren.skinlibrary.entity.SkinItem;
 import solid.ren.skinlibrary.utils.SkinL;
@@ -60,41 +60,6 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
     }
 
     /**
-     * 通过name去实例化一个View
-     *
-     * @param context
-     * @param name    要被实例化View的全名.
-     * @param attrs   View在布局文件中的XML的属性
-     * @return View
-     */
-    private View createView(Context context, String name, AttributeSet attrs) {
-        Log.i(TAG, "createView:" + name);
-        View view = null;
-        try {
-            if (-1 == name.indexOf('.')) {
-                if ("View".equals(name)) {
-                    view = LayoutInflater.from(context).createView(name, "android.view.", attrs);
-                }
-                if (view == null) {
-                    view = LayoutInflater.from(context).createView(name, "android.widget.", attrs);
-                }
-                if (view == null) {
-                    view = LayoutInflater.from(context).createView(name, "android.webkit.", attrs);
-                }
-            } else {
-                view = LayoutInflater.from(context).createView(name, null, attrs);
-            }
-
-            SkinL.i(TAG, "about to create " + name);
-
-        } catch (Exception e) {
-            SkinL.e(TAG, "error while create 【" + name + "】 : " + e.getMessage());
-            view = null;
-        }
-        return view;
-    }
-
-    /**
      * 搜集可更换皮肤的属性
      *
      * @param context
@@ -106,6 +71,8 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
         for (int i = 0; i < attrs.getAttributeCount(); i++) {//遍历当前View的属性
             String attrName = attrs.getAttributeName(i);//属性名
             String attrValue = attrs.getAttributeValue(i);//属性值
+
+            SkinL.i("Aattrname", "Aattrname:" + attrName);
             if (!AttrFactory.isSupportedAttr(attrName)) {
                 continue;
             }
@@ -147,6 +114,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
      * 应用皮肤
      */
     public void applySkin() {
+        
         if (SkinListUtils.isEmpty(mSkinItems)) {
             return;
         }

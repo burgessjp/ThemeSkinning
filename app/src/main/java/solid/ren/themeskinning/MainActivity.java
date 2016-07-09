@@ -1,13 +1,15 @@
 package solid.ren.themeskinning;
 
-import android.app.Dialog;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -26,7 +28,8 @@ public class MainActivity extends SkinBaseActivity {
     private RecyclerView recyclerview;
     private LinearLayout ll_dynamic_view;
     private MaterialDialog dialog;
-    private MaterialDialog.Builder dialogBuilder;
+    private Toolbar toolbar;
+    private TabLayout tablayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,19 @@ public class MainActivity extends SkinBaseActivity {
     }
 
     private void setUpView() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("我是Toolbar");
+        setSupportActionBar(toolbar);
+        dynamicAddSkinEnableView(toolbar, "background", R.color.colorPrimaryDark);
+
+
+        tablayout = (TabLayout) findViewById(R.id.tablayout);
+
+        for (int i = 1; i < 6; i++) {
+            tablayout.addTab(tablayout.newTab().setText("tab" + i));
+        }
+        dynamicAddSkinEnableView(tablayout, "tabLayoutIndicator", R.color.colorPrimaryDark);
+
         ll_dynamic_view = (LinearLayout) findViewById(R.id.ll_dynamic_view);
 
         createDynamicView();

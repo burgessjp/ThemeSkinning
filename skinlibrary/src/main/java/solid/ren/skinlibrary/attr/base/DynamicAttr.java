@@ -1,4 +1,6 @@
-package solid.ren.skinlibrary.attr;
+package solid.ren.skinlibrary.attr.base;
+
+import solid.ren.skinlibrary.attr.base.AttrFactory;
 
 /**
  * Created by _SOLID

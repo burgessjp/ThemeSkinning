@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.view.View;
 
+import solid.ren.skinlibrary.attr.base.SkinAttr;
 import solid.ren.skinlibrary.loader.SkinManager;
 import solid.ren.skinlibrary.utils.SkinL;
 
@@ -18,7 +19,6 @@ public class BackgroundAttr extends SkinAttr {
     public void apply(View view) {
 
         if (RES_TYPE_NAME_COLOR.equals(attrValueTypeName)) {
-
             int color = SkinManager.getInstance().getColor(attrValueRefId);
             if (view instanceof CardView) {//这里对CardView特殊处理下
                 CardView cardView = (CardView) view;
@@ -27,12 +27,9 @@ public class BackgroundAttr extends SkinAttr {
             } else {
                 view.setBackgroundColor(color);
             }
-            SkinL.i("applyAttr", "apply as color");
         } else if (RES_TYPE_NAME_DRAWABLE.equals(attrValueTypeName)) {
             Drawable bg = SkinManager.getInstance().getDrawable(attrValueRefId);
-            // view.setBackground(bg);
             view.setBackgroundDrawable(bg);
-            SkinL.i("applyAttr", "apply as drawable");
         }
     }
 }
