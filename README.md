@@ -9,7 +9,8 @@
 
 
 >###更新日志：
-
+>- v1.2.1:完善之前版本View的创建
+>
 >- v1.2.0:增加对属性支持的扩展
 >
 >- v1.1.0:可以直接加载网络上的皮肤文件
@@ -20,7 +21,7 @@
 
 ###1. 使用方法：
 
-1. 添加依赖<code>  compile 'com.solid.skin:skinlibrary:1.2.0'</code>
+1. 添加依赖<code>  compile 'com.solid.skin:skinlibrary:1.2.1'</code>
 
 1. 让你的Application继承于SkinBaseApplication
 

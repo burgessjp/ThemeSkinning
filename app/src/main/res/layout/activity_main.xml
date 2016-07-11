@@ -57,6 +57,8 @@
 
     <LinearLayout
         android:id="@+id/ll_dynamic_view"
+        android:background="@color/item_tv_content_color"
+        skin:enable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">

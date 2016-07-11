@@ -6,8 +6,6 @@ import android.support.v4.view.LayoutInflaterFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -26,7 +24,7 @@ import solid.ren.skinlibrary.utils.SkinListUtils;
  * Date:2016/4/13
  * Time:21:19
  * <p></p>
- * 自定义的InflaterFactory，用来代替默认的InflaterFactory
+ * 自定义的InflaterFactory，用来代替默认的LayoutInflaterFactory
  * 参考链接：http://willowtreeapps.com/blog/app-development-how-to-get-the-right-layoutinflater/
  */
 public class SkinInflaterFactory implements LayoutInflaterFactory {
@@ -42,14 +40,19 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
     @Override
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
 
-        // 检测当前View是否有更换皮肤的需求
         boolean isSkinEnable = attrs.getAttributeBooleanValue(SkinConfig.NAMESPACE, SkinConfig.ATTR_SKIN_ENABLE, false);
         AppCompatDelegate delegate = mAppCompatActivity.getDelegate();
         View view = delegate.createView(parent, name, context, attrs);
-        if (view == null) {
-            return null;
-        }
+
+
         if (isSkinEnable) {
+            if (view == null) {
+               // view = createView(context, name, attrs);
+                view= ViewProducer.createViewFromTag(context,name,attrs);
+            }
+            if (view == null) {
+                return null;
+            }
             parseSkinAttr(context, attrs, view);
         }
         return view;
@@ -114,7 +117,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
      * 应用皮肤
      */
     public void applySkin() {
-        
+
         if (SkinListUtils.isEmpty(mSkinItems)) {
             return;
         }
