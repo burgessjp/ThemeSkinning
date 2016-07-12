@@ -11,7 +11,7 @@
 >###更新日志：
 >- v1.2.1:完善之前版本View的创建
 >
->- v1.2.0:增加对属性支持的扩展
+>- v1.2.0:增加对换肤属性自定义扩展
 >
 >- v1.1.0:可以直接加载网络上的皮肤文件
 
@@ -23,18 +23,19 @@
 
 1. 添加依赖<code>  compile 'com.solid.skin:skinlibrary:1.2.1'</code>
 
-1. 让你的Application继承于SkinBaseApplication
+2. 让你的Application继承于SkinBaseApplication
 
-2. 让你的Activity继承于SkinBaseActivity，如果使用了Fragment则继承于SkinBaseFragment
+3. 让你的Activity继承于SkinBaseActivity，如果使用了Fragment则继承于SkinBaseFragment
 
-3. 在需要换肤的根布局上添加 <code>xmlns:skin="http://schemas.android.com/android/skin" </code>，然后在需要换肤的View上加上 <code>skin:enable="true"</code>
+4. 在需要换肤的根布局上添加 <code>xmlns:skin="http://schemas.android.com/android/skin" </code>，然后在需要换肤的View上加上 <code>skin:enable="true"</code>
 
-4. 新建一个项目模块（只包含有资源文件），其中包含的资源文件的name一定要和原项目中有换肤需求的View所使用的资源name一致。
+5. 新建一个项目模块（只包含有资源文件），其中包含的资源文件的name一定要和原项目中有换肤需求的View所使用的资源name一致。
 
-5. 打包皮肤文件，放入assets中的skin目录下（skin目录是自己新建的）
+6. 打包皮肤文件，放入assets中的skin目录下（skin目录是自己新建的）
 
-6. 调用换肤
- - 从assets/skin文件夹
+7. 调用换肤
+
+ - 在<code>assets/skin</code>文件夹中的皮肤
  
 ```html
   SkinManager.getInstance().loadSkin("Your skin file name in assets(eg:theme.skin)",
@@ -58,7 +59,7 @@
                         );
 ```
 
- - 从网络
+ - 皮肤来源于网络
 
 ```html
 SkinManager.getInstance().loadSkinFromUrl(skinUrl, new ILoaderListener() {
