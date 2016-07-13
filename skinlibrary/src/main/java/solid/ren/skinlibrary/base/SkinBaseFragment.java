@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,10 +41,14 @@ public class SkinBaseFragment extends Fragment implements IDynamicNewView {
         }
     }
 
-    public void dynamicAddSkinView(View view, String attrName, int attrValueResId) {
-        List<DynamicAttr> pDAttrs = new ArrayList<>();
-        pDAttrs.add(new DynamicAttr(attrName, attrValueResId));
-        dynamicAddView(view, pDAttrs);
+    @Override
+    public void dynamicAddView(View view, String attrName, int attrValueResId) {
+        mIDynamicNewView.dynamicAddView(view, attrName, attrValueResId);
+    }
+
+    @Override
+    public void dynamicAddFontView(TextView textView) {
+        mIDynamicNewView.dynamicAddFontView(textView);
     }
 
     public LayoutInflater getLayoutInflater(Bundle savedInstanceState) {

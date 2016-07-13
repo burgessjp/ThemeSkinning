@@ -21,9 +21,9 @@
 
 ![Demo](app/capture/demo.gif)
 
-###1. 使用方法：
+###1. 继承步骤：
 
-1. 添加依赖<code>  compile 'com.solid.skin:skinlibrary:1.2.1'</code>
+1. 添加依赖<code>  compile 'com.solid.skin:skinlibrary:1.3.0'</code>
 
 2. 让你的Application继承于SkinBaseApplication
 
@@ -132,6 +132,10 @@ public class TabLayoutIndicatorAttr extends SkinAttr {
 
 如何切换字体:
 <code> SkinManager.getInstance().loadFont("xx.ttf")</code>
+
+关于切换字体需要配置的东西：
+如果只是单纯的想要字体切换这个功能。只需<code>集成步骤</code>中的前三步就行了。
+
 ###4. 其他一些重要的api
         
 1. SkinConfig.isDefaultSkin(context):判断当前皮肤是否是默认皮肤

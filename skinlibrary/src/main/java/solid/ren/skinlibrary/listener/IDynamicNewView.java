@@ -1,6 +1,7 @@
 package solid.ren.skinlibrary.listener;
 
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -13,4 +14,13 @@ import solid.ren.skinlibrary.attr.base.DynamicAttr;
  */
 public interface IDynamicNewView {
     void dynamicAddView(View view, List<DynamicAttr> pDAttrs);
+
+    void dynamicAddView(View view, String attrName, int attrValueResId);
+
+    /**
+     * add the textview for font switch
+     *
+     * @param textView textview
+     */
+    void dynamicAddFontView(TextView textView);
 }
