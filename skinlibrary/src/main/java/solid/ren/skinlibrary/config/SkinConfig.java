@@ -15,11 +15,12 @@ import solid.ren.skinlibrary.utils.SkinPreferencesUtils;
 public class SkinConfig {
     public static final String NAMESPACE = "http://schemas.android.com/android/skin";
     public static final String PREF_CUSTOM_SKIN_PATH = "skin_custom_path";
+    public static final String PREF_FONT_PATH = "skin_font_path";
     public static final String DEFAULT_SKIN = "skin_default";//默认皮肤
     public static final String ATTR_SKIN_ENABLE = "enable";
 
     public static final String SKIN_DIR_NAME = "skin";
-    public static final String FONT_DIR_NAME = "font";
+    public static final String FONT_DIR_NAME = "fonts";
     private static boolean isCanChangeStatusColor = false;
 
     /**
@@ -40,6 +41,10 @@ public class SkinConfig {
      */
     public static void saveSkinPath(Context context, String path) {
         SkinPreferencesUtils.putString(context, PREF_CUSTOM_SKIN_PATH, path);
+    }
+
+    public static void saveFontPath(Context context, String path) {
+        SkinPreferencesUtils.putString(context, PREF_FONT_PATH, path);
     }
 
     public static boolean isDefaultSkin(Context context) {

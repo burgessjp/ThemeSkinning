@@ -6,6 +6,7 @@ import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import solid.ren.skinlibrary.loader.SkinInflaterFactory;
 import solid.ren.skinlibrary.loader.SkinManager;
 import solid.ren.skinlibrary.statusbar.StatusBarUtil;
 import solid.ren.skinlibrary.utils.SkinL;
+import solid.ren.skinlibrary.utils.SkinPreferencesUtils;
 
 
 /**
@@ -93,5 +95,9 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
 
     final protected void enableResponseOnSkinChanging(boolean enable) {
         isResponseOnSkinChanging = enable;
+    }
+
+    public void dynamicAddFontEnableView(TextView textView) {
+        mSkinInflaterFactory.dynamicAddFontEnableView(textView);
     }
 }

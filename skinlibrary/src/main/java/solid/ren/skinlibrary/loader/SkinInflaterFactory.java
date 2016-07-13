@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,11 +45,14 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
         AppCompatDelegate delegate = mAppCompatActivity.getDelegate();
         View view = delegate.createView(parent, name, context, attrs);
 
+        if (view instanceof TextView) {
+            TextViewRepository.add((TextView) view);
+        }
 
         if (isSkinEnable) {
             if (view == null) {
-               // view = createView(context, name, attrs);
-                view= ViewProducer.createViewFromTag(context,name,attrs);
+                // view = createView(context, name, attrs);
+                view = ViewProducer.createViewFromTag(context, name, attrs);
             }
             if (view == null) {
                 return null;
@@ -195,4 +199,10 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
         skinItem.apply();
         addSkinView(skinItem);
     }
+
+
+    public void dynamicAddFontEnableView(TextView textView) {
+        TextViewRepository.add(textView);
+    }
+
 }

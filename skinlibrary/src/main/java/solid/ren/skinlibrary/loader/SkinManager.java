@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -24,6 +25,7 @@ import solid.ren.skinlibrary.config.SkinConfig;
 import solid.ren.skinlibrary.listener.ILoaderListener;
 import solid.ren.skinlibrary.listener.ISkinLoader;
 import solid.ren.skinlibrary.listener.ISkinUpdate;
+import solid.ren.skinlibrary.utils.TypefaceUtils;
 import solid.ren.skinlibrary.utils.SkinL;
 import solid.ren.skinlibrary.utils.SkinFileUtils;
 
@@ -49,6 +51,11 @@ public class SkinManager implements ISkinLoader {
 
     public void init(Context ctx) {
         context = ctx.getApplicationContext();
+        TypefaceUtils.CURRENT_TYPEFACE = TypefaceUtils.getTypeface(context);
+    }
+
+    public Context getContext() {
+        return context;
     }
 
     public int getColorPrimaryDark() {
@@ -192,7 +199,7 @@ public class SkinManager implements ISkinLoader {
                         Resources superRes = context.getResources();
                         Resources skinResource = new Resources(assetManager, superRes.getDisplayMetrics(), superRes.getConfiguration());
 
-                        SkinConfig.saveSkinPath(context,  params[0]);
+                        SkinConfig.saveSkinPath(context, params[0]);
 
                         skinPath = skinPkgPath;
                         isDefaultSkin = false;
@@ -269,6 +276,11 @@ public class SkinManager implements ISkinLoader {
         manager.add(downloadRequest);
 
 
+    }
+
+    public void loadFont(String fontName) {
+        Typeface tf = TypefaceUtils.createTypeface(context, fontName);
+        TextViewRepository.applyFont(tf);
     }
 
     public int getColor(int resId) {

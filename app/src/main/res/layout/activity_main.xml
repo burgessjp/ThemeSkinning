@@ -1,75 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:skin="http://schemas.android.com/android/skin"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="solid.ren.themeskinning.MainActivity">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimaryDark"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:titleTextColor="#ffffff" />
-
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tablayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabGravity="fill"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="#292929" />
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="solid.ren.themeskinning.MainActivity">
 
-        <Button
-            android:id="@+id/btn_switch"
-            style="@style/btnStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="加载 theme.skin" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimaryDark"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:titleTextColor="#ffffff" />
 
-        <Button
-            android:id="@+id/btn_switch_default"
-            style="@style/btnStyle"
-            android:layout_width="wrap_content"
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="恢复默认" />
+            app:tabGravity="fill"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="#292929" />
 
-        <Button
-            android:id="@+id/btn_from_net"
-            style="@style/btnStyle"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="加载网络皮肤" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_switch"
+                style="@style/btnStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="加载 theme.skin" />
+
+            <Button
+                android:id="@+id/btn_switch_default"
+                style="@style/btnStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="恢复默认" />
+
+            <Button
+                android:id="@+id/btn_from_net"
+                style="@style/btnStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="加载网络皮肤" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_dynamic_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/item_tv_content_color"
+            android:orientation="horizontal"
+            skin:enable="true">
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+
     </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/ll_dynamic_view"
-        android:background="@color/item_tv_content_color"
-        skin:enable="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-    </LinearLayout>
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
-
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

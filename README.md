@@ -9,6 +9,8 @@
 
 
 >###更新日志：
+>- v1.3.0:增加一键切换切换字体(初版)
+>
 >- v1.2.1:完善之前版本View的创建
 >
 >- v1.2.0:增加对换肤属性自定义扩展
@@ -124,8 +126,14 @@ public class TabLayoutIndicatorAttr extends SkinAttr {
 
 - 最后我们就可以正常使用了，<code>dynamicAddSkinEnableView(tablayout, "tabLayoutIndicator", R.color.colorPrimaryDark);</code>
 
-###3. 其他一些重要的api
+###3. 关于字体切换
 
+还是遵守本项目的约定大于配置的原则，所有的字体都放到assets/fonts文件夹下
+
+如何切换字体:
+<code> SkinManager.getInstance().loadFont("xx.ttf")</code>
+###4. 其他一些重要的api
+        
 1. SkinConfig.isDefaultSkin(context):判断当前皮肤是否是默认皮肤
 
 2. SkinManager.getInstance().restoreDefaultTheme(): 重置默认皮肤
@@ -134,7 +142,7 @@ public class TabLayoutIndicatorAttr extends SkinAttr {
 
 
 ---
-###4. 使用注意事项：
+###5. 使用注意事项：
 1. 换肤默认只支持android的常用控件，对于支持库的控件和自定义控件的换肤需要动态添加（例如： <code>dynamicAddSkinEnableView(toolbar, "background", R.color.colorPrimaryDark);</code>），在布局文件中使用<code>skin:enable="true"</code>是无效的。
 
 2. 默认不支持状态栏颜色的更改，如果需要换肤的同时也要更改状态栏颜色，请到您的Application文件中加入<code>SkinConfig.setCanChangeStatusColor(true);</code>，状态栏的颜色值来源于<code>colorPrimaryDark</code>
