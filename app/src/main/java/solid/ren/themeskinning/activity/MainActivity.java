@@ -72,16 +72,12 @@ public class MainActivity extends SkinBaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+      //  getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_switch_font) {
-            startActivity(new Intent(this, SwitchFontActivity.class));
-        }
         return super.onOptionsItemSelected(item);
     }
 

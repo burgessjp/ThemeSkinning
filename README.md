@@ -9,6 +9,8 @@
 
 
 >###更新日志：
+>- v1.3.1:优化换字体部分代码
+>
 >- v1.3.0:增加一键切换字体(初版)
 >
 >- v1.2.1:完善之前版本View的创建
@@ -23,7 +25,7 @@
 
 ###1. 集成步骤：
 
-1. 添加依赖<code>  compile 'com.solid.skin:skinlibrary:1.3.0'</code>
+1. 添加依赖<code>  compile 'com.solid.skin:skinlibrary:1.3.1'</code>
 
 2. 让你的Application继承于SkinBaseApplication
 

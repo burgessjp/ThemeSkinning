@@ -14,7 +14,6 @@ import java.util.HashMap;
 import solid.ren.skinlibrary.base.SkinBaseFragment;
 import solid.ren.skinlibrary.loader.SkinManager;
 import solid.ren.themeskinning.R;
-import solid.ren.themeskinning.activity.SwitchFontActivity;
 import solid.ren.themeskinning.activity.TestActivity;
 
 /**
