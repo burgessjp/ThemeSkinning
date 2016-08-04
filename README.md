@@ -172,7 +172,7 @@ public class TabLayoutIndicatorAttr extends SkinAttr {
 LICENSE
 
 ```html
-Copyright [2015] [FENGJUN]
+Copyright [2016] [_SOLID]
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
