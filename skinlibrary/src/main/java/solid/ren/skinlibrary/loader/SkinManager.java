@@ -159,17 +159,7 @@ public class SkinManager implements ISkinLoader {
         loadSkin(skin, callback);
     }
 
-    /**
-     * load skin form local
-     * <p>
-     * eg:theme.skin
-     * </p>
-     *
-     * @param skinName the name of skin(in assets/skin)
-     * @param callback load Callback
-     */
-    public void loadSkin(String skinName, final ILoaderListener callback) {
-
+    public void loadExternalStorageSkin(String externalStorageSkin, final ILoaderListener callback) {
         new AsyncTask<String, Void, Resources>() {
 
             protected void onPreExecute() {
@@ -182,18 +172,12 @@ public class SkinManager implements ISkinLoader {
             protected Resources doInBackground(String... params) {
                 try {
                     if (params.length == 1) {
-                        String skinPkgPath = SkinFileUtils.getSkinDir(context) + File.separator + params[0];
-                        SkinL.i("skinPkgPath", skinPkgPath);
-                        File file = new File(skinPkgPath);
-                        if (file == null || !file.exists()) {
-                            return null;
-                        }
                         PackageManager mPm = context.getPackageManager();
-                        PackageInfo mInfo = mPm.getPackageArchiveInfo(skinPkgPath, PackageManager.GET_ACTIVITIES);
+                        PackageInfo mInfo = mPm.getPackageArchiveInfo(params[0], PackageManager.GET_ACTIVITIES);
                         skinPackageName = mInfo.packageName;
                         AssetManager assetManager = AssetManager.class.newInstance();
                         Method addAssetPath = assetManager.getClass().getMethod("addAssetPath", String.class);
-                        addAssetPath.invoke(assetManager, skinPkgPath);
+                        addAssetPath.invoke(assetManager, params[0]);
 
 
                         Resources superRes = context.getResources();
@@ -201,7 +185,7 @@ public class SkinManager implements ISkinLoader {
 
                         SkinConfig.saveSkinPath(context, params[0]);
 
-                        skinPath = skinPkgPath;
+                        skinPath = params[0];
                         isDefaultSkin = false;
                         return skinResource;
                     }
@@ -224,7 +208,26 @@ public class SkinManager implements ISkinLoader {
                 }
             }
 
-        }.execute(skinName);
+        }.execute(externalStorageSkin);
+    }
+
+    /**
+     * load skin form local
+     * <p>
+     * eg:theme.skin
+     * </p>
+     *
+     * @param skinName the name of skin(in assets/skin)
+     * @param callback load Callback
+     */
+    public void loadSkin(String skinName, final ILoaderListener callback) {
+        String skinPkgPath = SkinFileUtils.getSkinDir(context) + File.separator + skinName;
+        SkinL.i("skinPkgPath", skinPkgPath);
+        File file = new File(skinPkgPath);
+        if (file == null || !file.exists()) {
+            return;
+        }
+        loadExternalStorageSkin(skinPkgPath, callback);
     }
 
 
