@@ -18,7 +18,6 @@ import solid.ren.skinlibrary.loader.SkinInflaterFactory;
 import solid.ren.skinlibrary.loader.SkinManager;
 import solid.ren.skinlibrary.statusbar.StatusBarUtil;
 import solid.ren.skinlibrary.utils.SkinL;
-import solid.ren.skinlibrary.utils.SkinPreferencesUtils;
 
 
 /**
@@ -64,9 +63,13 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
         if (!SkinConfig.isCanChangeStatusColor()) {
             return;
         }
+        int color = SkinManager.getInstance().getColorPrimaryDark();
+        changStatusColor(color);
+    }
+
+    public void changStatusColor(int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             SkinL.i("SkinBaseActivity", "changeStatus");
-            int color = SkinManager.getInstance().getColorPrimaryDark();
             StatusBarUtil statusBarBackground = new StatusBarUtil(
                     this, color);
             if (color != -1)
