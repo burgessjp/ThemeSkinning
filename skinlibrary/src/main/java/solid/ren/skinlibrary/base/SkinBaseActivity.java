@@ -60,7 +60,7 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
     }
 
     public void changeStatusColor() {
-        if (!SkinConfig.isCanChangeStatusColor()) {
+        if (!SkinConfig.isCanChangeStatusColor() || !requireChangeStatusColor()) {
             return;
         }
         int color = SkinManager.getInstance().getColorPrimaryDark();
@@ -75,6 +75,10 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
             if (color != -1)
                 statusBarBackground.setStatusBarbackColor();
         }
+    }
+
+    public boolean requireChangeStatusColor() {
+        return true;
     }
 
     @Override
