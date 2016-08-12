@@ -64,10 +64,10 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
             return;
         }
         int color = SkinManager.getInstance().getColorPrimaryDark();
-        changStatusColor(color);
+        changeStatusColor(color);
     }
 
-    public void changStatusColor(int color) {
+    public void changeStatusColor(int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             SkinL.i("SkinBaseActivity", "changeStatus");
             StatusBarUtil statusBarBackground = new StatusBarUtil(
