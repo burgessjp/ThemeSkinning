@@ -49,9 +49,7 @@ public class SkinL {
 
     public static void i(String tag, String msg) {
         if (DEBUG) {
-            Log.i(tag, LINE);
             Log.i(tag, msg);
-            Log.i(tag, LINE);
         }
     }
 

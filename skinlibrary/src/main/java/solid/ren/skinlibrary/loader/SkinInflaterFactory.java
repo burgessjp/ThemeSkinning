@@ -34,7 +34,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
     /**
      * 存储那些有皮肤更改需求的View及其对应的属性的集合
      */
-    private List<SkinItem> mSkinItems = new ArrayList<SkinItem>();
+    private List<SkinItem> mSkinItems = new ArrayList<>();
 
     private AppCompatActivity mAppCompatActivity;
 

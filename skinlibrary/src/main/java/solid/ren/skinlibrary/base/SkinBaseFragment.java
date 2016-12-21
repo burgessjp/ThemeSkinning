@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -54,5 +55,30 @@ public class SkinBaseFragment extends Fragment implements IDynamicNewView {
     public LayoutInflater getLayoutInflater(Bundle savedInstanceState) {
         LayoutInflater result = getActivity().getLayoutInflater();
         return result;
+    }
+
+    @Override
+    public void onDestroyView() {
+        removeAllView(getView());
+        super.onDestroyView();
+    }
+
+    private void removeAllView(View v) {
+        if (v instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) v;
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                removeAllView(viewGroup.getChildAt(i));
+            }
+            removeViewInSkinInflaterFactory(v);
+        } else {
+            removeViewInSkinInflaterFactory(v);
+        }
+    }
+
+    private void removeViewInSkinInflaterFactory(View v) {
+        if (getContext() instanceof SkinBaseActivity) {
+            SkinBaseActivity skinBaseActivity = (SkinBaseActivity) getContext();
+            //TODO 移除SkinInflaterFactory中的v
+        }
     }
 }
