@@ -4,15 +4,15 @@
     <color name="colorPrimaryDark">#CD3700</color>//决定状态栏颜色
     <color name="colorAccent">#FF4081</color>
 
-    <!--需要换肤的颜色，和原始app中的name保持一致-->
-    <!--<color name="item_bg">#c1c1c1</color>-->
-    <!--<color name="item_tv_title_color">#7CCD7C</color>-->
-    <!--<color name="item_tv_content_color">#7FFFD4</color>-->
-    <!--<color name="item_tv_date_color">#8B3A3A</color>-->
+    需要换肤的颜色，和原始app中的name保持一致
+    <color name="item_bg">#c1c1c1</color>
+    <color name="item_tv_title_color">#7CCD7C</color>
+    <color name="item_tv_content_color">#7FFFD4</color>
+    <color name="item_tv_date_color">#8B3A3A</color>
 
 
-    <color name="item_bg">#69db7a</color>
-    <color name="item_tv_title_color">#2c3cf0</color>
-    <color name="item_tv_content_color">#47a094</color>
-    <color name="item_tv_date_color">#e6b918</color>
+    <!--<color name="item_bg">#69db7a</color>-->
+    <!--<color name="item_tv_title_color">#2c3cf0</color>-->
+    <!--<color name="item_tv_content_color">#47a094</color>-->
+    <!--<color name="item_tv_date_color">#e6b918</color>-->
 </resources>

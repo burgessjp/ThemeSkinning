@@ -198,7 +198,6 @@ public class SkinManager implements ISkinLoader {
 
                         Resources superRes = context.getResources();
                         Resources skinResource = new Resources(assetManager, superRes.getDisplayMetrics(), superRes.getConfiguration());
-
                         SkinConfig.saveSkinPath(context, params[0]);
 
                         skinPath = skinPkgPath;
@@ -377,5 +376,14 @@ public class SkinManager implements ISkinLoader {
 
         int[][] states = new int[1][1];
         return new ColorStateList(states, new int[]{context.getResources().getColor(resId)});
+    }
+
+    public int getStyle(String styleName) {
+        int originStyle = context.getResources().getIdentifier(styleName, "style", context.getPackageName());
+        if (mResources == null || isDefaultSkin) {
+            return originStyle;
+        }
+        int trueStyle = mResources.getIdentifier(styleName, "style", skinPackageName);
+        return trueStyle;
     }
 }

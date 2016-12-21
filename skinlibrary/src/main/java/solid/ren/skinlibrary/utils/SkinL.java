@@ -19,31 +19,25 @@ public class SkinL {
 
     public static void i(String msg) {
         if (DEBUG) {
-            Log.i(TAG, LINE);
             Log.i(TAG, msg);
-            Log.i(TAG, LINE);
         }
     }
 
     public static void d(String msg) {
         if (DEBUG) {
-            Log.d(TAG, LINE);
             Log.d(TAG, msg);
         }
     }
 
     public static void w(String msg) {
         if (DEBUG) {
-            Log.w(TAG, LINE);
             Log.w(TAG, msg);
         }
     }
 
     public static void e(String msg) {
         if (DEBUG) {
-            Log.e(TAG, LINE);
             Log.e(TAG, msg);
-            Log.i(TAG, LINE);
         }
     }
 
@@ -55,21 +49,18 @@ public class SkinL {
 
     public static void d(String tag, String msg) {
         if (DEBUG) {
-            Log.d(tag, LINE);
             Log.d(tag, msg);
         }
     }
 
     public static void w(String tag, String msg) {
         if (DEBUG) {
-            Log.w(tag, LINE);
             Log.w(tag, msg);
         }
     }
 
     public static void e(String tag, String msg) {
         if (DEBUG) {
-            Log.e(tag, LINE);
             Log.e(tag, msg);
         }
     }

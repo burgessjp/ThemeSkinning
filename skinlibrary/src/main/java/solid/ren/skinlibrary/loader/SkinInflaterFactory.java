@@ -74,13 +74,22 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
      * @param view
      */
     private void parseSkinAttr(Context context, AttributeSet attrs, View view) {
-        List<SkinAttr> viewAttrs = new ArrayList<SkinAttr>();//存储View可更换皮肤属性的集合
+        List<SkinAttr> viewAttrs = new ArrayList<>();//存储View可更换皮肤属性的集合
         for (int i = 0; i < attrs.getAttributeCount(); i++) {//遍历当前View的属性
             String attrName = attrs.getAttributeName(i);//属性名
             String attrValue = attrs.getAttributeValue(i);//属性值
 
-            SkinL.i("Aattrname", "Aattrname:" + attrName);
+            SkinL.i(TAG, "AttributeName:" + attrName + "|" + "attrValue:" + attrValue);
             if (!AttrFactory.isSupportedAttr(attrName)) {
+                continue;
+            }
+
+            if ("style".equals(attrName)) {
+                String entryName = attrValue.substring(attrValue.indexOf('/') + 1);
+                SkinAttr skinAttr = AttrFactory.get(attrName, 0, entryName, attrName);
+                if (skinAttr != null) {
+                    viewAttrs.add(skinAttr);
+                }
                 continue;
             }
             if (attrValue.startsWith("@")) {//也就是引用类型，形如@color/red
@@ -89,7 +98,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
                     String entryName = context.getResources().getResourceEntryName(id);//入口名，例如text_color_selector
                     String typeName = context.getResources().getResourceTypeName(id);//类型名，例如color、background
                     SkinAttr mSkinAttr = AttrFactory.get(attrName, id, entryName, typeName);
-                    SkinL.i("parseSkinAttr",
+                    SkinL.i(TAG,
                             "view:" + view.getClass().getSimpleName() + "\n" +
                                     "id:" + id + "\n" +
                                     "attrName:" + attrName + " | attrValue:" + attrValue + "\n" +

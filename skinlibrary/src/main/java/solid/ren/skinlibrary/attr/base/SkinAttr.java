@@ -10,6 +10,7 @@ import android.view.View;
 public abstract class SkinAttr implements Cloneable {
     protected static final String RES_TYPE_NAME_COLOR = "color";
     protected static final String RES_TYPE_NAME_DRAWABLE = "drawable";
+    protected static final String RES_TYPE_NAME_STYLE = "style";
     /**
      * 属性名, 例如: background、textSize、textColor
      */

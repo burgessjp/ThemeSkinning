@@ -29,12 +29,9 @@
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/ItemTitleText"
             android:text="title"
-            skin:enable="true"
-            android:textColor="@color/item_tv_title_color"
-            android:textSize="18sp" />
+            skin:enable="true" />
 
         <TextView
             android:id="@+id/tv_content"
@@ -42,9 +39,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="content"
-            skin:enable="true"
             android:textColor="@color/item_tv_content_color"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            skin:enable="true" />
 
         <TextView
             android:id="@+id/tv_date"
@@ -53,9 +50,9 @@
             android:layout_marginTop="2dp"
             android:gravity="right"
             android:text="time"
-            skin:enable="true"
             android:textColor="@color/item_tv_date_color"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            skin:enable="true" />
     </LinearLayout>
 
 

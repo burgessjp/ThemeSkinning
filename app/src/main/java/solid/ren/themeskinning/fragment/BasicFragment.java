@@ -63,7 +63,7 @@ public class BasicFragment extends SkinBaseFragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        SkinManager.getInstance().loadSkin("theme.skin",
+                        SkinManager.getInstance().loadSkin("theme_style.skin",
                                 new ILoaderListener() {
                                     @Override
                                     public void onStart() {
