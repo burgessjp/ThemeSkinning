@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import solid.ren.skinlibrary.attr.base.AttrFactory;
 import solid.ren.skinlibrary.attr.base.DynamicAttr;
@@ -34,8 +36,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
     /**
      * 存储那些有皮肤更改需求的View及其对应的属性的集合
      */
-    private List<SkinItem> mSkinItems = new ArrayList<>();
-
+    Map<View, SkinItem> mSkinItemMap = new HashMap<>();
     private AppCompatActivity mAppCompatActivity;
 
     @Override
@@ -80,18 +81,14 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
             String attrValue = attrs.getAttributeValue(i);//属性值
 
             SkinL.i(TAG, "AttributeName:" + attrName + "|" + "attrValue:" + attrValue);
+            if ("style".equals(attrName)) {
+                //TODO 支持style换肤
+                continue;
+            }
             if (!AttrFactory.isSupportedAttr(attrName)) {
                 continue;
             }
 
-            if ("style".equals(attrName)) {
-                String entryName = attrValue.substring(attrValue.indexOf('/') + 1);
-                SkinAttr skinAttr = AttrFactory.get(attrName, 0, entryName, attrName);
-                if (skinAttr != null) {
-                    viewAttrs.add(skinAttr);
-                }
-                continue;
-            }
             if (attrValue.startsWith("@")) {//也就是引用类型，形如@color/red
                 try {
                     int id = Integer.parseInt(attrValue.substring(1));//资源的id
@@ -119,7 +116,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
             SkinItem skinItem = new SkinItem();
             skinItem.view = view;
             skinItem.attrs = viewAttrs;
-            mSkinItems.add(skinItem);
+            mSkinItemMap.put(skinItem.view, skinItem);
             if (SkinManager.getInstance().isExternalSkin()) {//如果当前皮肤来自于外部
                 skinItem.apply();
             }
@@ -131,15 +128,16 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
      */
     public void applySkin() {
 
-        if (SkinListUtils.isEmpty(mSkinItems)) {
+        if (mSkinItemMap.isEmpty()) {
             return;
         }
 
-        for (SkinItem si : mSkinItems) {
-            if (si.view == null) {
+
+        for (View view : mSkinItemMap.keySet()) {
+            if (view == null) {
                 continue;
             }
-            si.apply();
+            mSkinItemMap.get(view).apply();
         }
     }
 
@@ -147,19 +145,25 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
      * 清除有皮肤更改需求的View及其对应的属性的集合
      */
     public void clean() {
-        if (SkinListUtils.isEmpty(mSkinItems)) {
+
+        if (mSkinItemMap.isEmpty()) {
             return;
         }
-        for (SkinItem si : mSkinItems) {
-            if (si.view == null) {
+        for (View view : mSkinItemMap.keySet()) {
+            if (view == null) {
                 continue;
             }
-            si.clean();
+            mSkinItemMap.get(view).clean();
         }
     }
 
     public void addSkinView(SkinItem item) {
-        mSkinItems.add(item);
+        mSkinItemMap.put(item.view, item);
+    }
+
+    public  void removeSkinView(View view)
+    {
+        mSkinItemMap.remove(view);
     }
 
     /**

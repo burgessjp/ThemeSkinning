@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import solid.ren.skinlibrary.R;
 import solid.ren.skinlibrary.attr.base.DynamicAttr;
 import solid.ren.skinlibrary.config.SkinConfig;
 import solid.ren.skinlibrary.listener.IDynamicNewView;
@@ -19,7 +18,6 @@ import solid.ren.skinlibrary.loader.SkinInflaterFactory;
 import solid.ren.skinlibrary.loader.SkinManager;
 import solid.ren.skinlibrary.statusbar.StatusBarUtil;
 import solid.ren.skinlibrary.utils.SkinL;
-import solid.ren.skinlibrary.utils.SkinPreferencesUtils;
 
 
 /**
@@ -92,6 +90,10 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
     @Override
     public void dynamicAddFontView(TextView textView) {
         mSkinInflaterFactory.dynamicAddFontEnableView(textView);
+    }
+
+    public final void removeSkinView(View v) {
+        mSkinInflaterFactory.removeSkinView(v);
     }
 
 }

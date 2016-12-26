@@ -3,7 +3,6 @@ package solid.ren.skinlibrary.attr.base;
 import java.util.HashMap;
 
 import solid.ren.skinlibrary.attr.BackgroundAttr;
-import solid.ren.skinlibrary.attr.StyleAttr;
 import solid.ren.skinlibrary.attr.TextColorAttr;
 import solid.ren.skinlibrary.utils.SkinL;
 
@@ -21,7 +20,6 @@ public class AttrFactory {
     static {
         mSupportAttr.put("background", new BackgroundAttr());
         mSupportAttr.put("textColor", new TextColorAttr());
-        mSupportAttr.put("style", new StyleAttr());
     }
 
 

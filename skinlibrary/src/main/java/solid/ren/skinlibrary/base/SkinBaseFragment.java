@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import solid.ren.skinlibrary.attr.base.DynamicAttr;
@@ -78,7 +77,8 @@ public class SkinBaseFragment extends Fragment implements IDynamicNewView {
     private void removeViewInSkinInflaterFactory(View v) {
         if (getContext() instanceof SkinBaseActivity) {
             SkinBaseActivity skinBaseActivity = (SkinBaseActivity) getContext();
-            //TODO 移除SkinInflaterFactory中的v
+            //移除SkinInflaterFactory中的v
+            skinBaseActivity.removeSkinView(v);
         }
     }
 }
