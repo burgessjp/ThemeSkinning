@@ -58,7 +58,7 @@ public class SkinFileUtils {
      */
     public static String getSkinDir(Context context) {
         File skinDir = new File(getCacheDir(context), SkinConfig.SKIN_DIR_NAME);
-        if (skinDir.exists()) {
+        if (!skinDir.exists()) {
             skinDir.mkdirs();
         }
         return skinDir.getAbsolutePath();
