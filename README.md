@@ -24,9 +24,9 @@
 
 4. 在需要换肤的根布局上添加 <code>xmlns:skin="http://schemas.android.com/android/skin" </code>，然后在需要换肤的View上加上 <code>skin:enable="true"</code>
 
-5. 新建一个项目模块（只包含有资源文件），其中包含的资源文件的name一定要和原项目中有换肤需求的View所使用的资源name一致。
+5. 新建一个项目模块（建议是一个library，这样会使皮肤文件更小,只包含有资源文件），其中包含的资源文件的name一定要和原项目中有换肤需求的View所使用的资源name一致。
 
-6. 打包皮肤文件，放入assets中的skin目录下（skin目录是自己新建的）
+6. 拿到上一步生成的文件(*.apk or *.aar)，改名为*.skin，放入assets中的skin目录下（skin目录是自己新建的）
 
 7. 调用换肤
 

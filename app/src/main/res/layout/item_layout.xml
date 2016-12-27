@@ -5,6 +5,8 @@
     android:layout_height="wrap_content"
     android:background="@color/item_bg"
     android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
     android:padding="5dp"
     skin:enable="true">
 

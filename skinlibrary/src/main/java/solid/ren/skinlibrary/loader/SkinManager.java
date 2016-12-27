@@ -25,6 +25,7 @@ import solid.ren.skinlibrary.config.SkinConfig;
 import solid.ren.skinlibrary.listener.ILoaderListener;
 import solid.ren.skinlibrary.listener.ISkinLoader;
 import solid.ren.skinlibrary.listener.ISkinUpdate;
+import solid.ren.skinlibrary.utils.ResourcesCompat;
 import solid.ren.skinlibrary.utils.TypefaceUtils;
 import solid.ren.skinlibrary.utils.SkinL;
 import solid.ren.skinlibrary.utils.SkinFileUtils;
@@ -197,7 +198,7 @@ public class SkinManager implements ISkinLoader {
 
 
                         Resources superRes = context.getResources();
-                        Resources skinResource = new Resources(assetManager, superRes.getDisplayMetrics(), superRes.getConfiguration());
+                        Resources skinResource = ResourcesCompat.getResources(assetManager, superRes.getDisplayMetrics(), superRes.getConfiguration());
                         SkinConfig.saveSkinPath(context, params[0]);
 
                         skinPath = skinPkgPath;
