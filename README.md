@@ -19,7 +19,7 @@
 
 ###1. 集成步骤：
 
-1. 添加依赖<code>  compile 'com.solid.skin:skinlibrary:1.3.1'</code>
+1. 添加依赖<code>  compile 'com.solid:skinlibrary:latestVersion'</code>
 
 2. 让你的Application继承于SkinBaseApplication
 
