@@ -2,6 +2,7 @@ package solid.ren.skinlibrary.loader;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.support.v4.view.LayoutInflaterFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
@@ -36,7 +37,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
     /**
      * 存储那些有皮肤更改需求的View及其对应的属性的集合
      */
-    Map<View, SkinItem> mSkinItemMap = new HashMap<>();
+    private Map<View, SkinItem> mSkinItemMap = new HashMap<>();
     private AppCompatActivity mAppCompatActivity;
 
     @Override
@@ -46,13 +47,12 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
         AppCompatDelegate delegate = mAppCompatActivity.getDelegate();
         View view = delegate.createView(parent, name, context, attrs);
 
-        if (view instanceof TextView) {
+        if (view instanceof TextView && SkinConfig.isCanChangeFont()) {
             TextViewRepository.add((TextView) view);
         }
 
         if (isSkinEnable) {
             if (view == null) {
-                // view = createView(context, name, attrs);
                 view = ViewProducer.createViewFromTag(context, name, attrs);
             }
             if (view == null) {
@@ -79,28 +79,49 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
         for (int i = 0; i < attrs.getAttributeCount(); i++) {//遍历当前View的属性
             String attrName = attrs.getAttributeName(i);//属性名
             String attrValue = attrs.getAttributeValue(i);//属性值
-
             SkinL.i(TAG, "AttributeName:" + attrName + "|" + "attrValue:" + attrValue);
-            if ("style".equals(attrName)) {
-                //TODO 支持style换肤
-                continue;
-            }
-            if (!AttrFactory.isSupportedAttr(attrName)) {
+            if ("style".equals(attrName)) {//style theme
+                String styleName = attrValue.substring(attrValue.indexOf("/") + 1);
+                int styleID = context.getResources().getIdentifier(styleName, "style", context.getPackageName());
+                int[] skinAttrs = new int[]{android.R.attr.textColor, android.R.attr.background};
+                TypedArray a = context.getTheme().obtainStyledAttributes(styleID, skinAttrs);
+                int textColor = a.getColor(0, -1);
+                int background = a.getColor(1, -1);
+                int textColorId = a.getResourceId(0, -1);
+                int backgroundId = a.getResourceId(1, -1);
+                if (textColor != -1 && textColorId != -1) {
+                    String entryName = context.getResources().getResourceEntryName(textColorId);//入口名，例如text_color_selector
+                    String typeName = context.getResources().getResourceTypeName(textColorId);
+                    SkinAttr skinAttr = AttrFactory.get("textColor", textColorId, entryName, typeName);
+                    if (skinAttr != null) {
+                        viewAttrs.add(skinAttr);
+                    }
+                }
+                if (background != -1 && backgroundId != -1) {
+                    String entryName = context.getResources().getResourceEntryName(backgroundId);//入口名，例如text_color_selector
+                    String typeName = context.getResources().getResourceTypeName(backgroundId);
+                    SkinAttr skinAttr = AttrFactory.get("background", backgroundId, entryName, typeName);
+                    if (skinAttr != null) {
+                        viewAttrs.add(skinAttr);
+                    }
+
+                }
+                a.recycle();
                 continue;
             }
 
-            if (attrValue.startsWith("@")) {//也就是引用类型，形如@color/red
+            if (AttrFactory.isSupportedAttr(attrName) && attrValue.startsWith("@")) {//也就是引用类型，形如@color/red
                 try {
                     int id = Integer.parseInt(attrValue.substring(1));//资源的id
                     String entryName = context.getResources().getResourceEntryName(id);//入口名，例如text_color_selector
                     String typeName = context.getResources().getResourceTypeName(id);//类型名，例如color、background
                     SkinAttr mSkinAttr = AttrFactory.get(attrName, id, entryName, typeName);
-                    SkinL.i(TAG,
-                            "view:" + view.getClass().getSimpleName() + "\n" +
-                                    "id:" + id + "\n" +
-                                    "attrName:" + attrName + " | attrValue:" + attrValue + "\n" +
-                                    "entryName:" + entryName + "\n" +
-                                    "typeName:" + typeName
+                    SkinL.i(TAG, "view:" + view.getClass().getSimpleName() + "\n" +
+                            "id:" + id + "\n" +
+                            "attrName:" + attrName + "\n" +
+                            "attrValue:" + attrValue + "\n" +
+                            "entryName:" + entryName + "\n" +
+                            "typeName:" + typeName
                     );
                     if (mSkinAttr != null) {
                         viewAttrs.add(mSkinAttr);
@@ -123,16 +144,10 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
         }
     }
 
-    /**
-     * 应用皮肤
-     */
     public void applySkin() {
-
         if (mSkinItemMap.isEmpty()) {
             return;
         }
-
-
         for (View view : mSkinItemMap.keySet()) {
             if (view == null) {
                 continue;
@@ -145,7 +160,6 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
      * 清除有皮肤更改需求的View及其对应的属性的集合
      */
     public void clean() {
-
         if (mSkinItemMap.isEmpty()) {
             return;
         }
@@ -161,8 +175,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
         mSkinItemMap.put(item.view, item);
     }
 
-    public  void removeSkinView(View view)
-    {
+    public void removeSkinView(View view) {
         mSkinItemMap.remove(view);
     }
 

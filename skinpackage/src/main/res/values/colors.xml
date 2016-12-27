@@ -10,6 +10,8 @@
     <color name="item_tv_content_color">#7FFFD4</color>
     <color name="item_tv_date_color">#8B3A3A</color>
 
+    <color name="item_tv_title_background">#516c51</color>
+
 
     <!--<color name="item_bg">#69db7a</color>-->
     <!--<color name="item_tv_title_color">#2c3cf0</color>-->

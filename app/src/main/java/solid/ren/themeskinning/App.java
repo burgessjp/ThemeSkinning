@@ -14,6 +14,7 @@ public class App extends SkinBaseApplication {
     public void onCreate() {
         super.onCreate();
         SkinConfig.setCanChangeStatusColor(true);
+        SkinConfig.setCanChangeFont(true);
         SkinConfig.addSupportAttr("tabLayoutIndicator", new TabLayoutIndicatorAttr());
     }
 }

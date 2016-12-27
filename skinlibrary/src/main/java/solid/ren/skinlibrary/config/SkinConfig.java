@@ -22,6 +22,7 @@ public class SkinConfig {
     public static final String SKIN_DIR_NAME = "skin";
     public static final String FONT_DIR_NAME = "fonts";
     private static boolean isCanChangeStatusColor = false;
+    private static boolean isCanChangeFont = false;
 
     /**
      * get path of last skin package path
@@ -57,6 +58,14 @@ public class SkinConfig {
 
     public static boolean isCanChangeStatusColor() {
         return isCanChangeStatusColor;
+    }
+
+    public static void setCanChangeFont(boolean isCan) {
+        isCanChangeFont = isCan;
+    }
+
+    public static boolean isCanChangeFont() {
+        return isCanChangeFont;
     }
 
     /**
