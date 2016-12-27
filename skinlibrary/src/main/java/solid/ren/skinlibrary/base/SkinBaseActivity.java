@@ -64,17 +64,25 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
     }
 
     public void changeStatusColor() {
-        if (!SkinConfig.isCanChangeStatusColor()) {
+        if (!SkinConfig.isCanChangeStatusColor() || !requireChangeStatusColor()) {
             return;
         }
+        int color = SkinManager.getInstance().getColorPrimaryDark();
+        changeStatusColor(color);
+    }
+
+    public void changeStatusColor(int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             SkinL.i("SkinBaseActivity", "changeStatus");
-            int color = SkinManager.getInstance().getColorPrimaryDark();
             StatusBarUtil statusBarBackground = new StatusBarUtil(
                     this, color);
             if (color != -1)
                 statusBarBackground.setStatusBarbackColor();
         }
+    }
+
+    public boolean requireChangeStatusColor() {
+        return true;
     }
 
     @Override
