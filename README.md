@@ -16,7 +16,7 @@
 
 ###1. 集成步骤：
 
-1. 添加依赖<code>  compile 'com.solid:skinlibrary:latestVersion'</code>
+1. 添加依赖<code>  compile 'com.solid.skin:skinlibrary:latestVersion'</code>
 
 2. 让你的Application继承于SkinBaseApplication
 
@@ -26,7 +26,7 @@
 
 5. 新建一个项目模块（建议是一个library，这样会使皮肤文件更小,只包含有资源文件），其中包含的资源文件的name一定要和原项目中有换肤需求的View所使用的资源name一致。
 
-6. 拿到上一步生成的文件(*.apk or *.aar)，改名为*.skin，放入assets中的skin目录下（skin目录是自己新建的）
+6. 拿到上一步生成的文件( ***.apk or ***.aar)，改名为 ***.skin，放入assets中的skin目录下（skin目录是自己新建的）
 
 7. 调用换肤
 

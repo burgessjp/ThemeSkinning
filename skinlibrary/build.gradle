@@ -33,7 +33,7 @@ dependencies {
 
 def siteUrl = 'https://github.com/burgessjp/ThemeSkinning'      // 项目的主页
 def gitUrl = 'https://github.com/burgessjp/ThemeSkinning.git'   // Git仓库的url
-group = "com.solid"
+group = "com.solid.skin"
 
 install {
     repositories.mavenInstaller {
