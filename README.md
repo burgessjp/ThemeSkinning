@@ -1,12 +1,6 @@
+ [![Download](https://api.bintray.com/packages/solid/maven/theme-skinning/images/download.svg) ](https://bintray.com/solid/maven/theme-skinning/_latestVersion)
 
 ##Android 主题换肤的开源库（插件化换肤）
-
->本开源库是基于我之前的一个博客 [Android主题换肤 无缝切换](http://www.jianshu.com/p/af7c0585dd5b) 不知道原理的可以去这篇博客看看。
-
->出于易于集成的目的，我将其抽取出来，作为一个模块。提供简洁的api，方便使用。
-
->目前暂时没有发现兼容性问题，欢迎提供使用反馈。
-
 
 >###更新日志：
 >- v1.3.1:优化换字体部分代码
