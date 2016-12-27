@@ -1,17 +1,14 @@
  [![Download](https://api.bintray.com/packages/solid/maven/theme-skinning/images/download.svg) ](https://bintray.com/solid/maven/theme-skinning/_latestVersion)
 
-##Android 主题换肤的开源库（插件化换肤）
+###Android 主题换肤的开源库（插件化换肤）
 
->###更新日志：
->- v1.3.1:优化换字体部分代码
->
->- v1.3.0:增加一键切换字体(初版)
->
->- v1.2.1:完善之前版本View的创建
->
->- v1.2.0:增加对换肤属性自定义扩展
->
->- v1.1.0:可以直接加载网络上的皮肤文件
+###更新日志：
+- v1.4.0:fix [issues9](https://github.com/burgessjp/ThemeSkinning/issues/9),支持style
+- v1.3.1:优化换字体部分代码
+- v1.3.0:增加一键切换字体(初版)
+- v1.2.1:完善之前版本View的创建
+- v1.2.0:增加对换肤属性自定义扩展
+- v1.1.0:可以直接加载网络上的皮肤文件
 
 效果图如下：
 
@@ -131,6 +128,8 @@ public class TabLayoutIndicatorAttr extends SkinAttr {
 
 关于切换字体需要配置的东西：
 如果只是单纯的想要字体切换这个功能。只需<code>集成步骤</code>中的前三步就行了。
+
+**注：字体切换功能默认不开启，需要字体切换功能请在你的Application中加入<code>SkinConfig.setCanChangeStatusColor(true);</code>**
 
 ###4. 其他一些重要的api
         
