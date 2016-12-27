@@ -33,7 +33,7 @@ public class SkinBaseFragment extends Fragment implements IDynamicNewView {
     }
 
     @Override
-    public void dynamicAddView(View view, List<DynamicAttr> pDAttrs) {
+    public final void dynamicAddView(View view, List<DynamicAttr> pDAttrs) {
         if (mIDynamicNewView == null) {
             throw new RuntimeException("IDynamicNewView should be implements !");
         } else {
@@ -42,16 +42,16 @@ public class SkinBaseFragment extends Fragment implements IDynamicNewView {
     }
 
     @Override
-    public void dynamicAddView(View view, String attrName, int attrValueResId) {
+    public final void dynamicAddView(View view, String attrName, int attrValueResId) {
         mIDynamicNewView.dynamicAddView(view, attrName, attrValueResId);
     }
 
     @Override
-    public void dynamicAddFontView(TextView textView) {
+    public final void dynamicAddFontView(TextView textView) {
         mIDynamicNewView.dynamicAddFontView(textView);
     }
 
-    public LayoutInflater getLayoutInflater(Bundle savedInstanceState) {
+    public final LayoutInflater getLayoutInflater(Bundle savedInstanceState) {
         LayoutInflater result = getActivity().getLayoutInflater();
         return result;
     }
@@ -62,7 +62,7 @@ public class SkinBaseFragment extends Fragment implements IDynamicNewView {
         super.onDestroyView();
     }
 
-    private void removeAllView(View v) {
+    private final void removeAllView(View v) {
         if (v instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) v;
             for (int i = 0; i < viewGroup.getChildCount(); i++) {
@@ -74,7 +74,7 @@ public class SkinBaseFragment extends Fragment implements IDynamicNewView {
         }
     }
 
-    private void removeViewInSkinInflaterFactory(View v) {
+    private final void removeViewInSkinInflaterFactory(View v) {
         if (getContext() instanceof SkinBaseActivity) {
             SkinBaseActivity skinBaseActivity = (SkinBaseActivity) getContext();
             //移除SkinInflaterFactory中的v
