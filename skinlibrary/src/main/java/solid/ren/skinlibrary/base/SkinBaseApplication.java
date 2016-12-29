@@ -1,12 +1,11 @@
 package solid.ren.skinlibrary.base;
 
 import android.app.Application;
-import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
 
-import solid.ren.skinlibrary.config.SkinConfig;
+import solid.ren.skinlibrary.SkinConfig;
 import solid.ren.skinlibrary.loader.SkinManager;
 import solid.ren.skinlibrary.utils.SkinFileUtils;
 

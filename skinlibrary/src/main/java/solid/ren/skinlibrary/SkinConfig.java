@@ -1,4 +1,4 @@
-package solid.ren.skinlibrary.config;
+package solid.ren.skinlibrary;
 
 import android.content.Context;
 

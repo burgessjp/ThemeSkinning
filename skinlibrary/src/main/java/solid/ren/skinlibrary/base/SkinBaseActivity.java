@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import solid.ren.skinlibrary.attr.base.DynamicAttr;
-import solid.ren.skinlibrary.config.SkinConfig;
+import solid.ren.skinlibrary.SkinConfig;
 import solid.ren.skinlibrary.listener.IDynamicNewView;
 import solid.ren.skinlibrary.listener.ISkinUpdate;
 import solid.ren.skinlibrary.loader.SkinInflaterFactory;

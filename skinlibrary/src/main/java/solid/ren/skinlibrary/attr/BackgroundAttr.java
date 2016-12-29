@@ -22,7 +22,7 @@ public class BackgroundAttr extends SkinAttr {
             int color = SkinManager.getInstance().getColor(attrValueRefId);
             if (view instanceof CardView) {//这里对CardView特殊处理下
                 CardView cardView = (CardView) view;
-                //给CardView设置背景色应该使用cardBackgroundColor，直接使用background就会没有圆角效果
+                //给CardView设置背景色应该使用cardBackgroundColor，直接使用background没有圆角效果
                 cardView.setCardBackgroundColor(color);
             } else {
                 view.setBackgroundColor(color);

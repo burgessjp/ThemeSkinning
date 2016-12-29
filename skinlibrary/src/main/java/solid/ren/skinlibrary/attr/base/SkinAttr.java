@@ -21,7 +21,7 @@ public abstract class SkinAttr implements Cloneable {
     public int attrValueRefId;
 
     /**
-     * 资源的名字, 例如 [app_exit_btn_background]
+     * resources name, eg:app_exit_btn_background
      */
     public String attrValueRefName;
 
@@ -39,11 +39,12 @@ public abstract class SkinAttr implements Cloneable {
 
     @Override
     public String toString() {
-        return "SkinAttr \n[\nattrName=" + attrName + ", \n"
-                + "attrValueRefId=" + attrValueRefId + ", \n"
-                + "attrValueRefName=" + attrValueRefName + ", \n"
-                + "attrValueTypeName=" + attrValueTypeName
-                + "\n]";
+        return "SkinAttr{" +
+                "attrName='" + attrName + '\'' +
+                ", attrValueRefId=" + attrValueRefId +
+                ", attrValueRefName='" + attrValueRefName + '\'' +
+                ", attrValueTypeName='" + attrValueTypeName + '\'' +
+                '}';
     }
 
     @Override

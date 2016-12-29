@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import solid.ren.skinlibrary.config.SkinConfig;
+import solid.ren.skinlibrary.SkinConfig;
 
 /**
  * Created by _SOLID

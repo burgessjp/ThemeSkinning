@@ -1,7 +1,7 @@
 package solid.ren.themeskinning;
 
+import solid.ren.skinlibrary.SkinConfig;
 import solid.ren.skinlibrary.base.SkinBaseApplication;
-import solid.ren.skinlibrary.config.SkinConfig;
 import solid.ren.themeskinning.custom_attr.TabLayoutIndicatorAttr;
 
 /**

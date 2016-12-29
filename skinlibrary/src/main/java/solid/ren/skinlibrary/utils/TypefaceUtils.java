@@ -6,7 +6,7 @@ import android.text.TextUtils;
 
 import java.io.File;
 
-import solid.ren.skinlibrary.config.SkinConfig;
+import solid.ren.skinlibrary.SkinConfig;
 
 /**
  * Created by _SOLID

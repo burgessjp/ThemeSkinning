@@ -1,4 +1,4 @@
-package solid.ren.skinlibrary.entity;
+package solid.ren.skinlibrary;
 
 import android.view.View;
 
@@ -23,7 +23,7 @@ public class SkinItem {
     public List<SkinAttr> attrs;
 
     public SkinItem() {
-        attrs = new ArrayList<SkinAttr>();
+        attrs = new ArrayList<>();
     }
 
     public void apply() {
@@ -36,11 +36,8 @@ public class SkinItem {
     }
 
     public void clean() {
-        if (SkinListUtils.isEmpty(attrs)) {
-            return;
-        }
-        for (SkinAttr at : attrs) {
-            at = null;
+        if (!SkinListUtils.isEmpty(attrs)) {
+            attrs.clear();
         }
     }
 

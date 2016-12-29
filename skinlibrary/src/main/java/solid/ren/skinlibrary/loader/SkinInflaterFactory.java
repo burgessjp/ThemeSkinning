@@ -18,8 +18,8 @@ import java.util.Map;
 import solid.ren.skinlibrary.attr.base.AttrFactory;
 import solid.ren.skinlibrary.attr.base.DynamicAttr;
 import solid.ren.skinlibrary.attr.base.SkinAttr;
-import solid.ren.skinlibrary.config.SkinConfig;
-import solid.ren.skinlibrary.entity.SkinItem;
+import solid.ren.skinlibrary.SkinConfig;
+import solid.ren.skinlibrary.SkinItem;
 import solid.ren.skinlibrary.utils.SkinL;
 import solid.ren.skinlibrary.utils.SkinListUtils;
 

@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
 
 import com.thin.downloadmanager.DefaultRetryPolicy;
 import com.thin.downloadmanager.DownloadRequest;
@@ -21,14 +22,14 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import solid.ren.skinlibrary.config.SkinConfig;
+import solid.ren.skinlibrary.SkinConfig;
 import solid.ren.skinlibrary.listener.ILoaderListener;
 import solid.ren.skinlibrary.listener.ISkinLoader;
 import solid.ren.skinlibrary.listener.ISkinUpdate;
 import solid.ren.skinlibrary.utils.ResourcesCompat;
-import solid.ren.skinlibrary.utils.TypefaceUtils;
-import solid.ren.skinlibrary.utils.SkinL;
 import solid.ren.skinlibrary.utils.SkinFileUtils;
+import solid.ren.skinlibrary.utils.SkinL;
+import solid.ren.skinlibrary.utils.TypefaceUtils;
 
 
 /**
@@ -68,30 +69,15 @@ public class SkinManager implements ISkinLoader {
         return -1;
     }
 
-    /**
-     * 判断当前使用的皮肤是否来自外部
-     *
-     * @return
-     */
     public boolean isExternalSkin() {
         return !isDefaultSkin && mResources != null;
     }
 
-    /**
-     * 得到当前的皮肤路径
-     *
-     * @return
-     */
-    public String getSkinPath() {
+    public String getCurSkinPath() {
         return skinPath;
     }
 
-    /**
-     * 得到当前皮肤的包名
-     *
-     * @return
-     */
-    public String getSkinPackageName() {
+    public String getCurSkinPackageName() {
         return skinPackageName;
     }
 
@@ -126,7 +112,7 @@ public class SkinManager implements ISkinLoader {
         if (mSkinObservers == null) {
             mSkinObservers = new ArrayList<>();
         }
-        if (!mSkinObservers.contains(mSkinObservers)) {
+        if (!mSkinObservers.contains(observer)) {
             mSkinObservers.add(observer);
         }
     }
@@ -186,7 +172,7 @@ public class SkinManager implements ISkinLoader {
                         String skinPkgPath = SkinFileUtils.getSkinDir(context) + File.separator + params[0];
                         SkinL.i("skinPkgPath", skinPkgPath);
                         File file = new File(skinPkgPath);
-                        if (file == null || !file.exists()) {
+                        if (!file.exists()) {
                             return null;
                         }
                         PackageManager mPm = context.getPackageManager();
@@ -284,7 +270,7 @@ public class SkinManager implements ISkinLoader {
     }
 
     public int getColor(int resId) {
-        int originColor = context.getResources().getColor(resId);
+        int originColor = ContextCompat.getColor(context, resId);
         if (mResources == null || isDefaultSkin) {
             return originColor;
         }
@@ -292,7 +278,7 @@ public class SkinManager implements ISkinLoader {
         String resName = context.getResources().getResourceEntryName(resId);
 
         int trueResId = mResources.getIdentifier(resName, "color", skinPackageName);
-        int trueColor = 0;
+        int trueColor;
 
         try {
             trueColor = mResources.getColor(trueResId);
@@ -305,15 +291,13 @@ public class SkinManager implements ISkinLoader {
     }
 
     public Drawable getDrawable(int resId) {
-        Drawable originDrawable = context.getResources().getDrawable(resId);
+        Drawable originDrawable = ContextCompat.getDrawable(context, resId);
         if (mResources == null || isDefaultSkin) {
             return originDrawable;
         }
         String resName = context.getResources().getResourceEntryName(resId);
-
         int trueResId = mResources.getIdentifier(resName, "drawable", skinPackageName);
-
-        Drawable trueDrawable = null;
+        Drawable trueDrawable;
         try {
             SkinL.i("SkinManager getDrawable", "SDK_INT = " + android.os.Build.VERSION.SDK_INT);
             if (android.os.Build.VERSION.SDK_INT < 22) {
@@ -333,20 +317,20 @@ public class SkinManager implements ISkinLoader {
      * 加载指定资源颜色drawable,转化为ColorStateList，保证selector类型的Color也能被转换。
      * 无皮肤包资源返回默认主题颜色
      *
-     * @param resId
-     * @return
+     * @param resId resources id
+     * @return ColorStateList
      * @author pinotao
      */
     public ColorStateList getColorStateList(int resId) {
-        boolean isExtendSkin = true;
+        boolean isExternalSkin = true;
         if (mResources == null || isDefaultSkin) {
-            isExtendSkin = false;
+            isExternalSkin = false;
         }
 
         String resName = context.getResources().getResourceEntryName(resId);
-        if (isExtendSkin) {
+        if (isExternalSkin) {
             int trueResId = mResources.getIdentifier(resName, "color", skinPackageName);
-            ColorStateList trueColorList = null;
+            ColorStateList trueColorList;
             if (trueResId == 0) { // 如果皮肤包没有复写该资源，但是需要判断是否是ColorStateList
                 try {
                     ColorStateList originColorList = context.getResources().getColorStateList(resId);
@@ -377,14 +361,5 @@ public class SkinManager implements ISkinLoader {
 
         int[][] states = new int[1][1];
         return new ColorStateList(states, new int[]{context.getResources().getColor(resId)});
-    }
-
-    public int getStyle(String styleName) {
-        int originStyle = context.getResources().getIdentifier(styleName, "style", context.getPackageName());
-        if (mResources == null || isDefaultSkin) {
-            return originStyle;
-        }
-        int trueStyle = mResources.getIdentifier(styleName, "style", skinPackageName);
-        return trueStyle;
     }
 }
