@@ -1,5 +1,5 @@
- [![Download](https://api.bintray.com/packages/solid/maven/theme-skinning/images/download.svg) ](https://bintray.com/solid/maven/theme-skinning/_latestVersion)
-
+[![Download](https://api.bintray.com/packages/solid/maven/theme-skinning/images/download.svg) ](https://bintray.com/solid/maven/theme-skinning/_latestVersion)
+[![API](https://img.shields.io/badge/API-9%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=9)
 ###Android 主题换肤的开源库（插件化换肤）
 
 ###更新日志：
