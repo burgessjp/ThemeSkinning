@@ -23,9 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import solid.ren.skinlibrary.SkinConfig;
-import solid.ren.skinlibrary.listener.ILoaderListener;
-import solid.ren.skinlibrary.listener.ISkinLoader;
-import solid.ren.skinlibrary.listener.ISkinUpdate;
+import solid.ren.skinlibrary.SkinLoaderListener;
+import solid.ren.skinlibrary.ISkinUpdate;
 import solid.ren.skinlibrary.utils.ResourcesCompat;
 import solid.ren.skinlibrary.utils.SkinFileUtils;
 import solid.ren.skinlibrary.utils.SkinL;
@@ -43,9 +42,15 @@ public class SkinManager implements ISkinLoader {
     private static volatile SkinManager mInstance;
     private Context context;
     private Resources mResources;
-    private boolean isDefaultSkin = false;//当前的皮肤是否是默认的
-    private String skinPackageName;//皮肤的包名
-    private String skinPath;//皮肤路径
+    private boolean isDefaultSkin = false;
+    /**
+     * skin package name
+     */
+    private String skinPackageName;
+    /**
+     * skin path
+     */
+    private String skinPath;
 
     private SkinManager() {
 
@@ -138,7 +143,7 @@ public class SkinManager implements ISkinLoader {
         loadSkin(skin, null);
     }
 
-    public void loadSkin(ILoaderListener callback) {
+    public void loadSkin(SkinLoaderListener callback) {
         String skin = SkinConfig.getCustomSkinPath(context);
         if (SkinConfig.isDefaultSkin(context)) {
             return;
@@ -155,7 +160,7 @@ public class SkinManager implements ISkinLoader {
      * @param skinName the name of skin(in assets/skin)
      * @param callback load Callback
      */
-    public void loadSkin(String skinName, final ILoaderListener callback) {
+    public void loadSkin(String skinName, final SkinLoaderListener callback) {
 
         new AsyncTask<String, Void, Resources>() {
 
@@ -223,7 +228,7 @@ public class SkinManager implements ISkinLoader {
      * @param skinUrl  the url of skin
      * @param callback load Callback
      */
-    public void loadSkinFromUrl(String skinUrl, final ILoaderListener callback) {
+    public void loadSkinFromUrl(String skinUrl, final SkinLoaderListener callback) {
         String skinPath = SkinFileUtils.getSkinDir(context);
         final String skinName = skinUrl.substring(skinUrl.lastIndexOf("/") + 1);
         String skinFullName = skinPath + File.separator + skinName;

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import solid.ren.skinlibrary.base.SkinBaseFragment;
-import solid.ren.skinlibrary.listener.ILoaderListener;
+import solid.ren.skinlibrary.SkinLoaderListener;
 import solid.ren.skinlibrary.loader.SkinManager;
 import solid.ren.themeskinning.DataBean;
 import solid.ren.themeskinning.R;
@@ -64,28 +64,28 @@ public class BasicFragment extends SkinBaseFragment {
                     @Override
                     public void onClick(View view) {
                         SkinManager.getInstance().loadSkin("theme_style.skin",
-                                new ILoaderListener() {
+                                new SkinLoaderListener() {
                                     @Override
                                     public void onStart() {
-                                        Log.i("ILoaderListener", "正在切换中");
+                                        Log.i("SkinLoaderListener", "正在切换中");
                                         dialog.show();
                                     }
 
                                     @Override
                                     public void onSuccess() {
-                                        Log.i("ILoaderListener", "切换成功");
+                                        Log.i("SkinLoaderListener", "切换成功");
                                         dialog.dismiss();
                                     }
 
                                     @Override
                                     public void onFailed(String errMsg) {
-                                        Log.i("ILoaderListener", "切换失败:" + errMsg);
+                                        Log.i("SkinLoaderListener", "切换失败:" + errMsg);
                                         dialog.dismiss();
                                     }
 
                                     @Override
                                     public void onProgress(int progress) {
-                                        Log.i("ILoaderListener", "皮肤文件下载中:" + progress);
+                                        Log.i("SkinLoaderListener", "皮肤文件下载中:" + progress);
 
                                     }
                                 }

@@ -16,7 +16,7 @@ public class SkinConfig {
     public static final String NAMESPACE = "http://schemas.android.com/android/skin";
     public static final String PREF_CUSTOM_SKIN_PATH = "skin_custom_path";
     public static final String PREF_FONT_PATH = "skin_font_path";
-    public static final String DEFAULT_SKIN = "skin_default";//默认皮肤
+    public static final String DEFAULT_SKIN = "skin_default";
     public static final String ATTR_SKIN_ENABLE = "enable";
 
     public static final String SKIN_DIR_NAME = "skin";
@@ -69,10 +69,10 @@ public class SkinConfig {
     }
 
     /**
-     * 增加对换肤属性的支持
+     * add custom skin attribute support
      *
-     * @param attrName 属性名
-     * @param skinAttr 自定义的属性
+     * @param attrName attribute name
+     * @param skinAttr skin attribute
      */
     public static void addSupportAttr(String attrName, SkinAttr skinAttr) {
         AttrFactory.addSupportAttr(attrName, skinAttr);

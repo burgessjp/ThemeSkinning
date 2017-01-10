@@ -5,9 +5,6 @@ import android.app.Activity;
 import android.os.Build;
 import android.view.WindowManager;
 
-/**
- * 设置状态栏的颜色，依赖了SystemBarTintManager类
- */
 public class StatusBarUtil {
 
     private Activity activity;
@@ -22,8 +19,10 @@ public class StatusBarUtil {
 
     }
 
-    public void setStatusBarbackColor()//记得在布局文件根组件上添加android:fitsSystemWindows="true"
-    {
+    /**
+     * your layout file need add android:fitsSystemWindows="true"
+     */
+    public void setStatusBarColor() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(true);

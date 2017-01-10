@@ -2,24 +2,27 @@ package solid.ren.skinlibrary.utils;
 
 import android.util.Log;
 
+import solid.ren.skinlibrary.BuildConfig;
+
 /**
- * Log Utils for debug
- *
- * @author fengjun
+ * Created by _SOLID
+ * Date:2016/12/14
+ * Time:10:24
  */
 public class SkinL {
 
-    private static final boolean DEBUG = true;
-    private static final String TAG = "SkinLoader";
-    private static final String LINE = "——————————————————————————————————————————————————————";
+    private static final boolean DEBUG = BuildConfig.DEBUG;
+    private static final String TAG = "SkinLibrary";
 
-    private SkinL() {
-        throw new AssertionError();
+    public static void i(String tag, String msg) {
+        if (DEBUG) {
+            Log.i(tag, msg);
+        }
     }
 
     public static void i(String msg) {
         if (DEBUG) {
-            Log.i(TAG, msg);
+            i(TAG, msg);
         }
     }
 
@@ -41,11 +44,6 @@ public class SkinL {
         }
     }
 
-    public static void i(String tag, String msg) {
-        if (DEBUG) {
-            Log.i(tag, msg);
-        }
-    }
 
     public static void d(String tag, String msg) {
         if (DEBUG) {

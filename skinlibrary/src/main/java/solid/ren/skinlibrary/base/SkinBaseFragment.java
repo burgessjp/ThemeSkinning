@@ -10,13 +10,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import solid.ren.skinlibrary.IDynamicNewView;
 import solid.ren.skinlibrary.attr.base.DynamicAttr;
-import solid.ren.skinlibrary.listener.IDynamicNewView;
 
 /**
  * Created by _SOLID
  * Date:2016/4/14
  * Time:10:35
+ * Desc:
  */
 public class SkinBaseFragment extends Fragment implements IDynamicNewView {
 

@@ -11,12 +11,12 @@ public abstract class SkinAttr implements Cloneable {
     protected static final String RES_TYPE_NAME_COLOR = "color";
     protected static final String RES_TYPE_NAME_DRAWABLE = "drawable";
     /**
-     * 属性名, 例如: background、textColor
+     * attribute name, eg: background、textColor
      */
     public String attrName;
 
     /**
-     * 属性值的引用id
+     * attribute reference id
      */
     public int attrValueRefId;
 

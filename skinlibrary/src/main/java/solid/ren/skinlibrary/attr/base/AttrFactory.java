@@ -35,7 +35,7 @@ public class AttrFactory {
     }
 
     /**
-     * 检测属性是否被支持
+     * check current attribute if can be support
      *
      * @param attrName
      * @return true : supported <br>
@@ -46,10 +46,10 @@ public class AttrFactory {
     }
 
     /**
-     * 增加对换肤属性的支持
+     * add support's attribute
      *
-     * @param attrName 属性名
-     * @param skinAttr 自定义的属性
+     * @param attrName attribute name
+     * @param skinAttr skin attribute
      */
     public static void addSupportAttr(String attrName, SkinAttr skinAttr) {
         mSupportAttr.put(attrName, skinAttr);

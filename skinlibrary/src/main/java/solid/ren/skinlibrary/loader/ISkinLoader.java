@@ -1,4 +1,6 @@
-package solid.ren.skinlibrary.listener;
+package solid.ren.skinlibrary.loader;
+
+import solid.ren.skinlibrary.ISkinUpdate;
 
 /**
  * Created by _SOLID

@@ -14,6 +14,7 @@ import solid.ren.skinlibrary.utils.SkinFileUtils;
  * Created by _SOLID
  * Date:2016/4/14
  * Time:10:54
+ * Desc:
  */
 public class SkinBaseApplication extends Application {
 

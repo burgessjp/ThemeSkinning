@@ -1,4 +1,4 @@
-package solid.ren.skinlibrary.listener;
+package solid.ren.skinlibrary;
 
 import android.view.View;
 import android.widget.TextView;

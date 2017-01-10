@@ -13,8 +13,7 @@ import solid.ren.skinlibrary.utils.SkinListUtils;
  * Created by _SOLID
  * Date:2016/4/14
  * Time:9:21
- * <p></p>
- * 用来存储那些有皮肤更改需求的View及其对应的属性
+ * Desc:store view and attribute collection
  */
 public class SkinItem {
 

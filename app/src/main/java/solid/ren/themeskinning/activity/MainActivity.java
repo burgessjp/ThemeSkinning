@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import solid.ren.skinlibrary.base.SkinBaseActivity;
+import solid.ren.themeskinning.BuildConfig;
 import solid.ren.themeskinning.DataProvider;
 import solid.ren.themeskinning.R;
 import solid.ren.themeskinning.adapter.TabViewpagerAdapter;
@@ -25,9 +26,6 @@ public class MainActivity extends SkinBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setUpView();
-        Log.e("zzz", "btnStyle:" + R.style.btnStyle);
-        Log.e("zzz", "ItemTitleText:" + R.style.ItemTitleText);
-        Log.e("zzz", "item_tv_title_color:" + R.color.item_tv_title_color);
     }
 
     private void setUpView() {
