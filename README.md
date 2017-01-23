@@ -1,6 +1,5 @@
 [![Download](https://api.bintray.com/packages/solid/maven/theme-skinning/images/download.svg) ](https://bintray.com/solid/maven/theme-skinning/_latestVersion)
 [![API](https://img.shields.io/badge/API-9%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=9)
-![Build](https://img.shields.io/travis/USER/REPO.svg)
 
 ###Android 主题换肤的开源库（插件化换肤）
 
@@ -34,58 +33,57 @@
 
  - 在 <code>assets/skin</code> 文件夹中的皮肤
  
-```html
-  SkinManager.getInstance().loadSkin("Your skin file name in assets(eg:theme.skin)",
-                                new ILoaderListener() {
-                                    @Override
-                                    public void onStart() {
-                                        Toast.makeText(getApplicationContext(), "正在切换中", Toast.LENGTH_SHORT).show();
+    ```html
+      SkinManager.getInstance().loadSkin("Your skin file name in assets(eg:theme.skin)",
+                                    new ILoaderListener() {
+                                        @Override
+                                        public void onStart() {
+                                            Toast.makeText(getApplicationContext(), "正在切换中", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        @Override
+                                        public void onSuccess() {
+                                            Toast.makeText(getApplicationContext(), "切换成功", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        @Override
+                                        public void onFailed() {
+                                            Toast.makeText(getApplicationContext(), "切换失败", Toast.LENGTH_SHORT).show();
+                                        }
                                     }
 
-                                    @Override
-                                    public void onSuccess() {
-                                        Toast.makeText(getApplicationContext(), "切换成功", Toast.LENGTH_SHORT).show();
-                                    }
-
-                                    @Override
-                                    public void onFailed() {
-                                        Toast.makeText(getApplicationContext(), "切换失败", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-
-                        );
-```
-
+                            );
+    ```
  - 皮肤来源于网络
 
-```html
-SkinManager.getInstance().loadSkinFromUrl(skinUrl, new ILoaderListener() {
-                    @Override
-                    public void onStart() {
-                        Log.i("ILoaderListener", "正在切换中");
-                        dialog.setContent("正在从网络下载皮肤文件");
-                        dialog.show();
-                    }
+    ```html
+    SkinManager.getInstance().loadSkinFromUrl(skinUrl, new ILoaderListener() {
+                        @Override
+                        public void onStart() {
+                            Log.i("ILoaderListener", "正在切换中");
+                            dialog.setContent("正在从网络下载皮肤文件");
+                            dialog.show();
+                        }
 
-                    @Override
-                    public void onSuccess() {
-                        Log.i("ILoaderListener", "切换成功");
-                        dialog.dismiss();
-                    }
+                        @Override
+                        public void onSuccess() {
+                            Log.i("ILoaderListener", "切换成功");
+                            dialog.dismiss();
+                        }
 
-                    @Override
-                    public void onFailed(String errMsg) {
-                        Log.i("ILoaderListener", "切换失败:" + errMsg);
-                        dialog.setContent("换肤失败:" + errMsg);
-                    }
+                        @Override
+                        public void onFailed(String errMsg) {
+                            Log.i("ILoaderListener", "切换失败:" + errMsg);
+                            dialog.setContent("换肤失败:" + errMsg);
+                        }
 
-                    @Override
-                    public void onProgress(int progress) {
-                        Log.i("ILoaderListener", "皮肤文件下载中:" + progress);
-                        dialog.setProgress(progress);
-                    }
-                });
-```
+                        @Override
+                        public void onProgress(int progress) {
+                            Log.i("ILoaderListener", "皮肤文件下载中:" + progress);
+                            dialog.setProgress(progress);
+                        }
+                    });
+    ```
 详细的使用，请到示例项目中查看
 
 
@@ -131,7 +129,7 @@ public class TabLayoutIndicatorAttr extends SkinAttr {
 关于切换字体需要配置的东西：
 如果只是单纯的想要字体切换这个功能。只需<code>集成步骤</code>中的前三步就行了。
 
-**注：字体切换功能默认不开启，需要字体切换功能请在你的Application中加入<code>SkinConfig.setCanChangeStatusColor(true);</code>**
+**注：字体切换功能默认不开启，需要字体切换功能请在你的Application中加入<code>SkinConfig.setCanChangeFont(true);</code>**
 
 ###4. 其他一些重要的api
         
