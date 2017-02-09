@@ -25,6 +25,10 @@ public class TextViewRepository {
         mTextViews.clear();
     }
 
+    public static void remove(TextView textView) {
+        mTextViews.remove(textView);
+    }
+
     public static void applyFont(Typeface tf) {
         for (TextView textView : mTextViews) {
             textView.setTypeface(tf);

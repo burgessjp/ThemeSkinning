@@ -177,6 +177,9 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
 
     public void removeSkinView(View view) {
         mSkinItemMap.remove(view);
+        if (SkinConfig.isCanChangeFont() && view instanceof TextView) {
+            TextViewRepository.remove((TextView) view);
+        }
     }
 
     /**
