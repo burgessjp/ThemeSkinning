@@ -312,9 +312,11 @@ public class SkinManager implements ISkinLoader {
         int trueResId = mResources.getIdentifier(resName, "drawable", skinPackageName);
         Drawable trueDrawable;
         if (trueResId == 0) {
+            trueResId = mResources.getIdentifier(resName, "mipmap", skinPackageName);
+        }
+        if (trueResId == 0) {
             trueDrawable = originDrawable;
         } else {
-            SkinL.i("SkinManager getDrawable", "SDK_INT = " + android.os.Build.VERSION.SDK_INT);
             if (android.os.Build.VERSION.SDK_INT < 22) {
                 trueDrawable = mResources.getDrawable(trueResId);
             } else {
