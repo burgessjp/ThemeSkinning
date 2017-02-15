@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="2dp"
     android:background="@drawable/selector_item"
     android:orientation="horizontal"
     android:padding="5dp"
-    android:layout_margin="2dp"
     skin:enable="true"
     tools:ignore="MissingPrefix">
 
@@ -17,7 +17,8 @@
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_weight="1"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/img_demo"
+        skin:enable="true" />
 
 
     <LinearLayout

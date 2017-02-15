@@ -114,7 +114,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
                 try {
                     int id = Integer.parseInt(attrValue.substring(1));//资源的id
                     String entryName = context.getResources().getResourceEntryName(id);//入口名，例如text_color_selector
-                    String typeName = context.getResources().getResourceTypeName(id);//类型名，例如color、background
+                    String typeName = context.getResources().getResourceTypeName(id);//类型名，例如color、drawable
                     SkinAttr mSkinAttr = AttrFactory.get(attrName, id, entryName, typeName);
                     SkinL.i(TAG, "view:" + view.getClass().getSimpleName() + "\n" +
                             "id:" + id + "\n" +

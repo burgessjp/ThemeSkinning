@@ -7,6 +7,7 @@ import android.view.View;
 import solid.ren.skinlibrary.attr.base.SkinAttr;
 import solid.ren.skinlibrary.loader.SkinManager;
 import solid.ren.skinlibrary.utils.SkinL;
+import solid.ren.skinlibrary.utils.SkinResourcesUtils;
 
 /**
  * Created by _SOLID
@@ -19,7 +20,7 @@ public class BackgroundAttr extends SkinAttr {
     public void apply(View view) {
 
         if (RES_TYPE_NAME_COLOR.equals(attrValueTypeName)) {
-            int color = SkinManager.getInstance().getColor(attrValueRefId);
+            int color = SkinResourcesUtils.getColor(attrValueRefId);
             if (view instanceof CardView) {//这里对CardView特殊处理下
                 CardView cardView = (CardView) view;
                 //给CardView设置背景色应该使用cardBackgroundColor，直接使用background没有圆角效果
@@ -28,7 +29,7 @@ public class BackgroundAttr extends SkinAttr {
                 view.setBackgroundColor(color);
             }
         } else if (RES_TYPE_NAME_DRAWABLE.equals(attrValueTypeName)) {
-            Drawable bg = SkinManager.getInstance().getDrawable(attrValueRefId);
+            Drawable bg = SkinResourcesUtils.getDrawable(attrValueRefId);
             view.setBackgroundDrawable(bg);
         }
     }
