@@ -4,7 +4,11 @@
 ###Android 主题换肤的开源库（插件化换肤）
 
 ###更新日志：
-- v1.4.0:fix [issues9](https://github.com/burgessjp/ThemeSkinning/issues/9),支持style
+- v1.4.0-beta:
+   - 修复[issues9](https://github.com/burgessjp/ThemeSkinning/issues/9)内存泄漏问题
+   - 支持style
+   - 解决字体切换内存泄漏问题
+   - 支持mipmap
 - v1.3.1:优化换字体部分代码
 - v1.3.0:增加一键切换字体(初版)
 - v1.2.1:完善之前版本View的创建

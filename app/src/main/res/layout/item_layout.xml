@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/item_bg"
+    android:background="@drawable/selector_item"
     android:orientation="horizontal"
     android:padding="5dp"
+    android:layout_margin="2dp"
     skin:enable="true"
     tools:ignore="MissingPrefix">
 

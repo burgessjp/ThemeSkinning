@@ -5,11 +5,11 @@
     <color name="colorAccent">#FF4081</color>
 
 
-    <color name="item_bg">#ffffff</color>
+    <color name="item_bg">#0876fc</color>
+    <color name="item_bg_press">#255ea3</color>
     <color name="item_tv_title_color">#050505</color>
     <color name="item_tv_content_color">#B0B0B0</color>
     <color name="item_tv_date_color">#E5E5E5</color>
-    <color name="no_color">#123456</color>
 
     <color name="item_tv_title_background">#303F9F</color>
 </resources>

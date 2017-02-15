@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
+
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -48,7 +50,12 @@ public class BasicFragment extends SkinBaseFragment {
                 baseViewHolder.setText(R.id.tv_title, item.getTitle());
                 baseViewHolder.setText(R.id.tv_content, item.getContent());
                 baseViewHolder.setText(R.id.tv_date, item.getDate());
-                Log.i("test", baseViewHolder.getView(R.id.tv_title).getClass().toString());
+                baseViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
             }
         });
         dialog = new MaterialDialog.Builder(getContext())
