@@ -5,7 +5,6 @@ import java.util.HashMap;
 import solid.ren.skinlibrary.attr.BackgroundAttr;
 import solid.ren.skinlibrary.attr.ImageViewSrcAttr;
 import solid.ren.skinlibrary.attr.TextColorAttr;
-import solid.ren.skinlibrary.utils.SkinL;
 
 /**
  * Created by _SOLID
@@ -14,20 +13,17 @@ import solid.ren.skinlibrary.utils.SkinL;
  */
 public class AttrFactory {
 
-    private static String TAG = "AttrFactory";
-
-    public static HashMap<String, SkinAttr> mSupportAttr = new HashMap<>();
+    private static HashMap<String, SkinAttr> sSupportAttr = new HashMap<>();
 
     static {
-        mSupportAttr.put("background", new BackgroundAttr());
-        mSupportAttr.put("textColor", new TextColorAttr());
-        mSupportAttr.put("src", new ImageViewSrcAttr());
+        sSupportAttr.put("background", new BackgroundAttr());
+        sSupportAttr.put("textColor", new TextColorAttr());
+        sSupportAttr.put("src", new ImageViewSrcAttr());
     }
 
 
     public static SkinAttr get(String attrName, int attrValueRefId, String attrValueRefName, String typeName) {
-        SkinL.i(TAG, "attrName:" + attrName);
-        SkinAttr mSkinAttr = mSupportAttr.get(attrName).clone();
+        SkinAttr mSkinAttr = sSupportAttr.get(attrName).clone();
         if (mSkinAttr == null) return null;
         mSkinAttr.attrName = attrName;
         mSkinAttr.attrValueRefId = attrValueRefId;
@@ -39,12 +35,12 @@ public class AttrFactory {
     /**
      * check current attribute if can be support
      *
-     * @param attrName
+     * @param attrName attribute name
      * @return true : supported <br>
      * false: not supported
      */
     public static boolean isSupportedAttr(String attrName) {
-        return mSupportAttr.containsKey(attrName);
+        return sSupportAttr.containsKey(attrName);
     }
 
     /**
@@ -54,6 +50,6 @@ public class AttrFactory {
      * @param skinAttr skin attribute
      */
     public static void addSupportAttr(String attrName, SkinAttr skinAttr) {
-        mSupportAttr.put(attrName, skinAttr);
+        sSupportAttr.put(attrName, skinAttr);
     }
 }

@@ -2,7 +2,7 @@ package solid.ren.skinlibrary.utils;
 
 import android.util.Log;
 
-import solid.ren.skinlibrary.BuildConfig;
+import solid.ren.skinlibrary.SkinConfig;
 
 /**
  * Created by _SOLID
@@ -11,43 +11,15 @@ import solid.ren.skinlibrary.BuildConfig;
  */
 public class SkinL {
 
-    private static final boolean DEBUG = BuildConfig.DEBUG;
-    private static final String TAG = "SkinLibrary";
+    private static final boolean DEBUG;
+
+    static {
+        DEBUG = SkinConfig.isDebug();
+    }
 
     public static void i(String tag, String msg) {
         if (DEBUG) {
             Log.i(tag, msg);
-        }
-    }
-
-    public static void i(String msg) {
-        if (DEBUG) {
-            i(TAG, msg);
-        }
-    }
-
-    public static void d(String msg) {
-        if (DEBUG) {
-            Log.d(TAG, msg);
-        }
-    }
-
-    public static void w(String msg) {
-        if (DEBUG) {
-            Log.w(TAG, msg);
-        }
-    }
-
-    public static void e(String msg) {
-        if (DEBUG) {
-            Log.e(TAG, msg);
-        }
-    }
-
-
-    public static void d(String tag, String msg) {
-        if (DEBUG) {
-            Log.d(tag, msg);
         }
     }
 

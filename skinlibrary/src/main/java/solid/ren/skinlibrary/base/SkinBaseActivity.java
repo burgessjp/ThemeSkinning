@@ -5,17 +5,18 @@ import android.os.Bundle;
 import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.util.List;
 
 import solid.ren.skinlibrary.IDynamicNewView;
 import solid.ren.skinlibrary.ISkinUpdate;
-import solid.ren.skinlibrary.attr.base.DynamicAttr;
 import solid.ren.skinlibrary.SkinConfig;
+import solid.ren.skinlibrary.attr.base.DynamicAttr;
 import solid.ren.skinlibrary.loader.SkinInflaterFactory;
 import solid.ren.skinlibrary.loader.SkinManager;
-import solid.ren.skinlibrary.statusbar.StatusBarUtil;
 import solid.ren.skinlibrary.utils.SkinL;
 
 
@@ -68,13 +69,13 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
         if (!SkinConfig.isCanChangeStatusColor()) {
             return;
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            SkinL.i(TAG, "changeStatus");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             int color = SkinManager.getInstance().getColorPrimaryDark();
-            StatusBarUtil statusBarBackground = new StatusBarUtil(
-                    this, color);
-            if (color != -1)
-                statusBarBackground.setStatusBarColor();
+            if (color != -1) {
+                Window window = getWindow();
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(SkinManager.getInstance().getColorPrimaryDark());
+            }
         }
     }
 

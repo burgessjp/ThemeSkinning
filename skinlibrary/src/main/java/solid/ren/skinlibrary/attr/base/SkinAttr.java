@@ -10,6 +10,7 @@ import android.view.View;
 public abstract class SkinAttr implements Cloneable {
     protected static final String RES_TYPE_NAME_COLOR = "color";
     protected static final String RES_TYPE_NAME_DRAWABLE = "drawable";
+    protected static final String RES_TYPE_NAME_MIPMAP = "mipmap";
     /**
      * attribute name, eg: background、textColor
      */
@@ -36,6 +37,15 @@ public abstract class SkinAttr implements Cloneable {
      * @param view
      */
     public abstract void apply(View view);
+
+    protected boolean isDrawable() {
+        return RES_TYPE_NAME_DRAWABLE.equals(attrValueTypeName)
+                || RES_TYPE_NAME_MIPMAP.equals(attrValueTypeName);
+    }
+
+    protected boolean isColor() {
+        return RES_TYPE_NAME_COLOR.equals(attrValueTypeName);
+    }
 
     @Override
     public String toString() {

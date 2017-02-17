@@ -18,8 +18,10 @@ public class ImageViewSrcAttr extends SkinAttr {
     public void apply(View view) {
         if (view instanceof ImageView) {
             ImageView iv = (ImageView) view;
-            if (RES_TYPE_NAME_DRAWABLE.equals(attrValueTypeName)) {
+            if (isDrawable()) {
                 iv.setImageDrawable(SkinResourcesUtils.getDrawable(attrValueRefId));
+            } else if (isColor()) {
+                iv.setBackgroundColor(SkinResourcesUtils.getColor(attrValueRefId));
             }
         }
     }

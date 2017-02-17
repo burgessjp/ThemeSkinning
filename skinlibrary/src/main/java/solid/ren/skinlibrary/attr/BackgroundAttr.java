@@ -18,8 +18,7 @@ public class BackgroundAttr extends SkinAttr {
 
     @Override
     public void apply(View view) {
-
-        if (RES_TYPE_NAME_COLOR.equals(attrValueTypeName)) {
+        if (isColor()) {
             int color = SkinResourcesUtils.getColor(attrValueRefId);
             if (view instanceof CardView) {//这里对CardView特殊处理下
                 CardView cardView = (CardView) view;
@@ -28,7 +27,7 @@ public class BackgroundAttr extends SkinAttr {
             } else {
                 view.setBackgroundColor(color);
             }
-        } else if (RES_TYPE_NAME_DRAWABLE.equals(attrValueTypeName)) {
+        } else if (isDrawable()) {
             Drawable bg = SkinResourcesUtils.getDrawable(attrValueRefId);
             view.setBackgroundDrawable(bg);
         }

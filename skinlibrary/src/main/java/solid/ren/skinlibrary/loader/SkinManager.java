@@ -38,7 +38,7 @@ import solid.ren.skinlibrary.utils.TypefaceUtils;
  * Time:21:07
  */
 public class SkinManager implements ISkinLoader {
-
+    private static final String TAG = "SkinManager";
     private List<ISkinUpdate> mSkinObservers;
     private static volatile SkinManager mInstance;
     private Context context;
@@ -176,7 +176,7 @@ public class SkinManager implements ISkinLoader {
                 try {
                     if (params.length == 1) {
                         String skinPkgPath = SkinFileUtils.getSkinDir(context) + File.separator + params[0];
-                        SkinL.i("skinPkgPath", skinPkgPath);
+                        SkinL.i(TAG, "skinPackagePath:" + skinPkgPath);
                         File file = new File(skinPkgPath);
                         if (!file.exists()) {
                             return null;
