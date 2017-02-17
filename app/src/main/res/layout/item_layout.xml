@@ -7,7 +7,6 @@
     android:layout_margin="2dp"
     android:background="@drawable/selector_item"
     android:orientation="horizontal"
-    android:padding="5dp"
     skin:enable="true"
     tools:ignore="MissingPrefix">
 
