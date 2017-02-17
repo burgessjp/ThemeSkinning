@@ -21,12 +21,15 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:titleTextColor="#ffffff" />
 
-        <android.support.design.widget.TabLayout
+        <android.support.design.widget.TabLayout xmlns:skin="http://schemas.android.com/android/skin"
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
             app:tabGravity="fill"
-            app:tabSelectedTextColor="#292929" />
+            app:tabSelectedTextColor="#292929"
+            app:tabTextColor="#ffffff"
+            skin:enable="true" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"
@@ -35,8 +38,6 @@
             android:layout_weight="1">
 
         </android.support.v4.view.ViewPager>
-
-
 
 
     </LinearLayout>

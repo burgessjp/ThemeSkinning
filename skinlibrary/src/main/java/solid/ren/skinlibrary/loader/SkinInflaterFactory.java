@@ -181,7 +181,11 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
     }
 
     private void addSkinView(SkinItem item) {
-        mSkinItemMap.put(item.view, item);
+        if (mSkinItemMap.get(item.view) != null) {
+            mSkinItemMap.get(item.view).attrs.addAll(item.attrs);
+        } else {
+            mSkinItemMap.put(item.view, item);
+        }
     }
 
     public void removeSkinView(View view) {

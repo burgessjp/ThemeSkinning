@@ -1,5 +1,6 @@
 package solid.ren.themeskinning.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -36,11 +37,10 @@ public class MainActivity extends SkinBaseActivity {
 
 
         tablayout = (TabLayout) findViewById(R.id.tablayout);
-
         for (int i = 0; i < DataProvider.getTitleList().size(); i++) {
             tablayout.addTab(tablayout.newTab().setText(DataProvider.getTitleList().get(i)));
         }
-        dynamicAddView(tablayout, "tabLayoutIndicator", R.color.colorPrimaryDark);
+        dynamicAddView(tablayout, "tabLayoutIndicator", R.color.item_bg);
 
 
         viewpager = (ViewPager) findViewById(R.id.viewpager);
