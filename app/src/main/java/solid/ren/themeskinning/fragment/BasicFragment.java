@@ -75,7 +75,7 @@ public class BasicFragment extends SkinBaseFragment {
                                     @Override
                                     public void onStart() {
                                         Log.i("SkinLoaderListener", "正在切换中");
-                                        dialog.show();
+                                        //dialog.show();
                                     }
 
                                     @Override

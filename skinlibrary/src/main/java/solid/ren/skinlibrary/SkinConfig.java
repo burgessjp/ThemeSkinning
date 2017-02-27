@@ -24,6 +24,7 @@ public class SkinConfig {
     private static boolean isCanChangeStatusColor = false;
     private static boolean isCanChangeFont = false;
     private static boolean isDebug = false;
+    private static boolean isTransitionAnim = true;
 
     /**
      * get path of last skin package path
@@ -75,6 +76,19 @@ public class SkinConfig {
 
     public static boolean isDebug() {
         return isDebug;
+    }
+
+    public static boolean isTransitionAnim() {
+        return isTransitionAnim;
+    }
+
+    /**
+     * transition animation of change skin
+     *
+     * @param isCanTransitionAnim enable
+     */
+    public static void setTransitionAnim(boolean isCanTransitionAnim) {
+        isTransitionAnim = isCanTransitionAnim;
     }
 
     /**

@@ -1,5 +1,6 @@
 package solid.ren.skinlibrary.loader;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v4.view.LayoutInflaterFactory;
@@ -7,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,6 +25,7 @@ import solid.ren.skinlibrary.attr.base.SkinAttr;
 import solid.ren.skinlibrary.utils.SkinL;
 import solid.ren.skinlibrary.utils.SkinListUtils;
 
+import static android.R.attr.animation;
 import static android.R.attr.id;
 
 /**
@@ -157,10 +161,17 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
         if (mSkinItemMap.isEmpty()) {
             return;
         }
+        Animation animation = null;
+        if (SkinConfig.isTransitionAnim()) {
+            animation = new AlphaAnimation(0.5f, 1.0f);
+            animation.setDuration(500);
+        }
         for (View view : mSkinItemMap.keySet()) {
             if (view == null) {
                 continue;
             }
+            if (animation != null)
+                view.startAnimation(animation);
             mSkinItemMap.get(view).apply();
         }
     }
