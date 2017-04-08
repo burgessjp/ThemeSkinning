@@ -20,6 +20,17 @@ public class SkinResourcesUtils {
         return SkinManager.getInstance().getDrawable(resId);
     }
 
+    /**
+     * get drawable from specific directory
+     *
+     * @param resId res id
+     * @param dir   res directory
+     * @return drawable
+     */
+    public static Drawable getDrawable(int resId, String dir) {
+        return SkinManager.getInstance().getDrawable(resId, dir);
+    }
+
     public static ColorStateList getColorStateList(int resId) {
         return SkinManager.getInstance().getColorStateList(resId);
     }

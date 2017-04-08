@@ -10,8 +10,8 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.annotation.RestrictTo;
 import android.support.v4.content.ContextCompat;
-import android.widget.ProgressBar;
 
 import com.thin.downloadmanager.DefaultRetryPolicy;
 import com.thin.downloadmanager.DownloadRequest;
@@ -23,9 +23,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import solid.ren.skinlibrary.ISkinUpdate;
 import solid.ren.skinlibrary.SkinConfig;
 import solid.ren.skinlibrary.SkinLoaderListener;
-import solid.ren.skinlibrary.ISkinUpdate;
 import solid.ren.skinlibrary.utils.ResourcesCompat;
 import solid.ren.skinlibrary.utils.SkinFileUtils;
 import solid.ren.skinlibrary.utils.SkinL;
@@ -37,6 +37,7 @@ import solid.ren.skinlibrary.utils.TypefaceUtils;
  * Date:2016/4/13
  * Time:21:07
  */
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 public class SkinManager implements ISkinLoader {
     private static final String TAG = "SkinManager";
     private List<ISkinUpdate> mSkinObservers;
@@ -60,10 +61,6 @@ public class SkinManager implements ISkinLoader {
     public void init(Context ctx) {
         context = ctx.getApplicationContext();
         TypefaceUtils.CURRENT_TYPEFACE = TypefaceUtils.getTypeface(context);
-    }
-
-    public Context getContext() {
-        return context;
     }
 
     public int getColorPrimaryDark() {
@@ -275,16 +272,6 @@ public class SkinManager implements ISkinLoader {
         TextViewRepository.applyFont(tf);
     }
 
-    public int getTrueResId(int resId, String defType) {
-        String resName = context.getResources().getResourceEntryName(resId);
-        int trueResId = mResources.getIdentifier(resName, defType, skinPackageName);
-        if (trueResId == 0) {
-            return resId;
-        } else {
-            return trueResId;
-        }
-    }
-
     public int getColor(int resId) {
         int originColor = ContextCompat.getColor(context, resId);
         if (mResources == null || isDefaultSkin) {
@@ -301,6 +288,33 @@ public class SkinManager implements ISkinLoader {
             trueColor = mResources.getColor(trueResId);
         }
         return trueColor;
+    }
+
+    /**
+     * get drawable from specific directory
+     *
+     * @param resId res id
+     * @param dir   res directory
+     * @return drawable
+     */
+    public Drawable getDrawable(int resId, String dir) {
+        Drawable originDrawable = ContextCompat.getDrawable(context, resId);
+        if (mResources == null || isDefaultSkin) {
+            return originDrawable;
+        }
+        String resName = context.getResources().getResourceEntryName(resId);
+        int trueResId = mResources.getIdentifier(resName, dir, skinPackageName);
+        Drawable trueDrawable;
+        if (trueResId == 0) {
+            trueDrawable = originDrawable;
+        } else {
+            if (android.os.Build.VERSION.SDK_INT < 22) {
+                trueDrawable = mResources.getDrawable(trueResId);
+            } else {
+                trueDrawable = mResources.getDrawable(trueResId, null);
+            }
+        }
+        return trueDrawable;
     }
 
     public Drawable getDrawable(int resId) {

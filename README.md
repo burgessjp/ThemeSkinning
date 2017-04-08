@@ -1,10 +1,10 @@
 [![Download](https://api.bintray.com/packages/solid/maven/theme-skinning/images/download.svg) ](https://bintray.com/solid/maven/theme-skinning/_latestVersion)
 [![API](https://img.shields.io/badge/API-9%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=9)
 
-###Android 主题换肤的开源库（插件化换肤）
-
-###更新日志：
-- v1.4.0-beta:
+### Android 主题换肤的开源库（插件化换肤）
+ 
+### 更新日志：
+- v1.4.0:
    - 修复[issues9](https://github.com/burgessjp/ThemeSkinning/issues/9)内存泄漏问题
    - 支持style
    - 解决字体切换内存泄漏问题
@@ -21,7 +21,7 @@
 
 ![Demo](app/capture/demo.gif)
 
-###1. 集成步骤：
+### 1. 集成步骤：
 
 1. 添加依赖 <code>  compile 'com.solid.skin:skinlibrary:latestVersion' </code>
 
@@ -93,7 +93,7 @@
 详细的使用，请到示例项目中查看
 
 
-###2.换肤属性的扩展
+### 2.换肤属性的扩展
 
 本开源库默认支持 textColor 和 background 的换肤。如果你还需要对其他属性进行换肤，那么就需要去自定义了。
 
@@ -125,7 +125,7 @@ public class TabLayoutIndicatorAttr extends SkinAttr {
 
 - 最后我们就可以正常使用了，<code>dynamicAddSkinEnableView(tablayout, "tabLayoutIndicator", R.color.colorPrimaryDark);</code>
 
-###3. 关于字体切换
+### 3. 关于字体切换
 
 还是遵守本项目的约定大于配置的原则，所有的字体都放到 assets/fonts 文件夹下
 
@@ -137,7 +137,7 @@ public class TabLayoutIndicatorAttr extends SkinAttr {
 
 **注：字体切换功能默认不开启，需要字体切换功能请在你的Application中加入<code>SkinConfig.setCanChangeFont(true);</code>**
 
-###4. 其他一些重要的api
+### 4. 其他一些重要的api
         
 1. SkinConfig.isDefaultSkin(context):判断当前皮肤是否是默认皮肤
 
@@ -147,7 +147,7 @@ public class TabLayoutIndicatorAttr extends SkinAttr {
 
 
 ---
-###5. 使用注意事项：
+### 5. 使用注意事项：
 1. 换肤默认只支持 android 的常用控件，对于支持库的控件和自定义控件的换肤需要动态添加（例如： <code>dynamicAddSkinEnableView(toolbar, "background", R.color.colorPrimaryDark);</code>），在布局文件中使用<code>skin:enable="true"</code>是无效的。
 
 2. 默认不支持状态栏颜色的更改，如果需要换肤的同时也要更改状态栏颜色，请到您的Application文件中加入<code>SkinConfig.setCanChangeStatusColor(true);</code>，状态栏的颜色值来源于<code>colorPrimaryDark</code>
@@ -157,22 +157,22 @@ public class TabLayoutIndicatorAttr extends SkinAttr {
 4. 有换肤需求View所使用的资源一定要是引用值，例如：@color/red，而不是#ff0000
 
 
-###6.项目依赖：
+### 6.项目依赖：
 1. 'com.android.support:appcompat-v7:25.1.0'
 2. 'com.android.support:cardview-v7:25.1.0'
 3. 'com.mani:ThinDownloadManager:1.2.5'
 
 
-##致谢：
+### 致谢：
 
-本项目是基于Android-Skin-Loader这个开源库改进而来，再次对原作者表示感谢
+本项目是基于 Android-Skin-Loader 这个开源库改进而来，再次对原作者表示感谢
 [Android-Skin-Loader](https://github.com/fengjundev/Android-Skin-Loader)
 
 
 
 
 
-LICENSE
+### LICENSE
 
 ```html
 Copyright [2016] [_SOLID]

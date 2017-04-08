@@ -1,6 +1,5 @@
 package solid.ren.skinlibrary.loader;
 
-import android.animation.Animator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v4.view.LayoutInflaterFactory;
@@ -25,7 +24,6 @@ import solid.ren.skinlibrary.attr.base.SkinAttr;
 import solid.ren.skinlibrary.utils.SkinL;
 import solid.ren.skinlibrary.utils.SkinListUtils;
 
-import static android.R.attr.animation;
 import static android.R.attr.id;
 
 /**
