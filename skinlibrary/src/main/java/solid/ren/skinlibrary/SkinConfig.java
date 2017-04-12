@@ -25,6 +25,7 @@ public class SkinConfig {
     private static boolean isCanChangeFont = false;
     private static boolean isDebug = false;
     private static boolean isTransitionAnim = true;
+    private static boolean isGlobalSkinApply = false;
 
     /**
      * get path of last skin package path
@@ -99,5 +100,16 @@ public class SkinConfig {
      */
     public static void addSupportAttr(String attrName, SkinAttr skinAttr) {
         AttrFactory.addSupportAttr(attrName, skinAttr);
+    }
+
+    public static boolean isGlobalSkinApply() {
+        return isGlobalSkinApply;
+    }
+
+    /**
+     * apply skin for global and you don't to set  skin:enable="true"  in layout
+     */
+    public static void enableGlobalSkinApply() {
+        isGlobalSkinApply = true;
     }
 }

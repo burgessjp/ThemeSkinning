@@ -18,5 +18,6 @@ public class App extends SkinBaseApplication {
         SkinConfig.setDebug(true);
         SkinConfig.setTransitionAnim(false);
         SkinConfig.addSupportAttr("tabLayoutIndicator", new TabLayoutIndicatorAttr());
+        SkinConfig.enableGlobalSkinApply();
     }
 }

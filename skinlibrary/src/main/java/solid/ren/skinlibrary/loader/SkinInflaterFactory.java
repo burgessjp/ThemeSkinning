@@ -54,7 +54,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
             TextViewRepository.add((TextView) view);
         }
 
-        if (isSkinEnable) {
+        if (isSkinEnable || SkinConfig.isGlobalSkinApply()) {
             if (view == null) {
                 view = ViewProducer.createViewFromTag(context, name, attrs);
             }
@@ -161,7 +161,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
         }
         Animation animation = null;
         if (SkinConfig.isTransitionAnim()) {
-            animation = new AlphaAnimation(0.5f, 1.0f);
+            animation = new AlphaAnimation(0.7f, 1.0f);
             animation.setDuration(500);
         }
         for (View view : mSkinItemMap.keySet()) {
