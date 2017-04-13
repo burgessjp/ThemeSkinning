@@ -159,17 +159,10 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
         if (mSkinItemMap.isEmpty()) {
             return;
         }
-        Animation animation = null;
-        if (SkinConfig.isTransitionAnim()) {
-            animation = new AlphaAnimation(0.7f, 1.0f);
-            animation.setDuration(500);
-        }
         for (View view : mSkinItemMap.keySet()) {
             if (view == null) {
                 continue;
             }
-            if (animation != null)
-                view.startAnimation(animation);
             mSkinItemMap.get(view).apply();
         }
     }

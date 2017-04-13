@@ -2,20 +2,6 @@
 [![API](https://img.shields.io/badge/API-9%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=9)
 
 ### Android 主题换肤的开源库（插件化换肤）
- 
-### 更新日志：
-- v1.4.0:
-   - 修复[issues9](https://github.com/burgessjp/ThemeSkinning/issues/9)内存泄漏问题
-   - 支持style
-   - 解决字体切换内存泄漏问题
-   - 支持mipmap
-   - 状态栏颜色切换只支持5.0以上版本
-   - 增加debug开关，方便开发调试
-- v1.3.1:优化换字体部分代码
-- v1.3.0:增加一键切换字体
-- v1.2.1:完善之前版本View的创建
-- v1.2.0:增加对换肤属性自定义扩展
-- v1.1.0:可以直接加载网络上的皮肤文件
 
 效果图如下：
 
@@ -23,7 +9,7 @@
 
 ### 1. 集成步骤：
 
-1. 添加依赖 <code>  compile 'com.solid.skin:skinlibrary:latestVersion' </code>
+1. 添加依赖 <code>compile 'com.solid.skin:skinlibrary:latestVersion' </code>
 
 2. 让你的 Application 继承于 SkinBaseApplication
 
@@ -38,7 +24,7 @@
 7. 调用换肤
 
  - 在 <code>assets/skin</code> 文件夹中的皮肤
- 
+
     ```html
       SkinManager.getInstance().loadSkin("Your skin file name in assets(eg:theme.skin)",
                                     new ILoaderListener() {
@@ -103,7 +89,7 @@ TabLayout大家应该都用过吧。它下面会有一个指示器，当我们�
 
 - 新建一个 TabLayoutIndicatorAttr 继承于 SkinAttr，然后重写 apply 方法。apply 方法在换肤的时候就会被调用
 
-- 代码的详细实现 
+- 代码的详细实现
 ```html
 public class TabLayoutIndicatorAttr extends SkinAttr {
     @Override
@@ -138,12 +124,12 @@ public class TabLayoutIndicatorAttr extends SkinAttr {
 **注：字体切换功能默认不开启，需要字体切换功能请在你的Application中加入<code>SkinConfig.setCanChangeFont(true);</code>**
 
 ### 4. 其他一些重要的api
-        
+
 1. SkinConfig.isDefaultSkin(context):判断当前皮肤是否是默认皮肤
 
 2. SkinManager.getInstance().restoreDefaultTheme(): 重置默认皮肤
 
-3. dynamicAddView：当动态创建的View也需要换肤的时候,就可以调用dynamicAddView
+3. dynamicAddView：当动态创建的View也需要换肤的时候,就可以调用 dynamicAddView
 
 
 ---
@@ -154,7 +140,7 @@ public class TabLayoutIndicatorAttr extends SkinAttr {
 
 3. 本开源库使用的 Activity 是 AppCompatActivity，使用的 Fragment 是 android.support.v4.app.Fragment
 
-4. 有换肤需求View所使用的资源一定要是引用值，例如：@color/red，而不是#ff0000
+4. 有换肤需求 View 所使用的资源一定要是引用值，例如：@color/red，而不是 #ff0000
 
 
 ### 6.项目依赖：
@@ -162,6 +148,24 @@ public class TabLayoutIndicatorAttr extends SkinAttr {
 2. 'com.android.support:cardview-v7:25.1.0'
 3. 'com.mani:ThinDownloadManager:1.2.5'
 
+
+### 7.更新日志：
+
+- v1.4.3:由于在开启全局皮肤切换后，过度动画会带来一些问题，在这个版本中删除了过度动画
+- v1.4.2:增加对全局应用皮肤方法，若开启则不需要在布局文件中添加 <code>skin:enable="true"</code>
+- v1.4.1:增加从指定目录获取drawable的方法
+- v1.4.0:
+   - 修复[issues9](https://github.com/burgessjp/ThemeSkinning/issues/9)内存泄漏问题
+   - 支持 style
+   - 解决字体切换内存泄漏问题
+   - 支持 mipmap
+   - 状态栏颜色切换只支持 5.0 以上版本
+   - 增加 debug 开关，方便开发调试
+- v1.3.1:优化换字体部分代码
+- v1.3.0:增加一键切换字体
+- v1.2.1:完善之前版本 View 的创建
+- v1.2.0:增加对换肤属性自定义扩展
+- v1.1.0:可以直接加载网络上的皮肤文件
 
 ### 致谢：
 

@@ -37,7 +37,6 @@ import solid.ren.skinlibrary.utils.TypefaceUtils;
  * Date:2016/4/13
  * Time:21:07
  */
-@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 public class SkinManager implements ISkinLoader {
     private static final String TAG = "SkinManager";
     private List<ISkinUpdate> mSkinObservers;
@@ -98,7 +97,7 @@ public class SkinManager implements ISkinLoader {
         skinPackageName = context.getPackageName();
         notifySkinUpdate();
     }
-
+    @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
     public static SkinManager getInstance() {
         if (mInstance == null) {
             synchronized (SkinManager.class) {
