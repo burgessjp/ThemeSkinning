@@ -126,6 +126,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
             if (AttrFactory.isSupportedAttr(attrName) && attrValue.startsWith("@")) {//也就是引用类型，形如@color/red
                 try {
                     int id = Integer.parseInt(attrValue.substring(1));//资源的id
+                    if (id==0) continue;
                     String entryName = context.getResources().getResourceEntryName(id);//入口名，例如text_color_selector
                     String typeName = context.getResources().getResourceTypeName(id);//类型名，例如color、drawable
                     SkinAttr mSkinAttr = AttrFactory.get(attrName, id, entryName, typeName);
