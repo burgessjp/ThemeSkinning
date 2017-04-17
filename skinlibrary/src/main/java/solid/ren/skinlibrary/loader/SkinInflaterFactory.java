@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -24,7 +22,7 @@ import solid.ren.skinlibrary.attr.base.SkinAttr;
 import solid.ren.skinlibrary.utils.SkinL;
 import solid.ren.skinlibrary.utils.SkinListUtils;
 
-import static android.R.attr.id;
+import static android.R.attr.textColor;
 
 /**
  * Created by _SOLID
@@ -84,18 +82,16 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
             if ("style".equals(attrName)) {//style theme
                 String styleName = attrValue.substring(attrValue.indexOf("/") + 1);
                 int styleID = context.getResources().getIdentifier(styleName, "style", context.getPackageName());
-                int[] skinAttrs = new int[]{android.R.attr.textColor, android.R.attr.background};
+                int[] skinAttrs = new int[]{textColor, android.R.attr.background};
                 TypedArray a = context.getTheme().obtainStyledAttributes(styleID, skinAttrs);
-                int textColor = a.getColor(0, -1);
-                int background = a.getColor(1, -1);
                 int textColorId = a.getResourceId(0, -1);
                 int backgroundId = a.getResourceId(1, -1);
-                if (textColor != -1 && textColorId != -1) {
+                if (textColorId != -1) {
                     String entryName = context.getResources().getResourceEntryName(textColorId);//入口名，例如text_color_selector
                     String typeName = context.getResources().getResourceTypeName(textColorId);
                     SkinAttr skinAttr = AttrFactory.get("textColor", textColorId, entryName, typeName);
                     SkinL.w(TAG, "    textColor in style is supported:" + "\n" +
-                            "    resource id:" + id + "\n" +
+                            "    resource id:" + textColorId + "\n" +
                             "    attrName:" + attrName + "\n" +
                             "    attrValue:" + attrValue + "\n" +
                             "    entryName:" + entryName + "\n" +
@@ -104,12 +100,12 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
                         viewAttrs.add(skinAttr);
                     }
                 }
-                if (background != -1 && backgroundId != -1) {
+                if (backgroundId != -1) {
                     String entryName = context.getResources().getResourceEntryName(backgroundId);//入口名，例如text_color_selector
                     String typeName = context.getResources().getResourceTypeName(backgroundId);
                     SkinAttr skinAttr = AttrFactory.get("background", backgroundId, entryName, typeName);
                     SkinL.w(TAG, "    background in style is supported:" + "\n" +
-                            "    resource id:" + id + "\n" +
+                            "    resource id:" + backgroundId + "\n" +
                             "    attrName:" + attrName + "\n" +
                             "    attrValue:" + attrValue + "\n" +
                             "    entryName:" + entryName + "\n" +
