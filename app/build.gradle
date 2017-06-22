@@ -28,13 +28,13 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:design:25.2.0'
+    compile 'com.android.support:design:25.3.1'
     compile('com.github.CymChad:BaseRecyclerViewAdapterHelper:v1.8.5', {
         exclude group: 'com.android.support'
     })
     compile ('com.afollestad.material-dialogs:core:0.8.6.1', {
         exclude group: 'com.android.support'
     })
-    //compile 'com.solid.skin:skinlibrary:1.4.0-beta1'
+    //compile 'com.solid.skin:skinlibrary:1.4.5'
     compile project(':skinlibrary')
 }

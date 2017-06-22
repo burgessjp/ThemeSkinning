@@ -144,13 +144,13 @@ public class TabLayoutIndicatorAttr extends SkinAttr {
 
 
 ### 6.项目依赖：
-1. 'com.android.support:appcompat-v7:25.1.0'
-2. 'com.android.support:cardview-v7:25.1.0'
-3. 'com.mani:ThinDownloadManager:1.2.5'
-
+1. 'com.android.support:appcompat-v7:25.3.1'
+2. 'com.mani:ThinDownloadManager:1.2.5'
 
 ### 7.更新日志：
 
+- v1.4.5:fix [issues 38](https://github.com/burgessjp/ThemeSkinning/issues/38)
+- v1.4.4:修复 @null 带来的bug
 - v1.4.3:由于在开启全局皮肤切换后，过度动画会带来一些问题，在这个版本中删除了过度动画
 - v1.4.2:增加对全局应用皮肤方法，若开启则不需要在布局文件中添加 <code>skin:enable="true"</code>
 - v1.4.1:增加从指定目录获取drawable的方法

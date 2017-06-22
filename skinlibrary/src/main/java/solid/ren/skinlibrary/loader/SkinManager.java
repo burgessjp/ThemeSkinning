@@ -1,5 +1,6 @@
 package solid.ren.skinlibrary.loader;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -10,7 +11,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.annotation.RestrictTo;
 import android.support.v4.content.ContextCompat;
 
 import com.thin.downloadmanager.DefaultRetryPolicy;
@@ -40,6 +40,7 @@ import solid.ren.skinlibrary.utils.TypefaceUtils;
 public class SkinManager implements ISkinLoader {
     private static final String TAG = "SkinManager";
     private List<ISkinUpdate> mSkinObservers;
+    @SuppressLint("StaticFieldLeak")
     private static volatile SkinManager mInstance;
     private Context context;
     private Resources mResources;
@@ -97,7 +98,7 @@ public class SkinManager implements ISkinLoader {
         skinPackageName = context.getPackageName();
         notifySkinUpdate();
     }
-    @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+
     public static SkinManager getInstance() {
         if (mInstance == null) {
             synchronized (SkinManager.class) {
@@ -136,8 +137,7 @@ public class SkinManager implements ISkinLoader {
     }
 
     public void loadSkin() {
-        String skin = SkinConfig.getCustomSkinPath(context);
-        loadSkin(skin, null);
+        loadSkin(null);
     }
 
     public void loadSkin(SkinLoaderListener callback) {
@@ -342,10 +342,10 @@ public class SkinManager implements ISkinLoader {
     /**
      * 加载指定资源颜色drawable,转化为ColorStateList，保证selector类型的Color也能被转换。
      * 无皮肤包资源返回默认主题颜色
+     * author:pinotao
      *
      * @param resId resources id
      * @return ColorStateList
-     * @author pinotao
      */
     public ColorStateList getColorStateList(int resId) {
         boolean isExternalSkin = true;
@@ -358,16 +358,14 @@ public class SkinManager implements ISkinLoader {
             int trueResId = mResources.getIdentifier(resName, "color", skinPackageName);
             ColorStateList trueColorList;
             if (trueResId == 0) { // 如果皮肤包没有复写该资源，但是需要判断是否是ColorStateList
-                ColorStateList originColorList = context.getResources().getColorStateList(resId);
-                return originColorList;
+
+                return ContextCompat.getColorStateList(context, resId);
             } else {
                 trueColorList = mResources.getColorStateList(trueResId);
                 return trueColorList;
             }
         } else {
-            ColorStateList originColorList = context.getResources().getColorStateList(resId);
-            return originColorList;
-
+            return ContextCompat.getColorStateList(context, resId);
         }
     }
 }
