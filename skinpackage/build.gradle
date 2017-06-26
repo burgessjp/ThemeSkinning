@@ -1,9 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '25.0.0'
-
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
+    signingConfigs {
+        release {
+            keyAlias 'skinpackage'
+            keyPassword '123456'
+            storeFile file('doc/skinpackage.jks')
+            storePassword '123456'
+        }
+    }
     defaultConfig {
         applicationId "solid.ren.skinpackage"
         minSdkVersion 14
@@ -15,10 +22,22 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def buildType = variant.buildType.name
+            def outputFile = output.outputFile
+            def date = releaseTime()
+            if (outputFile != null && buildType.contains("release") && outputFile.name.endsWith('.apk')) {
+                def fileName = "theme-${date}.skin"
+                output.outputFile = new File(outputFile.parent, fileName)
+            }
         }
     }
 }
 
-dependencies {
-
+def releaseTime() {
+    return new Date().format("yyyyMMdd")
 }

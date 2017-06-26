@@ -2,6 +2,7 @@ package solid.ren.themeskinning.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.RadioButton;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -18,8 +19,8 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-import solid.ren.skinlibrary.base.SkinBaseFragment;
 import solid.ren.skinlibrary.SkinLoaderListener;
+import solid.ren.skinlibrary.base.SkinBaseFragment;
 import solid.ren.skinlibrary.loader.SkinManager;
 import solid.ren.themeskinning.DataBean;
 import solid.ren.themeskinning.R;
@@ -34,12 +35,12 @@ public class BasicFragment extends SkinBaseFragment {
     private RecyclerView recyclerview;
 
     private MaterialDialog dialog;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_baseskin, container, false);
-
 
 
         recyclerview = (RecyclerView) view.findViewById(R.id.recyclerview);
@@ -110,13 +111,11 @@ public class BasicFragment extends SkinBaseFragment {
             }
         });
 
-
+//        RadioButton radioButton = (RadioButton) view.findViewById(R.id.rb);
+//        radioButton.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.selector_rb));
 
         return view;
     }
-
-
-
 
 
     private List<DataBean> getData() {

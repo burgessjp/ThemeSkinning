@@ -1,0 +1,4 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_rb_check" android:state_checked="true" android:state_enabled="true" />
+    <item android:drawable="@drawable/ic_rb_uncheck" android:state_checked="false" android:state_enabled="true" />
+</selector>

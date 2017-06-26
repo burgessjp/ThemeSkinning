@@ -2,6 +2,7 @@ package solid.ren.themeskinning;
 
 import solid.ren.skinlibrary.SkinConfig;
 import solid.ren.skinlibrary.base.SkinBaseApplication;
+import solid.ren.themeskinning.custom_attr.RadioButtonAttr;
 import solid.ren.themeskinning.custom_attr.TabLayoutIndicatorAttr;
 
 /**
@@ -17,6 +18,7 @@ public class App extends SkinBaseApplication {
         SkinConfig.setCanChangeFont(true);
         SkinConfig.setDebug(true);
         SkinConfig.addSupportAttr("tabLayoutIndicator", new TabLayoutIndicatorAttr());
-        //SkinConfig.enableGlobalSkinApply();
+        SkinConfig.addSupportAttr("button", new RadioButtonAttr());
+        SkinConfig.enableGlobalSkinApply();
     }
 }
