@@ -45,14 +45,18 @@ public class SkinResourcesUtils {
     }
 
     public static int getColorPrimaryDark() {
-        Resources resources = SkinManager.getInstance().getResources();
-        if (resources != null) {
-            int identify = resources.getIdentifier(
-                    "colorPrimaryDark",
-                    "color",
-                    SkinManager.getInstance().getCurSkinPackageName());
-            if (!(identify <= 0))
-                return resources.getColor(identify);
+        if (!isNightMode()) {
+            Resources resources = SkinManager.getInstance().getResources();
+            if (resources != null) {
+                int identify = resources.getIdentifier(
+                        "colorPrimaryDark",
+                        "color",
+                        SkinManager.getInstance().getCurSkinPackageName());
+                if (identify > 0)
+                    return resources.getColor(identify);
+            }
+        } else {
+            return SkinManager.getInstance().getNightColor("colorPrimaryDark");
         }
         return -1;
     }

@@ -160,6 +160,7 @@ public class TabLayoutIndicatorAttr extends SkinAttr {
 
 ### 7.更新日志：
 
+- v2.0.0 beta:无需使用皮肤包即可实现夜间模式
 - v1.4.5:fix [issues 38](https://github.com/burgessjp/ThemeSkinning/issues/38)
 - v1.4.4:修复 @null 带来的bug
 - v1.4.3:由于在开启全局皮肤切换后，过度动画会带来一些问题，在这个版本中删除了过度动画

@@ -71,7 +71,7 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
             return;
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            int color = SkinManager.getInstance().getColorPrimaryDark();
+            int color = SkinResourcesUtils.getColorPrimaryDark();
             if (color != -1) {
                 Window window = getWindow();
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
