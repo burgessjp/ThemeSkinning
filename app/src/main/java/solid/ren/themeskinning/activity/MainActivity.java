@@ -1,16 +1,13 @@
 package solid.ren.themeskinning.activity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import solid.ren.skinlibrary.base.SkinBaseActivity;
-import solid.ren.themeskinning.BuildConfig;
 import solid.ren.themeskinning.DataProvider;
 import solid.ren.themeskinning.R;
 import solid.ren.themeskinning.adapter.TabViewpagerAdapter;
@@ -40,7 +37,7 @@ public class MainActivity extends SkinBaseActivity {
         for (int i = 0; i < DataProvider.getTitleList().size(); i++) {
             tablayout.addTab(tablayout.newTab().setText(DataProvider.getTitleList().get(i)));
         }
-        dynamicAddView(tablayout, "tabLayoutIndicator", R.color.item_bg);
+        dynamicAddView(tablayout, "tabLayoutIndicator", R.color.colorPrimaryDark);
 
 
         viewpager = (ViewPager) findViewById(R.id.viewpager);

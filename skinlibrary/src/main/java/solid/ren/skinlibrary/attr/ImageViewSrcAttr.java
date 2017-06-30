@@ -15,7 +15,7 @@ import solid.ren.skinlibrary.utils.SkinResourcesUtils;
 
 public class ImageViewSrcAttr extends SkinAttr {
     @Override
-    public void apply(View view) {
+    protected void applySkin(View view) {
         if (view instanceof ImageView) {
             ImageView iv = (ImageView) view;
             if (isDrawable()) {

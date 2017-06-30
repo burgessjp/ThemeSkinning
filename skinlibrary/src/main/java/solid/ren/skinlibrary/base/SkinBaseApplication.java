@@ -30,7 +30,12 @@ public class SkinBaseApplication extends Application {
     private void initSkinLoader() {
         setUpSkinFile();
         SkinManager.getInstance().init(this);
-        SkinManager.getInstance().loadSkin();
+        if (!SkinConfig.isInNightMode(this)) {
+            SkinManager.getInstance().loadSkin(null);
+        } else {
+            SkinManager.getInstance().NightMode();
+        }
+
     }
 
     private void setUpSkinFile() {

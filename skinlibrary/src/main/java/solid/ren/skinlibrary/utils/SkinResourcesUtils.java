@@ -1,6 +1,7 @@
 package solid.ren.skinlibrary.utils;
 
 import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 
 import solid.ren.skinlibrary.loader.SkinManager;
@@ -16,8 +17,16 @@ public class SkinResourcesUtils {
         return SkinManager.getInstance().getColor(resId);
     }
 
+    public static int getNightColor(String resName) {
+        return SkinManager.getInstance().getNightColor(resName);
+    }
+
     public static Drawable getDrawable(int resId) {
         return SkinManager.getInstance().getDrawable(resId);
+    }
+
+    public static Drawable getNightDrawable(String resName) {
+        return SkinManager.getInstance().getNightDrawable(resName);
     }
 
     /**
@@ -33,5 +42,22 @@ public class SkinResourcesUtils {
 
     public static ColorStateList getColorStateList(int resId) {
         return SkinManager.getInstance().getColorStateList(resId);
+    }
+
+    public static int getColorPrimaryDark() {
+        Resources resources = SkinManager.getInstance().getResources();
+        if (resources != null) {
+            int identify = resources.getIdentifier(
+                    "colorPrimaryDark",
+                    "color",
+                    SkinManager.getInstance().getCurSkinPackageName());
+            if (!(identify <= 0))
+                return resources.getColor(identify);
+        }
+        return -1;
+    }
+
+    public static boolean isNightMode() {
+        return SkinManager.getInstance().isNightMode();
     }
 }

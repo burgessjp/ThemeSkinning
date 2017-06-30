@@ -11,6 +11,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.annotation.RestrictTo;
 import android.support.v4.content.ContextCompat;
 
 import com.thin.downloadmanager.DefaultRetryPolicy;
@@ -53,6 +54,7 @@ public class SkinManager implements ISkinLoader {
      * skin path
      */
     private String skinPath;
+    private boolean mIsNightMode;
 
     private SkinManager() {
 
@@ -94,6 +96,8 @@ public class SkinManager implements ISkinLoader {
     public void restoreDefaultTheme() {
         SkinConfig.saveSkinPath(context, SkinConfig.DEFAULT_SKIN);
         isDefaultSkin = true;
+        mIsNightMode = false;
+        SkinConfig.setNightMode(context, true);
         mResources = context.getResources();
         skinPackageName = context.getPackageName();
         notifySkinUpdate();
@@ -136,10 +140,11 @@ public class SkinManager implements ISkinLoader {
         }
     }
 
-    public void loadSkin() {
-        loadSkin(null);
+    public boolean isNightMode() {
+        return mIsNightMode;
     }
 
+    //region Load skin or font
     public void loadSkin(SkinLoaderListener callback) {
         String skin = SkinConfig.getCustomSkinPath(context);
         if (SkinConfig.isDefaultSkin(context)) {
@@ -205,6 +210,8 @@ public class SkinManager implements ISkinLoader {
 
                 if (mResources != null) {
                     if (callback != null) callback.onSuccess();
+                    mIsNightMode = false;
+                    SkinConfig.setNightMode(context, false);
                     notifySkinUpdate();
                 } else {
                     isDefaultSkin = true;
@@ -266,11 +273,28 @@ public class SkinManager implements ISkinLoader {
 
     }
 
+    /**
+     * load font
+     *
+     * @param fontName font name in assets/fonts
+     */
     public void loadFont(String fontName) {
         Typeface tf = TypefaceUtils.createTypeface(context, fontName);
         TextViewRepository.applyFont(tf);
     }
 
+    public void NightMode() {
+        if (!isDefaultSkin) {
+            restoreDefaultTheme();
+        }
+        mIsNightMode = true;
+        SkinConfig.setNightMode(context, true);
+        notifySkinUpdate();
+    }
+    //endregion
+
+    //region Resource obtain
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
     public int getColor(int resId) {
         int originColor = ContextCompat.getColor(context, resId);
         if (mResources == null || isDefaultSkin) {
@@ -289,6 +313,38 @@ public class SkinManager implements ISkinLoader {
         return trueColor;
     }
 
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
+    public int getNightColor(String resName) {
+
+        String resNameNight = resName + "_night";
+
+        int nightResId = mResources.getIdentifier(resNameNight, "color", skinPackageName);
+        int color;
+        if (nightResId == 0) {
+            int resId = mResources.getIdentifier(resName, "color", skinPackageName);
+            color = mResources.getColor(resId);
+        } else {
+            color = mResources.getColor(nightResId);
+        }
+        return color;
+    }
+
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
+    public Drawable getNightDrawable(String resName) {
+
+        String resNameNight = resName + "_night";
+
+        int nightResId = mResources.getIdentifier(resNameNight, "drawable", skinPackageName);
+        Drawable color;
+        if (nightResId == 0) {
+            int resId = mResources.getIdentifier(resName, "drawable", skinPackageName);
+            color = mResources.getDrawable(resId);
+        } else {
+            color = mResources.getDrawable(nightResId);
+        }
+        return color;
+    }
+
     /**
      * get drawable from specific directory
      *
@@ -296,6 +352,7 @@ public class SkinManager implements ISkinLoader {
      * @param dir   res directory
      * @return drawable
      */
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
     public Drawable getDrawable(int resId, String dir) {
         Drawable originDrawable = ContextCompat.getDrawable(context, resId);
         if (mResources == null || isDefaultSkin) {
@@ -316,6 +373,7 @@ public class SkinManager implements ISkinLoader {
         return trueDrawable;
     }
 
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
     public Drawable getDrawable(int resId) {
         Drawable originDrawable = ContextCompat.getDrawable(context, resId);
         if (mResources == null || isDefaultSkin) {
@@ -347,6 +405,7 @@ public class SkinManager implements ISkinLoader {
      * @param resId resources id
      * @return ColorStateList
      */
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
     public ColorStateList getColorStateList(int resId) {
         boolean isExternalSkin = true;
         if (mResources == null || isDefaultSkin) {
@@ -368,4 +427,5 @@ public class SkinManager implements ISkinLoader {
             return ContextCompat.getColorStateList(context, resId);
         }
     }
+    //endregion
 }

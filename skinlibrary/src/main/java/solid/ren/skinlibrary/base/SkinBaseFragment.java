@@ -63,7 +63,7 @@ public class SkinBaseFragment extends Fragment implements IDynamicNewView {
         super.onDestroyView();
     }
 
-    private final void removeAllView(View v) {
+    private void removeAllView(View v) {
         if (v instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) v;
             for (int i = 0; i < viewGroup.getChildCount(); i++) {
@@ -75,7 +75,7 @@ public class SkinBaseFragment extends Fragment implements IDynamicNewView {
         }
     }
 
-    private final void removeViewInSkinInflaterFactory(View v) {
+    private void removeViewInSkinInflaterFactory(View v) {
         if (getContext() instanceof SkinBaseActivity) {
             SkinBaseActivity skinBaseActivity = (SkinBaseActivity) getContext();
             //移除SkinInflaterFactory中的v

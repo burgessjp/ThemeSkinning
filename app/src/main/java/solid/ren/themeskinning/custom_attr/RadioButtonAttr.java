@@ -16,9 +16,9 @@ import solid.ren.skinlibrary.utils.SkinResourcesUtils;
 
 public class RadioButtonAttr extends SkinAttr {
     @Override
-    public void apply(View view) {
+    protected void applySkin(View view) {
         if (view instanceof RadioButton) {
-            if (RES_TYPE_NAME_DRAWABLE.equals(attrValueTypeName)) {
+            if (isDrawable()) {
                 RadioButton radioButton = (RadioButton) view;
                 Drawable drawable = SkinResourcesUtils.getDrawable(attrValueRefId);
                 radioButton.setButtonDrawable(drawable);

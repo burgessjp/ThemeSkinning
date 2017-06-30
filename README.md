@@ -3,6 +3,17 @@
 
 ### Android 主题换肤的开源库（插件化换肤）
 
+**新增夜间模式的简洁实现方式（目前处于beta版本）**
+
+夜间模式实现方式
+
+ 1. 前提条件还是每个使用到的资源必须是引用的，不能使具体的值
+ 2. 开启全局换肤配置 `SkinConfig.enableGlobalSkinApply()`
+ 3. 复制一份 `color.xml` 文件并重命名为 `color_night.xml` ,然后修改 `color_night.xml`，在每一个color的name后面加上一个 `_night`后缀
+ 4. 对于 `drawable` 文件的处理也差不多，复制需要夜间模式切换的 `drawable`，然后在其文件名上加上一个 `_night` 后缀，`xml` 文件中的颜色值修改成夜间模式需要的即可
+ 5. 最后在适当的地方调用 `SkinManager.getInstance().NightMode()` 即可实现夜间模式
+ 6. 具体实现可以参考示例项目
+
 效果图如下：
 
 ![Demo](app/capture/demo.gif)

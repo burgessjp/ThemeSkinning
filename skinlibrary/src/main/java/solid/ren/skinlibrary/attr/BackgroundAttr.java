@@ -14,13 +14,22 @@ import solid.ren.skinlibrary.utils.SkinResourcesUtils;
 public class BackgroundAttr extends SkinAttr {
 
     @Override
-    public void apply(View view) {
+    protected void applySkin(View view) {
         if (isColor()) {
             int color = SkinResourcesUtils.getColor(attrValueRefId);
             view.setBackgroundColor(color);
         } else if (isDrawable()) {
             Drawable bg = SkinResourcesUtils.getDrawable(attrValueRefId);
             view.setBackgroundDrawable(bg);
+        }
+    }
+
+    @Override
+    protected void applyNightMode(View view) {
+        if (isColor()) {
+            view.setBackgroundColor(SkinResourcesUtils.getNightColor(attrValueRefName));
+        } else if (isDrawable()) {
+            view.setBackgroundDrawable(SkinResourcesUtils.getNightDrawable(attrValueRefName));
         }
     }
 }

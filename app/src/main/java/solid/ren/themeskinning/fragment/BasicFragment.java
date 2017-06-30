@@ -2,7 +2,6 @@ package solid.ren.themeskinning.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RadioButton;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -110,10 +108,12 @@ public class BasicFragment extends SkinBaseFragment {
                 SkinManager.getInstance().restoreDefaultTheme();
             }
         });
-
-//        RadioButton radioButton = (RadioButton) view.findViewById(R.id.rb);
-//        radioButton.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.selector_rb));
-
+        view.findViewById(R.id.btn_switch_night).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SkinManager.getInstance().NightMode();
+            }
+        });
         return view;
     }
 

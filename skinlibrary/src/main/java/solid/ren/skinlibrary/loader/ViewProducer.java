@@ -14,7 +14,7 @@ import java.util.Map;
  * Date:2016/7/11
  * Time:11:35
  */
-public class ViewProducer {
+class ViewProducer {
     private static final Object[] mConstructorArgs = new Object[2];
     private static final Map<String, Constructor<? extends View>> sConstructorMap
             = new ArrayMap<>();

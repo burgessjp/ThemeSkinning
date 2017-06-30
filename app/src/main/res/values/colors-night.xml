@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary_night">#3a489b</color>
+    <color name="colorPrimaryDark_night">#212f83</color>
+    <color name="colorAccent_night">#8e0c38</color>
+
+    <color name="app_bg_night">#8b8a8a</color>
+    <color name="item_bg_night">#222323</color>
+    <color name="item_bg_press_night">#323333</color>
+    <color name="item_tv_title_color_night">#646262</color>
+    <color name="item_tv_content_color_night">#dedddd</color>
+    <color name="item_tv_date_color_night">#E5E5E5</color>
+
+    <color name="item_tv_title_background_night">#303F9F</color>
+</resources>

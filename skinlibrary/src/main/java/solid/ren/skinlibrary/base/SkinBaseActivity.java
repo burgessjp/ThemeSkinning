@@ -18,6 +18,7 @@ import solid.ren.skinlibrary.attr.base.DynamicAttr;
 import solid.ren.skinlibrary.loader.SkinInflaterFactory;
 import solid.ren.skinlibrary.loader.SkinManager;
 import solid.ren.skinlibrary.utils.SkinL;
+import solid.ren.skinlibrary.utils.SkinResourcesUtils;
 
 
 /**
@@ -74,7 +75,7 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
             if (color != -1) {
                 Window window = getWindow();
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(SkinManager.getInstance().getColorPrimaryDark());
+                window.setStatusBarColor(SkinResourcesUtils.getColorPrimaryDark());
             }
         }
     }

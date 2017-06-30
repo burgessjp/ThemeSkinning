@@ -18,6 +18,7 @@ public class SkinConfig {
     public static final String PREF_FONT_PATH = "skin_font_path";
     public static final String DEFAULT_SKIN = "skin_default";
     public static final String ATTR_SKIN_ENABLE = "enable";
+    public static final String PREF_NIGHT_MODE = "night_mode";
 
     public static final String SKIN_DIR_NAME = "skin";
     public static final String FONT_DIR_NAME = "fonts";
@@ -52,6 +53,14 @@ public class SkinConfig {
 
     public static boolean isDefaultSkin(Context context) {
         return DEFAULT_SKIN.equals(getCustomSkinPath(context));
+    }
+
+    public static void setNightMode(Context context, boolean isEnableNightMode) {
+        SkinPreferencesUtils.putBoolean(context, PREF_NIGHT_MODE, isEnableNightMode);
+    }
+
+    public static boolean isInNightMode(Context context) {
+        return SkinPreferencesUtils.getBoolean(context, PREF_NIGHT_MODE, false);
     }
 
     public static void setCanChangeStatusColor(boolean isCan) {
@@ -98,4 +107,5 @@ public class SkinConfig {
     public static void enableGlobalSkinApply() {
         isGlobalSkinApply = true;
     }
+
 }

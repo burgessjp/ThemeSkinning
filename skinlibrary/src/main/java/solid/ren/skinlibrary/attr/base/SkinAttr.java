@@ -2,6 +2,8 @@ package solid.ren.skinlibrary.attr.base;
 
 import android.view.View;
 
+import solid.ren.skinlibrary.utils.SkinResourcesUtils;
+
 /**
  * Created by _SOLID
  * Date:2016/4/13
@@ -14,29 +16,40 @@ public abstract class SkinAttr implements Cloneable {
     /**
      * attribute name, eg: background、textColor
      */
-    public String attrName;
+    protected String attrName;
 
     /**
      * attribute reference id
      */
-    public int attrValueRefId;
+    protected int attrValueRefId;
 
     /**
      * resources name, eg:app_exit_btn_background
      */
-    public String attrValueRefName;
+    protected String attrValueRefName;
 
     /**
      * type of the value , such as color or drawable
      */
-    public String attrValueTypeName;
+    protected String attrValueTypeName;
 
     /**
      * Use to apply view with new TypedValue
      *
      * @param view
      */
-    public abstract void apply(View view);
+    public void apply(View view) {
+        if (!SkinResourcesUtils.isNightMode()) {
+            applySkin(view);
+        } else {
+            applyNightMode(view);
+        }
+    }
+
+    protected abstract void applySkin(View view);
+
+    protected void applyNightMode(View view) {
+    }
 
     protected boolean isDrawable() {
         return RES_TYPE_NAME_DRAWABLE.equals(attrValueTypeName)

@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import solid.ren.skinlibrary.attr.base.SkinAttr;
-import solid.ren.skinlibrary.loader.SkinManager;
 import solid.ren.skinlibrary.utils.SkinResourcesUtils;
 
 
@@ -14,12 +13,23 @@ import solid.ren.skinlibrary.utils.SkinResourcesUtils;
  * Time:22:53
  */
 public class TextColorAttr extends SkinAttr {
+
     @Override
-    public void apply(View view) {
+    protected void applySkin(View view) {
         if (view instanceof TextView) {
             TextView tv = (TextView) view;
-            if (RES_TYPE_NAME_COLOR.equals(attrValueTypeName)) {
+            if (isColor()) {
                 tv.setTextColor(SkinResourcesUtils.getColorStateList(attrValueRefId));
+            }
+        }
+    }
+
+    @Override
+    protected void applyNightMode(View view) {
+        if (view instanceof TextView) {
+            TextView tv = (TextView) view;
+            if (isColor()) {
+                tv.setTextColor(SkinResourcesUtils.getNightColor(attrValueRefName));
             }
         }
     }
