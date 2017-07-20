@@ -1,5 +1,6 @@
 package solid.ren.skinlibrary.attr;
 
+import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -21,7 +22,7 @@ public class ImageViewSrcAttr extends SkinAttr {
             if (isDrawable()) {
                 iv.setImageDrawable(SkinResourcesUtils.getDrawable(attrValueRefId));
             } else if (isColor()) {
-                iv.setBackgroundColor(SkinResourcesUtils.getColor(attrValueRefId));
+                iv.setImageDrawable(new ColorDrawable(SkinResourcesUtils.getColor(attrValueRefId)));
             }
         }
     }
