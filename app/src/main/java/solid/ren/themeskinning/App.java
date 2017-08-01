@@ -1,5 +1,7 @@
 package solid.ren.themeskinning;
 
+import com.squareup.leakcanary.LeakCanary;
+
 import solid.ren.skinlibrary.SkinConfig;
 import solid.ren.skinlibrary.base.SkinBaseApplication;
 import solid.ren.themeskinning.custom_attr.RadioButtonAttr;
@@ -20,5 +22,7 @@ public class App extends SkinBaseApplication {
         SkinConfig.addSupportAttr("tabLayoutIndicator", new TabLayoutIndicatorAttr());
         SkinConfig.addSupportAttr("button", new RadioButtonAttr());
         SkinConfig.enableGlobalSkinApply();
+
+        LeakCanary.install(this);
     }
 }

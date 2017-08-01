@@ -1,9 +1,7 @@
 package solid.ren.skinlibrary.base;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -12,6 +10,7 @@ import java.util.List;
 
 import solid.ren.skinlibrary.IDynamicNewView;
 import solid.ren.skinlibrary.attr.base.DynamicAttr;
+import solid.ren.skinlibrary.loader.SkinInflaterFactory;
 
 /**
  * Created by _SOLID
@@ -52,9 +51,11 @@ public class SkinBaseFragment extends Fragment implements IDynamicNewView {
         mIDynamicNewView.dynamicAddFontView(textView);
     }
 
-    public final LayoutInflater getLayoutInflater(Bundle savedInstanceState) {
-        LayoutInflater result = getActivity().getLayoutInflater();
-        return result;
+    public final SkinInflaterFactory getSkinInflaterFactory() {
+        if (getActivity() instanceof SkinBaseActivity) {
+            return ((SkinBaseActivity) getActivity()).getInflaterFactory();
+        }
+        return null;
     }
 
     @Override
@@ -76,10 +77,9 @@ public class SkinBaseFragment extends Fragment implements IDynamicNewView {
     }
 
     private void removeViewInSkinInflaterFactory(View v) {
-        if (getContext() instanceof SkinBaseActivity) {
-            SkinBaseActivity skinBaseActivity = (SkinBaseActivity) getContext();
-            //移除SkinInflaterFactory中的v
-            skinBaseActivity.removeSkinView(v);
+        if (getSkinInflaterFactory() != null) {
+            //此方法用于Activity中Fragment销毁的时候，移除Fragment中的View
+            getSkinInflaterFactory().removeSkinView(v);
         }
     }
 }

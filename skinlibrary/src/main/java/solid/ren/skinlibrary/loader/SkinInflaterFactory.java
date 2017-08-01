@@ -1,5 +1,6 @@
 package solid.ren.skinlibrary.loader;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v4.view.LayoutInflaterFactory;
@@ -49,7 +50,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
         View view = delegate.createView(parent, name, context, attrs);
 
         if (view instanceof TextView && SkinConfig.isCanChangeFont()) {
-            TextViewRepository.add((TextView) view);
+            TextViewRepository.add(mAppCompatActivity, (TextView) view);
         }
 
         if (isSkinEnable || SkinConfig.isGlobalSkinApply()) {
@@ -169,15 +170,15 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
      * 清除有皮肤更改需求的View及其对应的属性的集合
      */
     public void clean() {
-        if (mSkinItemMap.isEmpty()) {
-            return;
-        }
         for (View view : mSkinItemMap.keySet()) {
             if (view == null) {
                 continue;
             }
             mSkinItemMap.get(view).clean();
         }
+        TextViewRepository.remove(mAppCompatActivity);
+        mSkinItemMap.clear();
+        mSkinItemMap = null;
     }
 
     private void addSkinView(SkinItem item) {
@@ -191,7 +192,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
     public void removeSkinView(View view) {
         mSkinItemMap.remove(view);
         if (SkinConfig.isCanChangeFont() && view instanceof TextView) {
-            TextViewRepository.remove((TextView) view);
+            TextViewRepository.remove(mAppCompatActivity, (TextView) view);
         }
     }
 
@@ -241,9 +242,8 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
         addSkinView(skinItem);
     }
 
-
-    public void dynamicAddFontEnableView(TextView textView) {
-        TextViewRepository.add(textView);
+    public void dynamicAddFontEnableView(Activity activity, TextView textView) {
+        TextViewRepository.add(activity, textView);
     }
 
 }

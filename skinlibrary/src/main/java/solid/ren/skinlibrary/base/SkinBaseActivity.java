@@ -25,7 +25,7 @@ import solid.ren.skinlibrary.utils.SkinResourcesUtils;
  * Created by _SOLID
  * Date:2016/4/14
  * Time:10:24
- * Your activity need extend this
+ * Your activity need extend
  */
 public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, IDynamicNewView {
 
@@ -92,11 +92,7 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
 
     @Override
     public void dynamicAddFontView(TextView textView) {
-        mSkinInflaterFactory.dynamicAddFontEnableView(textView);
-    }
-
-    public final void removeSkinView(View v) {
-        mSkinInflaterFactory.removeSkinView(v);
+        mSkinInflaterFactory.dynamicAddFontEnableView(this, textView);
     }
 
 }
