@@ -35,9 +35,8 @@ class TextViewRepository {
         mTextViewMap.remove(activity);
     }
 
-    static void remove(Activity activity, TextView textView) {
-        if (mTextViewMap.containsKey(activity))
-            mTextViewMap.get(activity).remove(textView);
+    static boolean remove(Activity activity, TextView textView) {
+        return mTextViewMap.containsKey(activity) && mTextViewMap.get(activity).remove(textView);
     }
 
     static void applyFont(Typeface tf) {

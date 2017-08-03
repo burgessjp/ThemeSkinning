@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import solid.ren.skinlibrary.base.SkinBaseFragment;
 import solid.ren.skinlibrary.SkinLoaderListener;
+import solid.ren.skinlibrary.base.SkinBaseFragment;
 import solid.ren.skinlibrary.loader.SkinManager;
 import solid.ren.themeskinning.R;
 
@@ -65,5 +65,11 @@ public class FromNetWorkFragment extends SkinBaseFragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        removeAllView(dialog.getView());
+        super.onDestroyView();
     }
 }

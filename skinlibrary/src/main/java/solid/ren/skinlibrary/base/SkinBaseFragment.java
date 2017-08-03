@@ -64,7 +64,7 @@ public class SkinBaseFragment extends Fragment implements IDynamicNewView {
         super.onDestroyView();
     }
 
-    private void removeAllView(View v) {
+    protected void removeAllView(View v) {
         if (v instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) v;
             for (int i = 0; i < viewGroup.getChildCount(); i++) {

@@ -32,7 +32,7 @@ public class BasicFragment extends SkinBaseFragment {
 
     private RecyclerView recyclerview;
 
-    private MaterialDialog dialog;
+    //private MaterialDialog dialog;
 
     @Nullable
     @Override
@@ -57,11 +57,11 @@ public class BasicFragment extends SkinBaseFragment {
                 });
             }
         });
-        dialog = new MaterialDialog.Builder(getContext())
-                .title("换肤中")
-                .content("请耐心等待")
-                .canceledOnTouchOutside(false)
-                .progress(false, 100, true).build();
+//        dialog = new MaterialDialog.Builder(getContext())
+//                .title("换肤中")
+//                .content("请耐心等待")
+//                .canceledOnTouchOutside(false)
+//                .progress(false, 100, true).build();
 
         Button btn_switch = (Button) view.findViewById(R.id.btn_switch);
 
@@ -80,13 +80,11 @@ public class BasicFragment extends SkinBaseFragment {
                                     @Override
                                     public void onSuccess() {
                                         Log.i("SkinLoaderListener", "切换成功");
-                                        dialog.dismiss();
                                     }
 
                                     @Override
                                     public void onFailed(String errMsg) {
                                         Log.i("SkinLoaderListener", "切换失败:" + errMsg);
-                                        dialog.dismiss();
                                     }
 
                                     @Override
