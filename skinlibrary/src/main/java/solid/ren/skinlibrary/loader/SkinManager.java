@@ -338,6 +338,9 @@ public class SkinManager implements ISkinLoader {
         Drawable color;
         if (nightResId == 0) {
             int resId = mResources.getIdentifier(resName, "drawable", skinPackageName);
+            if (resId==0){
+                resId = mResources.getIdentifier(resName, "mipmap", skinPackageName);
+            }
             color = mResources.getDrawable(resId);
         } else {
             color = mResources.getDrawable(nightResId);
