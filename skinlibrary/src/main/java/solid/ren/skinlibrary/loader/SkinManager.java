@@ -97,7 +97,7 @@ public class SkinManager implements ISkinLoader {
         SkinConfig.saveSkinPath(context, SkinConfig.DEFAULT_SKIN);
         isDefaultSkin = true;
         mIsNightMode = false;
-        SkinConfig.setNightMode(context, true);
+        SkinConfig.setNightMode(context, false);
         mResources = context.getResources();
         skinPackageName = context.getPackageName();
         notifySkinUpdate();
