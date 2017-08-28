@@ -335,10 +335,13 @@ public class SkinManager implements ISkinLoader {
         String resNameNight = resName + "_night";
 
         int nightResId = mResources.getIdentifier(resNameNight, "drawable", skinPackageName);
+        if (nightResId == 0) {
+            nightResId = mResources.getIdentifier(resNameNight, "mipmap", skinPackageName);
+        }
         Drawable color;
         if (nightResId == 0) {
             int resId = mResources.getIdentifier(resName, "drawable", skinPackageName);
-            if (resId==0){
+            if (resId == 0) {
                 resId = mResources.getIdentifier(resName, "mipmap", skinPackageName);
             }
             color = mResources.getDrawable(resId);
