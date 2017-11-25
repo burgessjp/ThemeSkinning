@@ -31,20 +31,19 @@ public class MainActivity extends SkinBaseActivity {
     }
 
     private void setUpView() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("我是Toolbar");
         setSupportActionBar(toolbar);
         dynamicAddView(toolbar, "background", R.color.colorPrimaryDark);
 
-
-        TabLayout tablayout = (TabLayout) findViewById(R.id.tablayout);
+        TabLayout tablayout = findViewById(R.id.tablayout);
         for (int i = 0; i < DataProvider.getTitleList().size(); i++) {
             tablayout.addTab(tablayout.newTab().setText(DataProvider.getTitleList().get(i)));
         }
         dynamicAddView(tablayout, "tabLayoutIndicator", R.color.colorPrimaryDark);
 
 
-        ViewPager viewpager = (ViewPager) findViewById(R.id.viewpager);
+        ViewPager viewpager = findViewById(R.id.viewpager);
         viewpager.setAdapter(new TabViewpagerAdapter(getSupportFragmentManager(), DataProvider.getTitleList()));
         tablayout.setupWithViewPager(viewpager);
 
@@ -65,8 +64,36 @@ public class MainActivity extends SkinBaseActivity {
             case R.id.action_load_default:
                 SkinManager.getInstance().restoreDefaultTheme();
                 break;
-            case R.id.action_load_local:
-                SkinManager.getInstance().loadSkin("theme_style.skin",
+            case R.id.action_load_local1:
+                SkinManager.getInstance().loadSkin("theme.skin",
+                        new SkinLoaderListener() {
+                            @Override
+                            public void onStart() {
+                                Log.i("SkinLoaderListener", "正在切换中");
+                                //dialog.show();
+                            }
+
+                            @Override
+                            public void onSuccess() {
+                                Log.i("SkinLoaderListener", "切换成功");
+                            }
+
+                            @Override
+                            public void onFailed(String errMsg) {
+                                Log.i("SkinLoaderListener", "切换失败:" + errMsg);
+                            }
+
+                            @Override
+                            public void onProgress(int progress) {
+                                Log.i("SkinLoaderListener", "皮肤文件下载中:" + progress);
+
+                            }
+                        }
+
+                );
+                break;
+            case R.id.action_load_local2:
+                SkinManager.getInstance().loadSkin("theme-20171125.skin",
                         new SkinLoaderListener() {
                             @Override
                             public void onStart() {
@@ -96,9 +123,6 @@ public class MainActivity extends SkinBaseActivity {
             case R.id.action_night_mode:
                 SkinManager.getInstance().NightMode();
                 break;
-            case R.id.action_from_net:
-                fromNetWork();
-                break;
             case R.id.action_switch_font:
                 final HashMap<String, String> map = new HashMap<>(5);
                 map.put("默认", null);
@@ -120,30 +144,5 @@ public class MainActivity extends SkinBaseActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-
-    private void fromNetWork() {
-        SkinManager.getInstance().loadSkinFromUrl(DataProvider.netSkinUrl, new SkinLoaderListener() {
-            @Override
-            public void onStart() {
-                Log.i("SkinLoaderListener", "正在切换中");
-            }
-
-            @Override
-            public void onSuccess() {
-                Log.i("SkinLoaderListener", "切换成功");
-            }
-
-            @Override
-            public void onFailed(String errMsg) {
-                Log.i("SkinLoaderListener", "切换失败:" + errMsg);
-            }
-
-            @Override
-            public void onProgress(int progress) {
-                Log.i("SkinLoaderListener", "皮肤文件下载中:" + progress);
-            }
-        });
     }
 }

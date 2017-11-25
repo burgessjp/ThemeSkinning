@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '26.0.2'
     signingConfigs {
         release {
             keyAlias 'skinpackage'
@@ -26,13 +26,14 @@ android {
         }
     }
     applicationVariants.all { variant ->
-        variant.outputs.each { output ->
+        variant.outputs.all { output ->
             def buildType = variant.buildType.name
             def outputFile = output.outputFile
             def date = releaseTime()
             if (outputFile != null && buildType.contains("release") && outputFile.name.endsWith('.apk')) {
                 def fileName = "theme-${date}.skin"
-                output.outputFile = new File(outputFile.parent, fileName)
+                outputFileName=fileName
+                //output.outputFile = new File(outputFile.parent, fileName)
             }
         }
     }

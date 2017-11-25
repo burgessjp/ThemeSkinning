@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -30,6 +31,12 @@ public class DynamicAddFragment extends SkinBaseFragment {
 
     private void createDynamicView() {
 
+
+        ImageView imageView = new ImageView(getContext());
+        imageView.setBackgroundResource(R.mipmap.mipmap_img);
+        imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        dynamicAddView(imageView,"background",R.mipmap.mipmap_img);
+        ll_dynamic_view.addView(imageView);
         for (int i = 0; i < 10; i++) {
             TextView textView1 = new TextView(getContext());
             textView1.setText("我是动态创建的TextView" + i + ",我也可以换肤");

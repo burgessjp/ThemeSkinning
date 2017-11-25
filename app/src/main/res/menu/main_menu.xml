@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <item
         android:id="@+id/action_load_default"
         android:orderInCategory="101"
-        android:title="加载默认"
+        android:title="恢复默认"
         app:showAsAction="never"
         tools:ignore="HardcodedText" />
     <item
-        android:id="@+id/action_load_local"
+        android:id="@+id/action_load_local1"
         android:orderInCategory="101"
-        android:title="加载本地皮肤包"
+        android:title="加载本地皮肤包1"
         app:showAsAction="never"
         tools:ignore="HardcodedText" />
     <item
-        android:id="@+id/action_from_net"
+        android:id="@+id/action_load_local2"
         android:orderInCategory="101"
-        android:title="加载网络皮肤"
+        android:title="加载本地皮肤包2"
         app:showAsAction="never"
         tools:ignore="HardcodedText" />
     <item

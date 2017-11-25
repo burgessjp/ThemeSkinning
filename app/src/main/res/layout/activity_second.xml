@@ -17,13 +17,15 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@mipmap/mipmap_img"
-        skin:enable="true" />
+        skin:enable="true"
+        tools:ignore="ContentDescription" />
 
 
     <TextView
         android:id="@+id/tv_title"
         style="@style/ItemTitleText"
         android:layout_marginTop="5dp"
+        android:padding="10dp"
         android:text="style attr"
         skin:enable="true"
         tools:ignore="HardcodedText" />
