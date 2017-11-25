@@ -6,11 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-import solid.ren.skinlibrary.base.SkinBaseFragment;
-import solid.ren.themeskinning.fragment.BasicFragment;
-import solid.ren.themeskinning.fragment.DynamicAddFragment;
-import solid.ren.themeskinning.fragment.FromNetWorkFragment;
-import solid.ren.themeskinning.fragment.SwitchFontFragment;
+import solid.ren.themeskinning.DataProvider;
 
 /**
  * Created by _SOLID
@@ -30,17 +26,7 @@ public class TabViewpagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         CharSequence title = getPageTitle(position);
 
-        SkinBaseFragment fragment = new BasicFragment();
-        if ("基本换肤".equals(title)) {
-            fragment = new BasicFragment();
-        } else if ("动态添加".equals(title)) {
-            fragment = new DynamicAddFragment();
-        } else if ("加载网络皮肤".equals(title)) {
-            fragment = new FromNetWorkFragment();
-        } else if ("切换字体".equals(title)) {
-            fragment = new SwitchFontFragment();
-        }
-        return fragment;
+        return DataProvider.getFragment(title.toString());
     }
 
 

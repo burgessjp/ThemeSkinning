@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/selector_item"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="10dp"
+    skin:enable="true"
+    tools:ignore="MissingPrefix">
+
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@mipmap/mipmap_img"
+        skin:enable="true" />
+
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/ItemTitleText"
+        android:layout_marginTop="5dp"
+        android:text="style attr"
+        skin:enable="true"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="nomal attr"
+        android:textColor="@color/item_tv_content_color"
+        android:textSize="16sp"
+        skin:enable="true"
+        tools:ignore="HardcodedText" />
+
+    <RadioButton
+        android:id="@+id/rb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/selector_rb"
+        android:padding="5dp"
+        android:text="RadioButton Demo"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

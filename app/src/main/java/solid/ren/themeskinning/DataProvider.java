@@ -1,6 +1,12 @@
 package solid.ren.themeskinning;
 
+import android.support.v4.app.Fragment;
+
 import java.util.ArrayList;
+
+import solid.ren.skinlibrary.base.SkinBaseFragment;
+import solid.ren.themeskinning.fragment.BasicFragment;
+import solid.ren.themeskinning.fragment.DynamicAddFragment;
 
 /**
  * Created by _SOLID
@@ -8,13 +14,23 @@ import java.util.ArrayList;
  * Time:17:32
  */
 public class DataProvider {
+    public static String netSkinUrl = "https://raw.githubusercontent.com/burgessjp/ThemeSkinning/master/skinpackage/skin_net.skin";
 
     public static ArrayList<String> getTitleList() {
         ArrayList<String> list = new ArrayList<>();
-        list.add("基本换肤");
+        list.add("RecyclerView");
         list.add("动态添加");
-        list.add("加载网络皮肤");
-        list.add("切换字体");
         return list;
+    }
+
+    public static Fragment getFragment(String title) {
+
+        SkinBaseFragment fragment = new BasicFragment();
+        if ("RecyclerView".equals(title)) {
+            fragment = new BasicFragment();
+        } else if ("动态添加".equals(title)) {
+            fragment = new DynamicAddFragment();
+        }
+        return fragment;
     }
 }
