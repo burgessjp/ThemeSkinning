@@ -11,5 +11,8 @@
     <color name="item_tv_content_color">#B0B0B0</color>
     <color name="item_tv_date_color">#E5E5E5</color>
 
+    <color name="text_color_normal">#050505</color>
+    <color name="text_color_press">#6c6b6b</color>
+
     <color name="item_tv_title_background">#303F9F</color>
 </resources>
