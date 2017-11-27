@@ -3,10 +3,10 @@ package solid.ren.skinlibrary.loader;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v4.view.LayoutInflaterFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,11 +29,12 @@ import static android.R.attr.textColor;
  * Created by _SOLID
  * Date:2016/4/13
  * Time:21:19
- * <p></p>
+ * <div>
  * 自定义的InflaterFactory，用来代替默认的LayoutInflaterFactory
- * 参考链接：http://willowtreeapps.com/blog/app-development-how-to-get-the-right-layoutinflater/
+ * Ref: <a href="http://willowtreeapps.com/blog/app-development-how-to-get-the-right-layoutinflater/"> How to Get the Right LayoutInflater</a>
+ * </div>
  */
-public class SkinInflaterFactory implements LayoutInflaterFactory {
+public class SkinInflaterFactory implements LayoutInflater.Factory2 {
 
     private static final String TAG = "SkinInflaterFactory";
     /**
@@ -41,6 +42,15 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
      */
     private Map<View, SkinItem> mSkinItemMap = new HashMap<>();
     private AppCompatActivity mAppCompatActivity;
+
+    public SkinInflaterFactory(AppCompatActivity appCompatActivity) {
+        this.mAppCompatActivity = appCompatActivity;
+    }
+
+    @Override
+    public View onCreateView(String s, Context context, AttributeSet attributeSet) {
+        return null;
+    }
 
     @Override
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
@@ -64,22 +74,19 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
         return view;
     }
 
-    public void setAppCompatActivity(AppCompatActivity appCompatActivity) {
-        mAppCompatActivity = appCompatActivity;
-    }
-
     /**
      * collect skin view
      */
     private void parseSkinAttr(Context context, AttributeSet attrs, View view) {
-        List<SkinAttr> viewAttrs = new ArrayList<>();//存储View可更换皮肤属性的集合
+        List<SkinAttr> viewAttrs = new ArrayList<>();
         SkinL.i(TAG, "viewName:" + view.getClass().getSimpleName());
-        for (int i = 0; i < attrs.getAttributeCount(); i++) {//遍历当前View的属性
-            String attrName = attrs.getAttributeName(i);//属性名
-            String attrValue = attrs.getAttributeValue(i);//属性值
+        for (int i = 0; i < attrs.getAttributeCount(); i++) {
+            String attrName = attrs.getAttributeName(i);
+            String attrValue = attrs.getAttributeValue(i);
             SkinL.i(TAG, "    AttributeName:" + attrName + "|attrValue:" + attrValue);
             //region  style
-            if ("style".equals(attrName)) {//style theme
+            //style theme
+            if ("style".equals(attrName)) {
                 String styleName = attrValue.substring(attrValue.indexOf("/") + 1);
                 int styleID = context.getResources().getIdentifier(styleName, "style", context.getPackageName());
                 int[] skinAttrs = new int[]{textColor, android.R.attr.background};
@@ -87,7 +94,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
                 int textColorId = a.getResourceId(0, -1);
                 int backgroundId = a.getResourceId(1, -1);
                 if (textColorId != -1) {
-                    String entryName = context.getResources().getResourceEntryName(textColorId);//入口名，例如text_color_selector
+                    String entryName = context.getResources().getResourceEntryName(textColorId);
                     String typeName = context.getResources().getResourceTypeName(textColorId);
                     SkinAttr skinAttr = AttrFactory.get("textColor", textColorId, entryName, typeName);
                     SkinL.w(TAG, "    textColor in style is supported:" + "\n" +
@@ -101,7 +108,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
                     }
                 }
                 if (backgroundId != -1) {
-                    String entryName = context.getResources().getResourceEntryName(backgroundId);//入口名，例如text_color_selector
+                    String entryName = context.getResources().getResourceEntryName(backgroundId);
                     String typeName = context.getResources().getResourceTypeName(backgroundId);
                     SkinAttr skinAttr = AttrFactory.get("background", backgroundId, entryName, typeName);
                     SkinL.w(TAG, "    background in style is supported:" + "\n" +
@@ -119,12 +126,18 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
                 continue;
             }
             //endregion
-            if (AttrFactory.isSupportedAttr(attrName) && attrValue.startsWith("@")) {//也就是引用类型，形如@color/red
+            //if attrValue is reference，eg:@color/red
+            if (AttrFactory.isSupportedAttr(attrName) && attrValue.startsWith("@")) {
                 try {
-                    int id = Integer.parseInt(attrValue.substring(1));//资源的id
-                    if (id == 0) continue;
-                    String entryName = context.getResources().getResourceEntryName(id);//入口名，例如text_color_selector
-                    String typeName = context.getResources().getResourceTypeName(id);//类型名，例如color、drawable
+                    //resource id
+                    int id = Integer.parseInt(attrValue.substring(1));
+                    if (id == 0) {
+                        continue;
+                    }
+                    //entryName，eg:text_color_selector
+                    String entryName = context.getResources().getResourceEntryName(id);
+                    //typeName，eg:color、drawable
+                    String typeName = context.getResources().getResourceTypeName(id);
                     SkinAttr mSkinAttr = AttrFactory.get(attrName, id, entryName, typeName);
                     SkinL.w(TAG, "    " + attrName + " is supported:" + "\n" +
                             "    resource id:" + id + "\n" +
@@ -166,7 +179,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
     }
 
     /**
-     * 清除有皮肤更改需求的View及其对应的属性的集合
+     * clear skin view
      */
     public void clean() {
         for (View view : mSkinItemMap.keySet()) {
@@ -201,7 +214,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
     }
 
     /**
-     * 动态添加那些有皮肤更改需求的View，及其对应的属性
+     * Dynamically add skin view
      *
      * @param context        context
      * @param view           added view
@@ -222,14 +235,14 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
     }
 
     /**
-     * 动态添加那些有皮肤更改需求的View，及其对应的属性集合
+     * dynamic add skin view and it's attrs
      *
-     * @param context
-     * @param view
-     * @param attrs
+     * @param context context
+     * @param view    view
+     * @param attrs   attrs
      */
     public void dynamicAddSkinEnableView(Context context, View view, List<DynamicAttr> attrs) {
-        List<SkinAttr> viewAttrs = new ArrayList<SkinAttr>();
+        List<SkinAttr> viewAttrs = new ArrayList<>();
         SkinItem skinItem = new SkinItem();
         skinItem.view = view;
 
@@ -249,5 +262,6 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
     public void dynamicAddFontEnableView(Activity activity, TextView textView) {
         TextViewRepository.add(activity, textView);
     }
+
 
 }

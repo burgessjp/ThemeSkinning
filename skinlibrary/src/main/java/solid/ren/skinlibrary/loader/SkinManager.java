@@ -14,6 +14,7 @@ import android.support.annotation.RestrictTo;
 import android.support.v4.content.ContextCompat;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,30 +45,60 @@ public class SkinManager implements ISkinLoader {
      * skin package name
      */
     private String skinPackageName;
-    /**
-     * skin path
-     */
-    private String skinPath;
-    private boolean mIsNightMode;
 
     private SkinManager() {
 
     }
 
+    public static SkinManager getInstance() {
+        if (mInstance == null) {
+            synchronized (SkinManager.class) {
+                if (mInstance == null) {
+                    mInstance = new SkinManager();
+                }
+            }
+        }
+        return mInstance;
+    }
+
     public void init(Context ctx) {
         context = ctx.getApplicationContext();
         TypefaceUtils.CURRENT_TYPEFACE = TypefaceUtils.getTypeface(context);
+        setUpSkinFile(context);
+        if (SkinConfig.isInNightMode(ctx)) {
+            SkinManager.getInstance().nightMode();
+        } else {
+            String skin = SkinConfig.getCustomSkinPath(context);
+            if (SkinConfig.isDefaultSkin(context)) {
+                return;
+            }
+            loadSkin(skin, null);
+        }
+    }
+
+    private void setUpSkinFile(Context context) {
+        try {
+            String[] skinFiles = context.getAssets().list(SkinConfig.SKIN_DIR_NAME);
+            for (String fileName : skinFiles) {
+                File file = new File(SkinFileUtils.getSkinDir(context), fileName);
+                if (!file.exists()) {
+                    SkinFileUtils.copySkinAssetsToDir(context, fileName, SkinFileUtils.getSkinDir(context));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getColorPrimaryDark() {
         if (mResources != null) {
             int identify = mResources.getIdentifier("colorPrimaryDark", "color", skinPackageName);
-            if (!(identify <= 0))
+            if (identify > 0) {
                 return mResources.getColor(identify);
+            }
         }
         return -1;
     }
-
 
     boolean isExternalSkin() {
         return !isDefaultSkin && mResources != null;
@@ -81,28 +112,13 @@ public class SkinManager implements ISkinLoader {
         return mResources;
     }
 
-    /**
-     * 恢复到默认主题
-     */
     public void restoreDefaultTheme() {
         SkinConfig.saveSkinPath(context, SkinConfig.DEFAULT_SKIN);
         isDefaultSkin = true;
-        mIsNightMode = false;
         SkinConfig.setNightMode(context, false);
         mResources = context.getResources();
         skinPackageName = context.getPackageName();
         notifySkinUpdate();
-    }
-
-    public static SkinManager getInstance() {
-        if (mInstance == null) {
-            synchronized (SkinManager.class) {
-                if (mInstance == null) {
-                    mInstance = new SkinManager();
-                }
-            }
-        }
-        return mInstance;
     }
 
     @Override
@@ -117,32 +133,25 @@ public class SkinManager implements ISkinLoader {
 
     @Override
     public void detach(ISkinUpdate observer) {
-        if (mSkinObservers == null) return;
-        if (mSkinObservers.contains(observer)) {
+        if (mSkinObservers != null && mSkinObservers.contains(observer)) {
             mSkinObservers.remove(observer);
         }
     }
 
     @Override
     public void notifySkinUpdate() {
-        if (mSkinObservers == null) return;
-        for (ISkinUpdate observer : mSkinObservers) {
-            observer.onThemeUpdate();
+        if (mSkinObservers != null) {
+            for (ISkinUpdate observer : mSkinObservers) {
+                observer.onThemeUpdate();
+            }
         }
     }
 
     public boolean isNightMode() {
-        return mIsNightMode;
+        return SkinConfig.isInNightMode(context);
     }
 
     //region Load skin or font
-    public void loadSkin(SkinLoaderListener callback) {
-        String skin = SkinConfig.getCustomSkinPath(context);
-        if (SkinConfig.isDefaultSkin(context)) {
-            return;
-        }
-        loadSkin(skin, callback);
-    }
 
 
     /**
@@ -159,6 +168,7 @@ public class SkinManager implements ISkinLoader {
 
         new AsyncTask<String, Void, Resources>() {
 
+            @Override
             protected void onPreExecute() {
                 if (callback != null) {
                     callback.onStart();
@@ -187,7 +197,6 @@ public class SkinManager implements ISkinLoader {
                         Resources skinResource = ResourcesCompat.getResources(assetManager, superRes.getDisplayMetrics(), superRes.getConfiguration());
                         SkinConfig.saveSkinPath(context, params[0]);
 
-                        skinPath = skinPkgPath;
                         isDefaultSkin = false;
                         return skinResource;
                     }
@@ -198,17 +207,21 @@ public class SkinManager implements ISkinLoader {
                 }
             }
 
+            @Override
             protected void onPostExecute(Resources result) {
                 mResources = result;
 
                 if (mResources != null) {
-                    if (callback != null) callback.onSuccess();
-                    mIsNightMode = false;
+                    if (callback != null) {
+                        callback.onSuccess();
+                    }
                     SkinConfig.setNightMode(context, false);
                     notifySkinUpdate();
                 } else {
                     isDefaultSkin = true;
-                    if (callback != null) callback.onFailed("没有获取到资源");
+                    if (callback != null) {
+                        callback.onFailed("没有获取到资源");
+                    }
                 }
             }
 
@@ -226,11 +239,10 @@ public class SkinManager implements ISkinLoader {
         TextViewRepository.applyFont(tf);
     }
 
-    public void NightMode() {
+    public void nightMode() {
         if (!isDefaultSkin) {
             restoreDefaultTheme();
         }
-        mIsNightMode = true;
         SkinConfig.setNightMode(context, true);
         notifySkinUpdate();
     }

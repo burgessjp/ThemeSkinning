@@ -2,12 +2,7 @@ package solid.ren.skinlibrary.base;
 
 import android.app.Application;
 
-import java.io.File;
-import java.io.IOException;
-
-import solid.ren.skinlibrary.SkinConfig;
 import solid.ren.skinlibrary.loader.SkinManager;
-import solid.ren.skinlibrary.utils.SkinFileUtils;
 
 
 /**
@@ -18,38 +13,9 @@ import solid.ren.skinlibrary.utils.SkinFileUtils;
  */
 public class SkinBaseApplication extends Application {
 
+    @Override
     public void onCreate() {
-
         super.onCreate();
-        initSkinLoader();
-    }
-
-    /**
-     * Must call init first
-     */
-    private void initSkinLoader() {
-        setUpSkinFile();
         SkinManager.getInstance().init(this);
-        if (!SkinConfig.isInNightMode(this)) {
-            SkinManager.getInstance().loadSkin(null);
-        } else {
-            SkinManager.getInstance().NightMode();
-        }
-
     }
-
-    private void setUpSkinFile() {
-        try {
-            String[] skinFiles = getAssets().list(SkinConfig.SKIN_DIR_NAME);
-            for (String fileName : skinFiles) {
-                File file = new File(SkinFileUtils.getSkinDir(this), fileName);
-                if (!file.exists())
-                    SkinFileUtils.copySkinAssetsToDir(this, fileName, SkinFileUtils.getSkinDir(this));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 }

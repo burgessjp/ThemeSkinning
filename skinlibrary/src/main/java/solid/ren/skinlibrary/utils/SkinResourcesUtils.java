@@ -52,8 +52,9 @@ public class SkinResourcesUtils {
                         "colorPrimaryDark",
                         "color",
                         SkinManager.getInstance().getCurSkinPackageName());
-                if (identify > 0)
+                if (identify > 0) {
                     return resources.getColor(identify);
+                }
             }
         } else {
             return SkinManager.getInstance().getNightColor("colorPrimaryDark");

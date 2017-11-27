@@ -35,9 +35,8 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mSkinInflaterFactory = new SkinInflaterFactory();
-        mSkinInflaterFactory.setAppCompatActivity(this);
-        LayoutInflaterCompat.setFactory(getLayoutInflater(), mSkinInflaterFactory);
+        mSkinInflaterFactory = new SkinInflaterFactory(this);
+        LayoutInflaterCompat.setFactory2(getLayoutInflater(), mSkinInflaterFactory);
         super.onCreate(savedInstanceState);
         changeStatusColor();
     }

@@ -121,7 +121,7 @@ public class MainActivity extends SkinBaseActivity {
                 );
                 break;
             case R.id.action_night_mode:
-                SkinManager.getInstance().NightMode();
+                SkinManager.getInstance().nightMode();
                 break;
             case R.id.action_switch_font:
                 final HashMap<String, String> map = new HashMap<>(5);

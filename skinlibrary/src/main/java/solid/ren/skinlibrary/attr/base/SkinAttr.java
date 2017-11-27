@@ -36,7 +36,7 @@ public abstract class SkinAttr implements Cloneable {
     /**
      * Use to apply view with new TypedValue
      *
-     * @param view
+     * @param view view
      */
     public void apply(View view) {
         if (!SkinResourcesUtils.isNightMode()) {

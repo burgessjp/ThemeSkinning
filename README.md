@@ -11,7 +11,7 @@
  2. 开启全局换肤配置 `SkinConfig.enableGlobalSkinApply()`
  3. 复制一份 `color.xml` 文件并重命名为 `color_night.xml` ,然后修改 `color_night.xml`，在每一个 color 的 name 后面加上一个 `_night`后缀
  4. 对于 `drawable` 文件的处理也差不多，复制需要夜间模式切换的 `drawable` 文件，然后在其文件名上加上一个 `_night` 后缀，`xml` 文件中的颜色值修改成夜间模式需要的即可
- 5. 最后在适当的地方调用 `SkinManager.getInstance().NightMode()` 即可实现夜间模式
+ 5. 最后在适当的地方调用 `SkinManager.getInstance().nightMode()` 即可实现夜间模式
  6. 具体实现可以参考示例项目
 
 效果图如下：
@@ -155,29 +155,10 @@ public class TabLayoutIndicatorAttr extends SkinAttr {
 
 
 ### 6.项目依赖：
-1. 'com.android.support:appcompat-v7:25.3.1'
-2. 'com.mani:ThinDownloadManager:1.2.5'
+1. 'com.android.support:appcompat-v7:26.1.0'
 
-### 7.更新日志：
+### 7.[更新日志](UpdateLog.md)
 
-- v2.0.0 beta:无需使用皮肤包即可实现夜间模式
-- v1.4.5:fix [issues 38](https://github.com/burgessjp/ThemeSkinning/issues/38)
-- v1.4.4:修复 @null 带来的bug
-- v1.4.3:由于在开启全局皮肤切换后，过度动画会带来一些问题，在这个版本中删除了过度动画
-- v1.4.2:增加对全局应用皮肤方法，若开启则不需要在布局文件中添加 <code>skin:enable="true"</code>
-- v1.4.1:增加从指定目录获取drawable的方法
-- v1.4.0:
-   - 修复[issues9](https://github.com/burgessjp/ThemeSkinning/issues/9)内存泄漏问题
-   - 支持 style
-   - 解决字体切换内存泄漏问题
-   - 支持 mipmap
-   - 状态栏颜色切换只支持 5.0 以上版本
-   - 增加 debug 开关，方便开发调试
-- v1.3.1:优化换字体部分代码
-- v1.3.0:增加一键切换字体
-- v1.2.1:完善之前版本 View 的创建
-- v1.2.0:增加对换肤属性自定义扩展
-- v1.1.0:可以直接加载网络上的皮肤文件
 
 ### 致谢：
 

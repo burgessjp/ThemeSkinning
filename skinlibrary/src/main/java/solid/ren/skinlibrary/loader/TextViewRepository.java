@@ -15,33 +15,37 @@ import solid.ren.skinlibrary.utils.TypefaceUtils;
  * Created by _SOLID
  * Date:2016/7/12
  * Time:17:58
+ * Desc:
  */
 class TextViewRepository {
-    private static Map<Activity, List<TextView>> mTextViewMap = new HashMap<>();
+    private static Map<String, List<TextView>> mTextViewMap = new HashMap<>();
 
     static void add(Activity activity, TextView textView) {
 
-        if (mTextViewMap.containsKey(activity)) {
-            mTextViewMap.get(activity).add(textView);
+        String className = activity.getLocalClassName();
+        if (mTextViewMap.containsKey(className)) {
+            mTextViewMap.get(className).add(textView);
         } else {
             List<TextView> textViews = new ArrayList<>();
             textViews.add(textView);
-            mTextViewMap.put(activity, textViews);
+            mTextViewMap.put(className, textViews);
         }
         textView.setTypeface(TypefaceUtils.CURRENT_TYPEFACE);
     }
 
     static void remove(Activity activity) {
-        mTextViewMap.remove(activity);
+        mTextViewMap.remove(activity.getLocalClassName());
     }
 
-    static boolean remove(Activity activity, TextView textView) {
-        return mTextViewMap.containsKey(activity) && mTextViewMap.get(activity).remove(textView);
+    static void remove(Activity activity, TextView textView) {
+        if (mTextViewMap.containsKey(activity.getLocalClassName())) {
+            mTextViewMap.get(activity.getLocalClassName()).remove(textView);
+        }
     }
 
     static void applyFont(Typeface tf) {
-        for (Activity activity : mTextViewMap.keySet()) {
-            for (TextView textView : mTextViewMap.get(activity)) {
+        for (String className : mTextViewMap.keySet()) {
+            for (TextView textView : mTextViewMap.get(className)) {
                 textView.setTypeface(tf);
             }
         }

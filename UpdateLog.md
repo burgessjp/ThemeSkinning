@@ -1,0 +1,28 @@
+
+- v2.0.0 beta7
+  - 更新 `LayoutInflaterFactory` 为 `LayoutInflater.Factory2`
+  - 删除 `SkinInflaterFactory` 中的 `setAppCompatActivity` 方法
+  - 简化调用，`Application` 中只需调用 `SkinManager.getInstance().init` 即可
+  - 优化 `TextViewRepository`
+  - 移除从网络加载皮肤功能（使用者自行添加）
+  - 更新 support 库至 26.1.0
+  - `minSdkVersion` 改为 14
+
+- v2.0.0 beta:无需使用皮肤包即可实现夜间模式
+- v1.4.5:fix [issues 38](https://github.com/burgessjp/ThemeSkinning/issues/38)
+- v1.4.4:修复 @null 带来的bug
+- v1.4.3:由于在开启全局皮肤切换后，过度动画会带来一些问题，在这个版本中删除了过度动画
+- v1.4.2:增加对全局应用皮肤方法，若开启则不需要在布局文件中添加 <code>skin:enable="true"</code>
+- v1.4.1:增加从指定目录获取drawable的方法
+- v1.4.0:
+   - 修复[issues9](https://github.com/burgessjp/ThemeSkinning/issues/9)内存泄漏问题
+   - 支持 style
+   - 解决字体切换内存泄漏问题
+   - 支持 mipmap
+   - 状态栏颜色切换只支持 5.0 以上版本
+   - 增加 debug 开关，方便开发调试
+- v1.3.1:优化换字体部分代码
+- v1.3.0:增加一键切换字体
+- v1.2.1:完善之前版本 View 的创建
+- v1.2.0:增加对换肤属性自定义扩展
+- v1.1.0:可以直接加载网络上的皮肤文件
