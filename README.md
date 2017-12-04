@@ -34,8 +34,6 @@
 
 7. 调用换肤
 
- - 在 <code>assets/skin</code> 文件夹中的皮肤
-
     ```html
       SkinManager.getInstance().loadSkin("Your skin file name in assets(eg:theme.skin)",
                                     new ILoaderListener() {
@@ -57,36 +55,7 @@
 
                             );
     ```
- - 皮肤来源于网络
 
-    ```html
-    SkinManager.getInstance().loadSkinFromUrl(skinUrl, new ILoaderListener() {
-                        @Override
-                        public void onStart() {
-                            Log.i("ILoaderListener", "正在切换中");
-                            dialog.setContent("正在从网络下载皮肤文件");
-                            dialog.show();
-                        }
-
-                        @Override
-                        public void onSuccess() {
-                            Log.i("ILoaderListener", "切换成功");
-                            dialog.dismiss();
-                        }
-
-                        @Override
-                        public void onFailed(String errMsg) {
-                            Log.i("ILoaderListener", "切换失败:" + errMsg);
-                            dialog.setContent("换肤失败:" + errMsg);
-                        }
-
-                        @Override
-                        public void onProgress(int progress) {
-                            Log.i("ILoaderListener", "皮肤文件下载中:" + progress);
-                            dialog.setProgress(progress);
-                        }
-                    });
-    ```
 详细的使用，请到示例项目中查看
 
 

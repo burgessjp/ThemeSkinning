@@ -27,7 +27,7 @@ public class BackgroundAttr extends SkinAttr {
     @Override
     protected void applyNightMode(View view) {
         if (isColor()) {
-            view.setBackgroundColor(SkinResourcesUtils.getNightColor(attrValueRefName));
+            view.setBackgroundColor(SkinResourcesUtils.getNightColor(attrValueRefId));
         } else if (isDrawable()) {
             view.setBackgroundDrawable(SkinResourcesUtils.getNightDrawable(attrValueRefName));
         }

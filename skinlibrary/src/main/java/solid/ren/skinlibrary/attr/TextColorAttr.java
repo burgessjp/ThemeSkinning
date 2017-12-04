@@ -29,7 +29,7 @@ public class TextColorAttr extends SkinAttr {
         if (view instanceof TextView) {
             TextView tv = (TextView) view;
             if (isColor()) {
-                tv.setTextColor(SkinResourcesUtils.getNightColor(attrValueRefName));
+                tv.setTextColor(SkinResourcesUtils.getNightColorStateList(attrValueRefId));
             }
         }
     }

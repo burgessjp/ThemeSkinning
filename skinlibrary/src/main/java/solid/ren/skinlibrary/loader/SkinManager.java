@@ -269,19 +269,29 @@ public class SkinManager implements ISkinLoader {
     }
 
     @RestrictTo(RestrictTo.Scope.LIBRARY)
-    public int getNightColor(String resName) {
+    public ColorStateList getNightColorStateList(int resId) {
 
+        String resName = mResources.getResourceEntryName(resId);
         String resNameNight = resName + "_night";
-
         int nightResId = mResources.getIdentifier(resNameNight, "color", skinPackageName);
-        int color;
         if (nightResId == 0) {
-            int resId = mResources.getIdentifier(resName, "color", skinPackageName);
-            color = mResources.getColor(resId);
+            return ContextCompat.getColorStateList(context, resId);
         } else {
-            color = mResources.getColor(nightResId);
+            return ContextCompat.getColorStateList(context, nightResId);
         }
-        return color;
+    }
+
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
+    public int getNightColor(int resId) {
+
+        String resName = mResources.getResourceEntryName(resId);
+        String resNameNight = resName + "_night";
+        int nightResId = mResources.getIdentifier(resNameNight, "color", skinPackageName);
+        if (nightResId == 0) {
+            return ContextCompat.getColor(context, resId);
+        } else {
+            return ContextCompat.getColor(context, nightResId);
+        }
     }
 
     @RestrictTo(RestrictTo.Scope.LIBRARY)

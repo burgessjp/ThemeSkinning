@@ -17,8 +17,12 @@ public class SkinResourcesUtils {
         return SkinManager.getInstance().getColor(resId);
     }
 
-    public static int getNightColor(String resName) {
-        return SkinManager.getInstance().getNightColor(resName);
+    public static ColorStateList getNightColorStateList(int resId) {
+        return SkinManager.getInstance().getNightColorStateList(resId);
+    }
+
+    public static int getNightColor(int resId) {
+        return SkinManager.getInstance().getNightColor(resId);
     }
 
     public static Drawable getDrawable(int resId) {
@@ -57,7 +61,16 @@ public class SkinResourcesUtils {
                 }
             }
         } else {
-            return SkinManager.getInstance().getNightColor("colorPrimaryDark");
+            Resources resources = SkinManager.getInstance().getResources();
+            if (resources != null) {
+                int identify = resources.getIdentifier(
+                        "colorPrimaryDark_night",
+                        "color",
+                        SkinManager.getInstance().getCurSkinPackageName());
+                if (identify > 0) {
+                    return SkinManager.getInstance().getColor(identify);
+                }
+            }
         }
         return -1;
     }
