@@ -23,8 +23,6 @@ import solid.ren.skinlibrary.attr.base.SkinAttr;
 import solid.ren.skinlibrary.utils.SkinL;
 import solid.ren.skinlibrary.utils.SkinListUtils;
 
-import static android.R.attr.textColor;
-
 /**
  * Created by _SOLID
  * Date:2016/4/13
@@ -87,10 +85,8 @@ public class SkinInflaterFactory implements LayoutInflater.Factory2 {
             //region  style
             //style theme
             if ("style".equals(attrName)) {
-                String styleName = attrValue.substring(attrValue.indexOf("/") + 1);
-                int styleID = context.getResources().getIdentifier(styleName, "style", context.getPackageName());
-                int[] skinAttrs = new int[]{textColor, android.R.attr.background};
-                TypedArray a = context.getTheme().obtainStyledAttributes(styleID, skinAttrs);
+                int[] skinAttrs = new int[]{android.R.attr.textColor, android.R.attr.background};
+                TypedArray a = context.getTheme().obtainStyledAttributes(attrs, skinAttrs, 0, 0);
                 int textColorId = a.getResourceId(0, -1);
                 int backgroundId = a.getResourceId(1, -1);
                 if (textColorId != -1) {
