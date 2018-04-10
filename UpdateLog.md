@@ -1,4 +1,5 @@
-
+- v2.0.0 beta9
+  - 修复style换肤问题
 - v2.0.0 beta7
   - 更新 `LayoutInflaterFactory` 为 `LayoutInflater.Factory2`
   - 删除 `SkinInflaterFactory` 中的 `setAppCompatActivity` 方法

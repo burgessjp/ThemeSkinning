@@ -39,7 +39,7 @@ public class BasicFragment extends SkinBaseFragment {
         View view = inflater.inflate(R.layout.fragment_baseskin, container, false);
 
 
-        recyclerview = (RecyclerView) view.findViewById(R.id.recyclerview);
+        recyclerview = view.findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerview.setAdapter(new BaseQuickAdapter<DataBean>(R.layout.item_layout, getData()) {
             @Override
