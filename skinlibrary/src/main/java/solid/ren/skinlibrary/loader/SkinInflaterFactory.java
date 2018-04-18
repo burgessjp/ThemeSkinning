@@ -23,8 +23,6 @@ import solid.ren.skinlibrary.attr.base.SkinAttr;
 import solid.ren.skinlibrary.utils.SkinL;
 import solid.ren.skinlibrary.utils.SkinListUtils;
 
-import static android.R.attr.textColor;
-
 /**
  * Created by _SOLID
  * Date:2016/4/13
