@@ -87,10 +87,15 @@ public class SkinInflaterFactory implements LayoutInflater.Factory2 {
             //region  style
             //style theme
             if ("style".equals(attrName)) {
-                int[] skinAttrs = new int[]{android.R.attr.textColor, android.R.attr.background};
+                int[] skinAttrs = new int[]{
+                        android.R.attr.textColor,
+                        android.R.attr.background,
+                        android.R.attr.src
+                };
                 TypedArray a = context.getTheme().obtainStyledAttributes(attrs, skinAttrs, 0, 0);
                 int textColorId = a.getResourceId(0, -1);
                 int backgroundId = a.getResourceId(1, -1);
+                int srcId = a.getResourceId(2, -1);
                 if (textColorId != -1) {
                     String entryName = context.getResources().getResourceEntryName(textColorId);
                     String typeName = context.getResources().getResourceTypeName(textColorId);
@@ -119,6 +124,20 @@ public class SkinInflaterFactory implements LayoutInflater.Factory2 {
                         viewAttrs.add(skinAttr);
                     }
 
+                }
+                if (srcId != -1) {
+                    String entryName = context.getResources().getResourceEntryName(srcId);
+                    String typeName = context.getResources().getResourceTypeName(srcId);
+                    SkinAttr skinAttr = AttrFactory.get("src", srcId, entryName, typeName);
+                    SkinL.w(TAG, "    srcId in style is supported:" + "\n" +
+                            "    resource id:" + backgroundId + "\n" +
+                            "    attrName:" + attrName + "\n" +
+                            "    attrValue:" + attrValue + "\n" +
+                            "    entryName:" + entryName + "\n" +
+                            "    typeName:" + typeName);
+                    if (skinAttr != null) {
+                        viewAttrs.add(skinAttr);
+                    }
                 }
                 a.recycle();
                 continue;
